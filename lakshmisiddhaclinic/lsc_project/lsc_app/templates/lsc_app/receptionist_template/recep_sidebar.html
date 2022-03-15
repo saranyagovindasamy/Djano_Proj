@@ -1,0 +1,18 @@
+
+      <li class="nav-item dropend">
+    <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Patient<i
+        class="fas fa-angle-right"></i></a>
+    <ul class="dropdown-menu">
+      <li class="nav-item"><a class="dropdown-item" href="{%url 'addpatient'%}">Add</a></li>
+      <li class="nav-item"><a class="dropdown-item" href="#">Edit</a></li>
+      <li class="nav-item"><a class="dropdown-item" href="{%url 'patientsumm'%}">Summary</a></li>
+    </ul>
+  </li>
+  <li class="nav-item dropend">
+    <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Appointments<i
+        class="fas fa-angle-right"></i></a>
+    <ul class="dropdown-menu">
+      <li class="nav-item"><a class="dropdown-item" href="{%url 'apptmtsummrecep'%}">Summary</a></li>
+      <li class="nav-item"><a class="dropdown-item" href="{%url 'appoint_update'%}">Book</a></li>
+    </ul>
+  </li>

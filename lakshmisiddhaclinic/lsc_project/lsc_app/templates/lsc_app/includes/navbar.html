@@ -1,0 +1,73 @@
+
+{%block content%}
+{%url 'home' as home%}
+{%url 'specialities' as specialities%}
+{%url 'treatments' as treatments%}
+{%url 'blog' as blog%}
+{%url 'contactus' as contactus%}
+{%url 'bookanappointment' as bookanappointment%}
+{%url 'md-home' as md-home%}
+{%url 'logout' as logout%}
+{%url 'login' as login%}
+<header>
+  <!-- <img src="/static/lsc_app/lsc_images/Logo_images/50 LSC fevicon 1006_ROUNDED.png" id="menuBtn"> -->
+<nav id="navbar" class="navbar float-right navbar-expand-xl navbar-light bg-light text-gray-dark py-sm-2 fixed-top">
+  <div class="container-fluid ">
+ 
+    <a class="navbar-brand" href="{%url 'home'%}"> <img src="/static/lsc_app/lsc_images/laskhmi_clinic.png" alt="logo"
+        height="50" >
+    </a>
+  
+    <button id="navbar-toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span> 
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li  class="nav-item">
+          <a class="nav-link {%if request.path == home%} active {% endif %}" href="{% url 'home' %}">Home</a>
+        </li>
+        <li  class="nav-item">
+          <a  class="nav-link {%if request.path == specialities%} active {% endif %} " href="{% url 'specialities' %}">Specialities</a>
+        </li>
+        <li  class="nav-item">
+          <a class="nav-link {%if request.path == treatments%} active {% endif %} " href="{% url 'treatments' %}">Treatments</a>
+        </li>
+
+        <li  class="nav-item">
+          <a class="nav-link {%if request.path == blog or '/post/' in request.path %} active {% endif %} " href="{% url 'blog' %}">Blog</a>
+        </li>
+        <li  class="nav-item">
+          <a class="nav-link {%if request.path == contactus%} active {% endif %} " href="{% url 'contactus' %}">Contact Us</a>
+        </li>
+        <li  class="nav-item">
+          <a class="nav-link {%if request.path == bookanappointment%} active {% endif %} " href="{% url 'bookanappointment' %}">Book An Appointment</a>
+        </li>
+
+      {% if user.is_authenticated %}
+      {% if user.userprofile.user_category == '1'%}
+
+
+      <li class="nav-item">
+        <a class="nav-link {%if request.path == '/md/home'%} active {% endif %} " href="{% url 'md-home' %}">{{user.username}}</a></li>
+      {% endif %}
+      <li class="nav-item"><a class="nav-link {%if request.path == logout%} active {% endif %} " href="{% url 'logout' %}">Logout</a></li>
+      {% else %}
+
+      <li class="nav-item"><a class="nav-link {%if request.path == login%} active {% endif %} " href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+      
+    </ul>
+    </div>
+  </div>
+</nav>
+
+</header>
+
+<style>
+  a.nav-link:first-letter {
+    text-transform: uppercase;
+}
+</style>
+{%endblock content%}

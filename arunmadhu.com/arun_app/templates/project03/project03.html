@@ -1,0 +1,57 @@
+{% extends "project03/project03base.html" %}
+{% load static%}
+{%block home_content%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 right-home text-center">
+            <div class="header-txt">
+                <h1 class="h1-txt">Give Your Workout A New Style!</h1>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab consequuntur quis adipisci
+                repellat in.</p>
+            <div class="button-store text-center">
+                <a href="#"> <button type="button" class="btn-store" data-hover="Explore More ">
+                        <div><i class="fab fa-2x fa-wpexplorer"></i></div>
+                    </button> </a>
+            </div>
+        </div>
+        <div class="col-md-6 header-img">
+            <img src="{% static 'images/project03/fitness.png' %}">
+        </div>
+    </div>
+</div>
+
+<section class="categories-sec">
+    {% include "project03/includes/categories.html" %}
+</section>
+
+<section class="featured-sec">
+    <div class="container">
+        {% include "project03/includes/featured.html" %}
+    </div>
+</section>
+
+<section class="latest-sec">
+    {% include "project03/includes/latest.html" %}
+
+</section>
+
+<section class="execulsive-sec">
+    {% include "project03/includes/execlusive.html" %}
+</section>
+
+<section class="testimonial text-center">
+    {% include "project03/includes/testimonial.html" %}
+</section>
+
+<section class="footer-sec">
+
+    {% include "project03/includes/brands.html" %}
+
+    {% include "project03/includes/scrolltop.html" %}
+
+    {% include "project03/includes/footer.html" %}
+
+</section>
+{%endblock home_content%}

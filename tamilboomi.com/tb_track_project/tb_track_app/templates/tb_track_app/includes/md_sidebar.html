@@ -1,0 +1,83 @@
+
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'language'%}">Programming Languages</a>
+      </li>
+
+      <li class="nav-item dropend">
+        <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Courses<i
+            class="fas fa-angle-right"></i></a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'course_add'%}">Add</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'course_edit'%}">Edit</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'course_details'%}">Summary</a></li>
+          <hr class="dropdown-divider" style="color: #FFFF;">
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'course-fee'%}">Course Fee</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropend">
+        <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> Trainers<i
+            class="fas fa-angle-right"></i></a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'trainer-new'%}">Add</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="#">Profile</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'trainers-details'%}">Summary</a></li>
+          <hr class="dropdown-divider" style="color: #FFFF;">
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'trainer-add-pay'%}">Add Payment</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'trainer-payment-details'%}">Payment Summary</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropend">
+        <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Batches<i
+            class="fas fa-angle-right"></i></a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'batch-current'%}">Current Batch</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'batch-new'%}">Add New Batch</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'batch-details'%}">Summary</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropend">
+        <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Trainees<i
+            class="fas fa-angle-right"></i></a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'trainee-new'%}">Add</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="#">Modify</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'trainees-details'%}">Summary</a></li>
+          <hr class="dropdown-divider" style="color: #FFFF;">
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'trainee-add-fee'%}">Course Fee</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'trainee-fees-details'%}">Fee Summary</a></li>
+        </ul>
+      </li>
+
+
+      <li class="nav-item dropend">
+        <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> Attendance<i
+            class="fas fa-angle-right"></i></a>
+        <ul class="dropdown-menu">
+          <!-- <li class="nav-item"><a class="dropdown-item" href="{%url 'trainer-attendance'%}">Manage</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="#">Modify</a></li> -->
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'trainer-attendance-summary'%}">Summary</a></li>
+        </ul>
+      </li>
+
+      
+      <li class="nav-item dropend">
+        <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> Manage Logins<i
+            class="fas fa-angle-right"></i></a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'signup'%}">Create New</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'reset-password'%}">Reset Password</a></li>
+          <li class="nav-item"><a class="dropdown-item" href="{%url 'login-summary'%}">Summary</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'enroll-summary'%}">Enroll Details</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'md-new'%}">Create MD</a>
+      </li>
+      md-new

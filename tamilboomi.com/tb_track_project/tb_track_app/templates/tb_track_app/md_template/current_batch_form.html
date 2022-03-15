@@ -1,0 +1,172 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{%block content%}
+
+<div class="container justify-content-center">
+    <div class="container-fluid">
+        <div class="currentbatch-create-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+        offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+            <form id="currentbatch_create_form"
+                class="mt-5 row g2 needs-validation justify-content-center justify-content-sm-center 
+                        justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center" novalidate>
+
+                {% csrf_token %}
+                <h1 class="text-center mt-2">Current Batch Details</h1>
+
+
+                <!-- Courses -->
+                <div class="col-8 col-sm-8 col-md-8 col-lg-7 col-xl-7 col-xxl-7 mt-5 position-relative">
+                    <div class="form-floating">
+                        <select class="form-select" id="id_course_id" required>
+
+                            {% for course in form.course_id %}
+                            {{course}}
+
+                            {% endfor %}
+                        </select>
+                        <label for="id_course_id">Available Courses</label>
+                        <div class="invalid-tooltip">
+                            Choose Course.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Batch Start Date -->
+                <div class="col-8 col-sm-8 col-md-8 col-lg-7 col-xl-7 col-xxl-7 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" id="cb_batch_start_date" placeholder="Start Date"
+                            required>
+                        <label for="cb_batch_start_date">Start Date</label>
+                        <div class="invalid-tooltip">
+                            Select a Valid Date.
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Date In -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-7 col-xl-7 col-xxl-7 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" id="cb_batch_end_date" placeholder="End Date" required>
+                        <label for="cb_batch_end_date">End Date</label>
+                        <div class="invalid-tooltip">
+                            Select a Valid Date.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1 col-sm-1 col-md-5 col-lg-5 col-xl-2 col-xxl-2">
+                </div>
+
+        </div>
+        <!-- Submit -->
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 mb-3 justify-content-center d-flex  py-3">
+            <div class="enroll-btn">
+                <button type="button" class="btn btn-primary" id="add_trainee_btn" onclick="formValidator()">Create
+                    Current Batch</button>
+            </div>
+        </div>
+
+
+        </form>
+    </div>
+
+</div>
+
+<!-- modal Dialog box -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- For Telephone Number field -->
+<script>
+
+    function formReset() {
+        var frm = document.getElementById('currentbatch_create_form')
+        frm.reset();
+        $("#currentbatch_create_form :input").prop('readonly', true);
+
+        $("#id_course_id").prop('disabled', 'disabled');
+    }
+
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let id_course_id = document.querySelector('#id_course_id');
+        let cb_batch_start_date = document.querySelector('#cb_batch_start_date');
+        let cb_batch_end_date = document.querySelector("#cb_batch_end_date");
+
+
+        console.log(id_course_id, cb_batch_start_date, cb_batch_end_date)
+
+        // If form valid then submit the data's
+        if (id_course_id.checkValidity() === true && cb_batch_start_date.checkValidity() === true &&
+            cb_batch_end_date.checkValidity() === true) {
+
+            $.post('', {
+                course_id: $('#id_course_id').val().trim(),
+                cb_batch_start_date: $('#cb_batch_start_date').val().trim(),
+                cb_batch_end_date: $('#cb_batch_end_date').val(),
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    $('#status-final').text('');
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Current Details Exist Already!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('Current Batch Details saved successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                        formReset();
+
+                    }
+
+                });
+            return false;
+        }
+
+    }
+
+</script>
+{%endblock content%}

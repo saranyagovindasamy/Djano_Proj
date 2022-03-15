@@ -1,0 +1,17 @@
+models :       Entity Relationships ( ER ) diagram --> pgsql , draw.io   
+-------            ----------------------------------
+GroupProfile     : Group (fk)
+Userprofile      : user(fk), user_id_filed(varchar 100), user_category(fk--> group)
+Programming_languages : id(pk), language_name(varchar 100), created_at(dateTimefield), updated_at(dateTimefield) 
+Courses          : id(pk), course_name (varchar 100), programming_languages(fk), created_at(dateTimefield), updated_at(dateTimefield)
+Current_batch  : id(pk), courses(fk), batch_start_date(dateTimefield), batch_end_date(dateTimefield)
+Upcoming_batch : id(pk), courses(fk), batch_start_date(dateTimefield), batch_end_date(dateTimefield)
+MD               : id(pk), name(varchar 100) , created_at(dateTimefield), updated_at(dateTimefield), courses(fk)
+Trainer          : id(pk), name(varchar 100), courses(fk), email ( email), contact( varchar 12), created_at(dateTimefield), updated_at(dateTimefield)
+Trainee          : id(pk), name(varchar 100), email(email), contact(varchar 12), courses(fk), cb_batch_id(fk) 
+Batch     : id(pk), programming_languages(fk), trainee(fk), trainer(fk), batch_start_date (dateTimefield), batch_end_date(dateTimefield), , current_batches(fk)
+TraineeEnroll    : id(pk), name(varchar 100), contact(varchar 100), email(email), course_id(fk), notify_future_batch(bool), upcoming_batches(fk)
+
+Attendence       : id(pk), programming_languages(fk), courses(fk), trainer(fk), trainee(fk), attendence(bool), created_at(dateTimefield) 
+AttendenceReport : id(pk), Attendence(fk) 
+

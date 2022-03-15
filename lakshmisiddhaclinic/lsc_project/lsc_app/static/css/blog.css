@@ -1,0 +1,25 @@
+
+.blog_section{
+    height: 90vh;
+    width: 100%;
+    
+    display:flex;
+    justify-content:center;
+    text-align:center;
+}
+.comments ul li {
+list-style-type: none;
+}
+.comment{
+    height: fit-content !important;
+    background-color:none;
+}
+.summernote-div iframe
+{
+    width: 67vw;
+    padding-right: 10px;
+}
+.comment textarea
+{
+    height: fit-content !important;
+}

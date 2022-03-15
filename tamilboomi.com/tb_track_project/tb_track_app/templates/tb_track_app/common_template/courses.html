@@ -1,0 +1,70 @@
+{% extends "tb_track_app/index/base.html" %}
+{%load static%}
+{%block content%}
+
+
+    <!-- head -->
+   <div class="page-head">
+    <div class="page-head-content">
+      <h4>Courses Available</h4>
+    <div class="available-courses">
+      <h2><a href="{%url 'bigdata'%}">Big Data Course</a></h2>
+      <h2><a href="{%url 'devops'%}">Cloud-Devops Course</a></h2>
+      <h2><a href="{%url 'fullstack'%}">Fullstack Development Course</a></h2>
+      <h2><a href="{%url 'snowflake'%}">Snow flake Course</a></h2>
+    </div>
+    </div>
+   </div>
+
+   <!-- course content -->       
+<div class="container-fluid">
+    <div class="row course-row">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top img-fluid" src="{%static 'images/full-stack.gif'%}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">FullStack Course</h5>
+              <p>Duration: <b>3 months</b></p>
+              <p>Project: <b>2 projects</b></p>
+              <p>Assignment: <b>30+ assignments</b></p>
+              <p><a href="{%url 'fullstack'%}">Read more...</a></p>
+              <a href="{%url 'enroll'%}" class="btn btn-primary">Enroll Now</a>
+            </div>
+          </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{%static 'images/snowflake.jpg'%}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Snowflake Course</h5>
+              <p>Duration: <b>3 months</b></p>
+              <p>Project: <b>2 projects</b></p>
+              <p>Assignment: <b>30+ assignments</b></p>
+              <p><a href="{%url 'snowflake'%}">Read more...</a></p>
+              <a href="{%url 'enroll'%}" class="btn btn-primary">Enroll Now</a>
+            </div>
+          </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{%static 'images/bigdata_img.jpg'%}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Bigdata Course</h5>
+              <p>Duration: <b>3 months</b></p>
+              <p>Project: <b>2 projects</b></p>
+              <p>Assignment: <b>30+ assignments</b></p>
+              <p><a href="{%url 'bigdata'%}">Read more...</a></p>
+              <a href="{%url 'enroll'%}" class="btn btn-primary">Enroll Now</a>
+            </div>
+          </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{%static 'images/dev_cloud.png'%}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Cloud- Devops Course</h5>
+              <p>Duration: <b>3 months</b></p>
+              <p>Project: <b>2 projects</b></p>
+              <p>Assignment: <b>30+ assignments</b></p>
+              <p><a href="{%url 'devops'%}">Read more...</a></p>
+              <a href="{%url 'enroll'%}" class="btn btn-primary">Enroll Now</a>
+            </div>
+          </div>
+        
+    </div>
+</div>
+
+{%endblock content%}

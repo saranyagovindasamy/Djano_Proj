@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <script src="{%static 'js/project09/script.js'%}"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+   
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/project09/project09.css' %}">
+    <title>Restaurant</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarNavAltMarkup" data-bs-offset="200" tabindex="0">
+    <nav id="navbar-example2" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <div class="left-side">
+                <a class="navbar-brand" href="#"><img src="{% static 'images/project09/restaurant_logo.png'%}" width="50"
+                        class="img-fluid"><span>Foodie</span></a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                <div id="main_nav" class="navbar-nav">
+                    <a class="nav-link scrollto" href="#home">Home</a>
+                    <a class="nav-link scrollto" href="#dishes">Dishes</a>
+                    <a class="nav-link scrollto" href="#about">About</a>
+                    <a class="nav-link scrollto" href="#menu">Menu</a>
+                    <a class="nav-link scrollto" href="#review">Review</a>
+                    <a class="nav-link scrollto" href="#order">Order</a>
+                </div>
+            </div>
+            <div class="right-side">
+                <a href="#"><i class="fas fa-search" id="search"></i></a>
+                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#"><i class="fas fa-heart"></i></a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <!-------------------------========================================================================------------------------- -->
+        <section class="home-page" id="home">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 carousel-div">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-md-6 text-center left-carousel">
+                                            <p>Our Special Dish</p>
+                                            <h1>Mini Tiffen Set</h1>
+                                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
+                                                vitae.</span>
+                                            <button type="button" class="btn btn-primary">Order Now</button>
+                                        </div>
+                                        <div class="col-md-6 right-carousel">
+                                            <img src="{% static 'images/project09/curry-with-chicken.jpg'%}" class="d-block img-fluid"
+                                                alt="...">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-md-6 text-center left-carousel">
+                                            <p>Our Special Dish</p>
+                                            <h1>Mini Tiffen Set</h1>
+                                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
+                                                vitae.</span>
+                                            <button type="button" class="btn btn-primary">Order Now</button>
+                                        </div>
+                                        <div class="col-md-6 right-carousel">
+                                            <img src="{% static 'images/project09/Poori.jpg'%}" class="d-block img-fluid" alt="...">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-md-6 text-center left-carousel">
+                                            <p>Our Special Dish</p>
+                                            <h1>Mini Tiffen Set</h1>
+                                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
+                                                vitae.</span>
+                                            <button type="button" class="btn btn-primary">Order Now</button>
+                                        </div>
+                                        <div class="col-md-6 right-carousel img-fluid">
+                                            <img src="{% static 'images/project09/Dosa.jpg'%}" class="d-block img-fluid" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!----------------------========================================================================------------------>
+
+        <form action="" class="search" id="search-form">
+            <input type="search" placeholder="search here" name="" id="search-box">
+            <label for="search-box" class="fas fa-search"></label>
+            <i class="fas fa-times" id="close"></i>
+        </form>
+
+        <!----------------------========================================================================------------------>
+        <section class="dishes" id="dishes">
+
+            <div class="container">
+                <div class="row text-center">
+                    <p>Our Dishes</p>
+                    <h1>POPULAR DISHES</h1>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card ">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/Dosa.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+                                    <i class="fas fa-eye"></i>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/parippu-vada-6305691_1920.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+                                    <i class="fas fa-eye"></i>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/indian-food-1784879_1920.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+                                    <i class="fas fa-eye"></i>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="row">
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/Mini-Meals.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+                                    <i class="fas fa-eye"></i>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/Sweets.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+                                    <i class="fas fa-eye"></i>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/close-up-tasty-white-pita-bread.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+                                    <i class="fas fa-eye"></i>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="about-us" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="head-row text-center">
+                        <p>About Us</p>
+                        <h1>WHY CHOOSE US</h1>
+                    </div>
+                    <div class="col-md-6 about-left">
+                        <img src="{% static 'images/project09/about-us.png'%}" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-md-6 d-flex about-right">
+                        <h1>Best Food in the City</h1>
+                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere eius unde ex, dolores
+                            eaque a
+                            eveniet aspernatur laboriosam et vero esse pariatur quos magnam, sunt doloribus at ad ut
+                            quis
+                            dolor dignissimos? Illum deleniti ipsam recusandae sint debitis fugiat atque.</small>
+
+                        <div class="choice">
+                            <a href="#"><button type="button"> <i class="fas fa-truck"></i> Free Delivery</button></a>
+                            <a href="#"><button type="button"> <i class="fas fa-money-bill"></i> Easy
+                                    Payments</button></a>
+                            <a href="#"><button type="button"> <i class="fas fa-headset"></i> 24/7 Services</button></a>
+                        </div>
+
+                        <button type="button" class="btn btn-primary">Learn More</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-page" id="menu">
+
+            <div class="container">
+                <div class="row text-center">
+                    <p>Our Menu</p>
+                    <h1>TODAY'S SPECIALITY</h1>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card ">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/Dosa.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/parippu-vada-6305691_1920.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/indian-food-1784879_1920.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="row">
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/Mini-Meals.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/Sweets.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/close-up-tasty-white-pita-bread.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+                <div class="row text-center">
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card ">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/Dosa.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/parippu-vada-6305691_1920.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/indian-food-1784879_1920.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="row">
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/Mini-Meals.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/Sweets.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple card-img" data-mdb-ripple-color="light">
+                                <img src="{% static 'images/project09/close-up-tasty-white-pita-bread.jpg'%}" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                                <div class="overlay-icons">
+
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold"><a>Special Dosa</a></h5>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"> </i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item me-0">
+                                        <i class="fas fa-star"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </li>
+                                </ul>
+                                <span class="mb-2">$10</span>
+                                <button type="button" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </section>
+
+        <!--================================*******************************************************=======================================  -->
+        <section class="review" id="review">
+            <div class="container">
+                <div class="row">
+                    <div class="header text-center">
+                        <p>Customer's Review</p>
+                        <h1>WHAT THEY SAY</h1>
+                    </div>
+
+
+                    <section class="pt-5 pb-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div class="row">
+
+                                                    <div class="col-md-4 mb-3">
+                                                        <div class="card" style="width: 20rem;">
+                                                            <div class="row">
+
+                                                                <div class="col">
+                                                                    <img src="{% static 'images/project09/user-2.png'%}" width="50" alt="...">
+                                                                </div>
+                                                                <div class="col review-col">
+                                                                    <h6>Reviewer</h6>
+                                                                    <ul class="list-unstyled list-inline mb-0">
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"> </i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item">
+                                                                            <i class="fas fa-star-half-alt"></i>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col text-center">
+                                                                    <i class="fas fa-2x fa-quote-right"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p class="card-text">Lorem ipsum dolor sit amet
+                                                                    consectetur
+                                                                    adipisicing elit. Quisquam fugit laborum cum non
+                                                                    deserunt, maxime consectetur voluptatum tempora.
+                                                                    Possimus esse, recusandae minima placeat illum vero.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <div class="card" style="width: 20rem;">
+                                                            <div class="row">
+
+                                                                <div class="col">
+                                                                    <img src="{% static 'images/project09/user-3.png'%}" width="60" alt="...">
+                                                                </div>
+                                                                <div class="col review-col">
+                                                                    <h6>Reviewer</h6>
+                                                                    <ul class="list-unstyled list-inline mb-0">
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"> </i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item">
+                                                                            <i class="fas fa-star-half-alt"></i>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col text-center">
+                                                                    <i class="fas fa-2x fa-quote-right"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p class="card-text">Lorem ipsum dolor sit amet
+                                                                    consectetur
+                                                                    adipisicing elit. Quisquam fugit laborum cum non
+                                                                    deserunt, maxime consectetur voluptatum tempora.
+                                                                    Possimus esse, recusandae minima placeat illum vero.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <div class="card" style="width: 20rem;">
+                                                            <div class="row">
+
+                                                                <div class="col">
+                                                                    <img src="{% static 'images/project09/user-4.png'%}" width="60" alt="...">
+                                                                </div>
+                                                                <div class="col review-col">
+                                                                    <h6>Reviewer</h6>
+                                                                    <ul class="list-unstyled list-inline mb-0">
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"> </i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item">
+                                                                            <i class="fas fa-star-half-alt"></i>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col text-center">
+                                                                    <i class="fas fa-2x fa-quote-right"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p class="card-text">Lorem ipsum dolor sit amet
+                                                                    consectetur
+                                                                    adipisicing elit. Quisquam fugit laborum cum non
+                                                                    deserunt, maxime consectetur voluptatum tempora.
+                                                                    Possimus esse, recusandae minima placeat illum vero.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="row">
+
+                                                    <div class="col-md-4 mb-3">
+                                                        <div class="card" style="width: 20rem;">
+                                                            <div class="row">
+
+                                                                <div class="col">
+                                                                    <img src="{% static 'images/project09/user-2.png'%}" width="60" alt="...">
+                                                                </div>
+                                                                <div class="col review-col">
+                                                                    <h6>Reviewer</h6>
+                                                                    <ul class="list-unstyled list-inline mb-0">
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"> </i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item">
+                                                                            <i class="fas fa-star-half-alt"></i>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col text-center">
+                                                                    <i class="fas fa-2x fa-quote-right"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p class="card-text">Lorem ipsum dolor sit amet
+                                                                    consectetur
+                                                                    adipisicing elit. Quisquam fugit laborum cum non
+                                                                    deserunt, maxime consectetur voluptatum tempora.
+                                                                    Possimus esse, recusandae minima placeat illum vero.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <div class="card" style="width: 20rem;">
+                                                            <div class="row">
+
+                                                                <div class="col">
+                                                                    <img src="{% static 'images/project09/user-3.png'%}" width="60" alt="...">
+                                                                </div>
+                                                                <div class="col review-col">
+                                                                    <h6>Reviewer</h6>
+                                                                    <ul class="list-unstyled list-inline mb-0">
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"> </i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item">
+                                                                            <i class="fas fa-star-half-alt"></i>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col text-center">
+                                                                    <i class="fas fa-2x fa-quote-right"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p class="card-text">Lorem ipsum dolor sit amet
+                                                                    consectetur
+                                                                    adipisicing elit. Quisquam fugit laborum cum non
+                                                                    deserunt, maxime consectetur voluptatum tempora.
+                                                                    Possimus esse, recusandae minima placeat illum vero.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <div class="card" style="width: 20rem;">
+                                                            <div class="row">
+
+                                                                <div class="col">
+                                                                    <img src="{% static 'images/project09/user-4.png'%}" width="60" alt="...">
+                                                                </div>
+                                                                <div class="col review-col">
+                                                                    <h6>Reviewer</h6>
+                                                                    <ul class="list-unstyled list-inline mb-0">
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"> </i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item me-0">
+                                                                            <i class="fas fa-star"></i>
+                                                                        </li>
+                                                                        <li class="list-inline-item">
+                                                                            <i class="fas fa-star-half-alt"></i>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col text-center">
+                                                                    <i class="fas fa-2x fa-quote-right"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p class="card-text">Lorem ipsum dolor sit amet
+                                                                    consectetur
+                                                                    adipisicing elit. Quisquam fugit laborum cum non
+                                                                    deserunt, maxime consectetur voluptatum tempora.
+                                                                    Possimus esse, recusandae minima placeat illum vero.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+        <!--================================*******************************************************=======================================  -->
+        <section class="order-now" id="order">
+
+            <div class="container">
+                <div class="row">
+                    <div class="header text-center">
+                        <p>Order Now</p>
+                        <h1>FREE AND FAST</h1>
+                    </div>
+
+                    <div class="order-form">
+
+                        <div class="row row-cols-2 row-cols-auto ">
+
+                            <div class="col-5">
+                                <label for="userName" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="userName" placeholder="enter your name"
+                                    aria-label="Your Name">
+                            </div>
+                            <div class="col-5">
+                                <label for="phoneNo" class="form-label">Your Number</label>
+                                <input type="number" id="phoneNo" class="form-control" placeholder="enter your Number">
+                            </div>
+
+                            <div class="col-5">
+                                <label for="orderFood" class="form-label">Your Order</label>
+                                <input type="text" class="form-control" id="orderFood" placeholder="enter food name"
+                                    aria-label="Your Name">
+                            </div>
+                            <div class="col-5">
+                                <label for="additionalFood" class="form-label">Additional Food</label>
+                                <input type="text" id="additionalFood" class="form-control"
+                                    placeholder="Additional Food items">
+                            </div>
+
+                            <div class="col-5">
+                                <label for="orderQty" class="form-label">Order Quantity</label>
+                                <input type="number" class="form-control" id="orderQty" placeholder="Select Quantity"
+                                    aria-label="Your Name">
+                            </div>
+                            <div class="col-5">
+                                <label for="dateTime" class="form-label">Date And Time</label>
+                                <input type="datetime-local" id="dateTime" class="form-control"
+                                    placeholder="enter your Number">
+                            </div>
+
+                            <div class="col-auto col col-5">
+                                <label for="address" class="form-label">Your Address</label>
+                                <textarea class="form-control" id="validationTextarea"
+                                    placeholder="enter your address"></textarea>
+                            </div>
+
+                            <div class="col-auto col col-5">
+                                <label for="message" class="form-label">Delivery Note</label>
+                                <textarea class="form-control" id="validationTextarea"
+                                    placeholder="enter your message for delivery"></textarea>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Order Now</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer">
+            <div class="footer-div">
+                <div class="container">
+                    <div class="row cols-4">
+                        <div class="col">
+                            <h2>Locations</h2>
+                            <ul>
+                                <li>India</li>
+                                <li>Singapore</li>
+                                <li>Malaysia</li>
+                                <li>Vietnam</li>
+                                <li>Hong Kong</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h2>Quick Links</h2>
+                            <ul>
+                                <a href="#home">
+                                    <li>Home</li>
+                                </a>
+                                <a href="#dishes">
+                                    <li>Dishes</li>
+                                </a>
+                                <a href="#about">
+                                    <li>About</li>
+                                </a>
+                                <a href="#menu">
+                                    <li>Menu</li>
+                                </a>
+                                <a href="#review">
+                                    <li>Review</li>
+                                </a>
+                                <a href="#order">
+                                    <li>Order</li>
+                                </a>
+                            </ul>
+                        </div>
+
+                        <div class="col contact-info">
+                            <h2>Contact Info</h2>
+                            <ul>
+                                <li><i class="fas fa-headset"></i> &nbsp; +1 234567890</li>
+                                <li><i class="fab fa-whatsapp"></i> &nbsp; +1 234567890</li>
+                                <li><i class="fas fa-envelope"></i> &nbsp; abcd@abcdefg.com</li>
+                                <li><i class="fas fa-location-arrow"></i> &nbsp; Salem, TamilNadu 636003</li>
+                            </ul>
+                        </div>
+
+
+                        <div class="col">
+                            <h2>Follow Us</h2>
+                            <ul>
+                                <li><i class="fab fa-facebook"></i> &nbsp; Facebook</li>
+                                <li><i class="fab fa-twitter"></i> &nbsp; Twitter</li>
+                                <li><i class="fab fa-instagram"></i> &nbsp; Instragam</li>
+                                <li><i class="fab fa-youtube"></i> &nbsp; Youtube</li>
+                                <li><i class="fab fa-linkedin"></i> &nbsp; LinkedIn</li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <hr>
+                <h6 class="text-center">Inspired from &nbsp;<i class="fab fa-2x fa-youtube"></i> <a
+                        href="https://www.youtube.com/watch?v=MJUssi2c6Ls"></a>Mr. Web Designer </h6>
+            </div>
+        </section>
+        <!--================================*******************************************************=======================================  -->
+
+        <div class="loader-container text-center">
+            <img src="{% static 'images/project09/loading-gif-8.gif'%}" alt="">
+        </div>
+
+    </div>
+    <script>
+        let navbar = document.querySelector('.navbar')
+        let section = document.querySelectorAll('section');
+        let navLinks = document.querySelector('.nav-link');
+
+        function loader() {
+            document.querySelector('.loader-container').classList.add('fade-out');
+        }
+
+        window.onload == fadeOut();
+
+        function fadeOut() {
+            setInterval(loader, 4000);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // add padding top to show content behind navbar
+            navbar_height = document.querySelector('.navbar').offsetHeight;
+            document.body.style.paddingTop = navbar_height + 'px';
+
+        });
+        document.querySelector('#search').onclick = () => {
+            document.querySelector('#search-form').classList.toggle('active');
+        }
+
+
+        document.querySelector('#close').onclick = () => {
+            document.querySelector('#search-form').classList.remove('active');
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

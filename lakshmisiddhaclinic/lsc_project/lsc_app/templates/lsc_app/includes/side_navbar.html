@@ -1,0 +1,35 @@
+{% load static %}
+
+
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar mt-5 collapse">
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+    <ul class="nav flex-column mt-5">
+
+
+      {% if user.is_authenticated and user.userprofile.user_category == '1' %}
+      <!-- <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'md-home'%}"> {{user.username}}</a>
+      </li> -->
+        {%include 'lsc_app/includes/md_sidebar.html'%}
+   
+      {% endif %}
+      {% if user.is_authenticated and user.userprofile.user_category == '4' %}
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'receptionist-home'%}"> {{user.username}}</a>
+      </li>
+        {%include 'lsc_app/receptionist_template/recep_sidebar.html'%}
+
+      {% endif %}
+      {% if user.is_authenticated and user.userprofile.user_category == '2' %}
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'doctor-home'%}"> {{user.username}}</a>
+      </li>
+        {%include 'lsc_app/doctor_template/doctor_sidebar.html'%}
+
+      {% endif %}
+    </ul>
+    </div>
+</nav>
+

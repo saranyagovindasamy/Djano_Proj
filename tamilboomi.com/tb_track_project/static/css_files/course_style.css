@@ -1,0 +1,190 @@
+/* Courses Page Stylings */
+
+/* ------------------ page head ----------------------------- */
+.page-head
+{
+    height: 80vh;
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("/static/images/course_banner.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.page-head-content{
+    width: 45%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
+}
+.page-head h4
+
+{     
+    width: 80%;
+    /* padding: 10px; */
+    font-size: 40px;
+    font-weight: 600;
+    color: #101341;  
+    
+}
+.available-courses
+{
+    font-style: oblique;
+}
+.available-courses h2 a
+{
+    color: white;
+    font-size: 30px;
+}
+.available-courses h2 a:hover
+{
+    color: #0c5791;
+}
+
+/* --------- banner image --------------- */
+.full-stack
+{
+    height: 80vh;
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("/static/images/course_bg_img.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.content{
+    padding-bottom:20px;
+    background-color: #fff;
+}
+.content h1, .content h3{
+    background-color:white;
+    padding: 10px;
+    color: #0c5791;
+}
+div , p{
+    color:black;
+}
+.content ul li {
+    color:black;
+    font-weight: 600;
+    font-size: 20px;
+}
+.snowflake{
+    height: 80vh;
+    /* background: linear-gradient(rgba(1,1,1,0.4)); */
+    background-image: linear-gradient(rgba(4,9,30,0.6),rgba(4,9,30,0.6)),url("/static/images/snowflake.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.big-data{
+    height: 80vh;
+    /* background: linear-gradient(rgba(1,1,1,0.4)); */
+    background-image: linear-gradient(rgba(4,9,30,0.6),rgba(4,9,30,0.6)),url("/static/images/bigdata_img.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative; 
+}
+.devops{
+    height: 80vh;
+    /* background: linear-gradient(rgba(1,1,1,0.4)); */
+    background-image: linear-gradient(rgba(4,9,30,0.6),rgba(4,9,30,0.6)),url("/static/images/dev_cloud.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;  
+}
+/* -------------------- card --------------------------------- */
+.row
+{
+    align-items: center;
+    justify-content: center;
+
+}
+.card
+{
+    align-items: center;
+    justify-content: center;
+    margin: 50px 50px;
+    margin-left: 20px;
+    padding: 15px;
+    border-radius: 30px;
+    border-right: 3px solid #F36416 !important;
+    box-shadow: 0 0 30px 0 #9797a0,
+    0 0 20px 0 #F3DCCE;
+    background-color: #CDE8F4;
+}
+.card-img-top 
+{
+    width: 150px;
+    height: 150px;
+    align-items: center;
+    /* border-radius: 0 30px 0 30px ; */
+    border-radius: 50%;
+}
+.card-title
+{
+    color: #F36416;
+    font-size: 22px;
+}
+.card-body p
+{
+    color: black;
+}
+.card-body b
+{
+    color:black ;
+    font-size: 16px;
+}
+.card-body p a
+{
+    color: #F36416;
+}
+.card-body p a:hover
+{
+    color:#0c5791;
+    font-weight: 500;
+}
+
+.content h2,h3
+{
+    color: #F36416 !important;
+}
+.content p
+{
+    font-size: 18px;
+}
+/* -------- fullstack course page ------------- */
+.course-summary
+{
+    width: 70%;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.3);
+    /* box-shadow: 0 8px 32px 0 rgba(161, 165, 211, 0.37); */
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
+}
+.course-summary h1
+{
+    color: #F36416 !important;
+    padding: 10px;
+    background-color: #0c5791;
+    border-radius: 3px;
+}
+.course-summary ul li
+{
+    font-size: 20px;
+    color: white;
+    /* list-style-image: radial-gradient(white, black); */
+}
+.course-summary p
+{
+    font-size: 16px;
+    font-weight: 600;
+}

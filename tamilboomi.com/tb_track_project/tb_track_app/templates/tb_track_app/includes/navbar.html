@@ -1,0 +1,63 @@
+{%load static%}
+<nav class="navbar navbar-expand-lg  sticky-top mx-auto">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{%url 'home'%}"><img src="{%static 'images/logo.jfif'%}" class="logo img-fluid">
+            <span class="mx-1">TamilBoomi Technologies</span> </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav nav-justified me-auto mb-2 px-2 mx-auto justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{%url 'home'%}">Home</a>
+                </li>
+
+                <li class="nav-item dropdown me-1 ">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" href="{%url 'home'%}#about-us"
+                        aria-expanded="false">About Us</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item " href="{%url 'faculties'%}">Faculty</a></li>
+                        <li><a class="dropdown-item " href="{%url 'home'%}#contact-us">Contact Us</a></li>
+                        <li><a class="dropdown-item " href="{%url 'home'%}#testimonials">Testimonials</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown me-1 ">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" href="{%url 'courses'%}"
+                        aria-expanded="false">Courses</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{%url 'fullstack'%}">FullStack Development</a></li>
+                        <li><a class="dropdown-item" href="{%url 'snowflake'%}">Snow Flake</a></li>
+                        <li><a class="dropdown-item" href="{%url 'bigdata'%}">Big Data</a></li>
+                        <li><a class="dropdown-item" href="{%url 'devops'%}">Cloud-Devops</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="{%url 'enroll'%}">Enroll</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{%url 'faculties'%}">Faculty</a>
+                </li>
+
+                {% if user.is_authenticated %}
+                {% if user.userprofile.user_category == '1'%}
+                <li class="nav-item"><a class="nav-link" href="{% url 'md-home' %}">{{user.username}}</a></li>
+                {% elif user.userprofile.user_category == '2'%}
+                <li class="nav-item"><a class="nav-link" href="{% url 'trainer-home' %}">{{user.username}}</a></li>
+                {% elif user.userprofile.user_category == '3'%}
+                <li class="nav-item"><a class="nav-link" href="{% url 'trainee-home' %}">{{user.username}}</a></li>
+                {% endif %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+
+            </ul>
+
+        </div>
+    </div>
+</nav>

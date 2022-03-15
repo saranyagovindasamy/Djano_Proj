@@ -1,0 +1,109 @@
+{% extends 'lsc_app/base/lsc_app_base.html' %}
+{% load static %}
+
+{%block content%}
+<style>
+  .blog-summary {
+    padding: 10px;
+    margin: 20px;
+  }
+
+  .blog-sum li {
+    background-color: ghostwhite;
+    list-style: none;
+    border: 1px solid gray;
+    margin-bottom: 15px;
+  }
+
+  .blog-list h6 {
+    text-transform: uppercase;
+    margin: 10px;
+  }
+
+  .blog-icon i {
+    font-size: x-large;
+
+
+  }
+
+  .blog-icon .btn {
+    background: none;
+    color: #068440 !important;
+  }
+
+  .blog-icon i:hover {
+    color: white !important;
+  }
+
+  .blog-icon .btn:hover {
+    background-color: #068440 !important;
+
+    text-decoration: none;
+  }
+</style>
+<div class="container justify-content-center">
+
+  <div class=" mx-5 mt-4 pb-5">
+
+
+    <h1 class="text-center">BLOG PAGE</h1>
+    {%for msg in messages%}
+    {{ msg }}
+    {%endfor%}
+    <!-- <Button class="button btn-primary rounded p-2 mb-3"><a href="{%url 'blog-create'%}">Add Blog</a></Button> -->
+    <div class="blog-summary">
+      <ul class="blog-sum">
+        {%for blog in blog_details%}
+        <div class="blog-list ">
+          <li>
+            <div class="blog-title d-flex align-items-center">
+              <h6><b>{{blog.title}}</b></h6>
+
+              <div class="blog-icon ms-auto m-2">
+                <a class="btn m-2" href="{% url 'blog-edit' blog.id %}"> <i class="far fa-edit"></i></a>
+
+                <a class="btn m-2" href="{% url 'blog-delete' blog.id %}"><i class="fas fa-trash-alt"></i></a>
+
+              </div>
+            </div>
+            <div class="blog-des d-flex m-2">
+              <p>{{blog.description|safe |truncatewords:10}} </p>
+              <p class="blog-date ms-auto text-muted">created:{{blog.created_date}} && updated:{{blog.updated_date}}
+              </p>
+            </div>
+          </li>
+
+        </div>
+
+        {%endfor%}
+      </ul>
+    </div>
+
+  </div>
+
+
+  <div class="pagination">
+    {% if is_paginated %}
+
+    {% if page_obj.has_previous %}
+    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a class="btn btn-outline-info mb-4"
+      href="?page={{ num }}">{{ num }}</a>
+      {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+      <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+      <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+      {% endif %}
+  </div>
+</div>
+{%endblock content%}

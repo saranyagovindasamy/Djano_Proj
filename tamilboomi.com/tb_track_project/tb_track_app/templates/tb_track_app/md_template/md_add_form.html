@@ -1,0 +1,147 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{%block content%}
+<section class="md_add">
+    <div class="container justify-content-center">
+        <div class="container-fluid">
+            <div class="trainer-add-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+                        offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+                <form id="md_add_form"
+                    class="row g2 mt-5 needs-validation justify-content-center justify-content-sm-center 
+                        justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center"
+                    novalidate>
+
+                    {% csrf_token %}
+                    <h1 class="text-center mt-5">Add MD Details</h1>
+
+                    <!-- First Name -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="first_name" placeholder="First Name" required>
+                            <label for="first_name">First Name</label>
+                            <div class="invalid-tooltip">
+                                Provide your First Name.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="last_name" placeholder="Last Name" required>
+                            <label for="last_name">Last Name</label>
+                            <div class="invalid-tooltip">
+                                Provide your Last Name.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Offset -->
+
+                    <div class="col-1 col-sm-1 col-md-5 col-lg-5 col-xl-2 col-xxl-2">
+                    </div>
+
+                    <!-- Submit -->
+                    <div
+                        class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 mb-3 justify-content-center d-flex  ">
+                        <div class="enroll-btn">
+                            <button type="button" class="btn btn-primary" id="add_md_btn" onclick="formValidator()">Add
+                                MD Details</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+
+        <!-- modal Dialog box -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modal-title" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- For Telephone Number field -->
+<script>
+
+
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let first_name = document.querySelector('#first_name');
+        let last_name = document.querySelector('#last_name');
+
+        console.log(first_name, last_name)
+
+        // If form valid then submit the data's
+        if (first_name.checkValidity() === true && last_name.checkValidity() === true) {
+            let name = $('#first_name').val() + " " + $('#last_name').val()
+            $.post('', {
+                name: name,
+
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    $('#status-final').text('');
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('MD Details Exist Already!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('MD Details saved successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                      }
+
+                });
+            return false;
+        }
+
+    }
+
+</script>
+{%endblock content%}

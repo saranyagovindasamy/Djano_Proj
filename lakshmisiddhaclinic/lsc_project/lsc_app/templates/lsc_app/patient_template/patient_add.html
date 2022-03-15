@@ -1,0 +1,280 @@
+{%extends "lsc_app/base/lsc_app_base.html"%}
+{% load static %}
+
+{% block content %}
+
+<div class="container justify-content-center">
+    <div class="container-fluid">
+        <div class="trainee-add-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10
+                        offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+            <form id="trainee_add_form"
+                class="row g2 mt-5 needs-validation justify-content-center justify-content-sm-center
+                        justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center" novalidate>
+
+                {% csrf_token %}
+                <h1 class="text-center mt-2">Add Patient Profile</h1>
+
+                <!-- First Name -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="patientid" placeholder="patient ID" required>
+                        <label for="patientid">Patient ID</label>
+                        <div class="invalid-tooltip">
+                            Provide Patient ID.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Last Name -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="name" placeholder="Name" required>
+                        <label for="name">Name</label>
+                        <div class="invalid-tooltip">
+                            Provide Name.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Number -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="tel" class="form-control" id="phone" pattern="^\d{10}$" required
+                            placeholder="Mobile No">
+                        <label for="phone">Mobile No</label>
+                        <div class="invalid-tooltip">
+                            Provide Mobile Number.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Age -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="age" required>
+                        <label for="age">Age</label>
+                        <div class="invalid-tooltip">
+                            Provide Age
+                        </div>
+                    </div>
+                </div>
+              <!-- DOB -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" id="dob" required>
+                        <label for="age">Date</label>
+                        <div class="invalid-tooltip">
+                            Provide Date
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aadhar -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="aadhar" required>
+                        <label for="aadhar">Aadhar</label>
+                        <div class="invalid-tooltip">
+                            Enter Aadhar.
+                        </div>
+                    </div>
+                </div>
+                <!-- email -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" required>
+                        <label for="email">Email</label>
+                        <div class="invalid-tooltip">
+                            Enter Email.
+                        </div>
+                    </div>
+                </div>
+<!-- gender - radio button -->
+          <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+            <label><b class="text-success">Gender</b></label> <br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="male" value="male" id="gender-male">
+              <label for="gender-male" class="form-check-label">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="male" value="female" id="gender-female">
+              <label for="gender-female" class="form-check-label">Female</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="male" value="transgender" id="gender-transgender">
+              <label for="gender-transgender" class="form-check-label">Transgender</label>
+            </div>
+          </div>
+                <!-- Address -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="address" required>
+                        <label for="address">Address</label>
+                        <div class="invalid-tooltip">
+                            Enter Address
+                        </div>
+                    </div>
+                </div>
+              <!-- Address -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="bloodgroup" required>
+                        <label for="bloodgroup">Blood Group</label>
+                        <div class="invalid-tooltip">
+                            Enter Blood group
+                        </div>
+                    </div>
+                </div>
+              <!-- Emergency -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="emergency" required>
+                        <label for="emergency">Emergency<label>
+                        <div class="invalid-tooltip">
+                            Enter emergency group
+                        </div>
+                    </div>
+                </div>
+              <!-- Insurance -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="insurance" required>
+                        <label for="insurance">Insurance</label>
+                        <div class="invalid-tooltip">
+                            Enter Insurance
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div
+                    class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 mb-3 justify-content-center d-flex  py-3">
+                    <div class="enroll-btn">
+                        <button type="button" class="btn btn-primary" id="add_trainee_btn" onclick="formValidator()">Add
+                            Patient Details</button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- For Telephone Number field -->
+<script>
+
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let name = document.querySelector('#name');
+        let patientid = document.querySelector('#patientid');
+        let age = document.querySelector('#age');
+        let address = document.querySelector('#address');
+        let dob = document.querySelector('#dob');
+        let phone = document.querySelector('#phone');
+        let email = document.querySelector('#email');
+        let aadhar = document.querySelector('#aadhar');
+        let bloodgroup = document.querySelector('#bloodgroup');
+        let insurance = document.querySelector('#insurance');
+        let emergency = document.querySelector('#emergency');
+        let gender = document.querySelector('input[name="male"]:checked');
+
+        // If form valid then submit the data's
+          // If form valid then submit the data's
+        if (name.checkValidity() === true && patientid.checkValidity() === true &&
+           age.checkValidity() === true && address.checkValidity() === true &&
+           emergency.checkValidity() === true && phone.checkValidity() === true &&
+           insurance.checkValidity() === true && email.checkValidity() === true &&
+           bloodgroup.checkValidity() === true) {
+            let name = $('#name').val()
+            let patientid = $('#patientid').val()
+            let age = $('#age').val()
+            let address = $('#address').val()
+            let dob = $('#dob').val()
+            let phone = $('#phone').val()
+            let bloodgroup = $('#bloodgroup').val()
+            let insurance = $('#insurance').val()
+            let emergency = $('#emergency').val()
+            let aadhar = $('#aadhar').val()
+            let email = $('#email').val()
+            let gender = $('input[name="male"]:checked').val()
+            $.post('', {
+                name: name,
+                patientid : patientid,
+                age:age,
+                dob:dob,
+                address:address,
+                aadhar:aadhar,
+                phone:phone,
+                email:email,
+                insurance:insurance,
+                emergency:emergency,
+                bloodgroup:bloodgroup,
+                gender:gender,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('patient Details Exist Already!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('patient details added successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                });
+            return false;
+        }
+
+    }
+
+</script>
+
+{%endblock content%}
+

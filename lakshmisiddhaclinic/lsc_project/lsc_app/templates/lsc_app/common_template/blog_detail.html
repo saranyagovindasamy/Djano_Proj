@@ -1,0 +1,128 @@
+{% extends 'lsc_app/base/base.html' %}
+{% load static %}
+
+{%block content%}
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="content col-sm-6 col-md-5 col-lg-6 offset-md-3">
+            <article class="content-section mt-5">
+                <div class="article-body">
+                    <h2 class="article-title text-center m-2">{{post.title}}</h2>
+
+                    <p class="article-content text-dark">{{post.description|safe}}</p>
+                </div>
+                <div class="article-metadata">
+                    {% if post.user == user %}
+
+                    <span>Posted On : </span><small class="text-muted">{{post.created_date|date:"d F, Y"}}</small>
+
+                    {%else%}
+                    <!--  <span class=" text-muted">Post by : </span><a class="mr-2 text-muted" href="#">{{post.user}}</a><br> -->
+                    <small class=" text-muted">Posted On : </small><small class="text-muted">
+                        {{post.updated_date|date:"d F, Y"}}</small>
+                    {% endif %}
+                </div>
+            </article>
+        </div>
+
+        <!------comment section------------------- -->
+        <div class=" comment col-sm-6 col-md-5 col-lg-6 offset-md-3 bg-light mt-5">
+            <h5 class="m-2">Comments: </h5>
+
+            {% for comm in comment%}
+            <ul>
+                <textarea disabled id="comment-demo" style=" width:100%; resize: none;"
+                    class="p-1">  {{comm.body}}</textarea>
+                <small class="muted"> Commented on : {{comm.date_added}} </small>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- New Comment Post -->
+    <div class="container mt-5 col-sm-6 col-md-5 col-lg-6 offset-md-3">
+        <h4 class='text-center mb-5 '>Post Your Comments Here ...</h4>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="container p-2  ">
+                <div class="p-3 d-flex flex-column">
+                    <label for="comments">Comments:</label>
+
+                    <textarea id="comments" rows="4" cols="50">  </textarea>
+
+                    <Button class="btn btn-info btn-sm" type="button" onclick="postComment()">Submit</Button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="modal-title"></p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="modal-body" id="body-modal"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+    function postComment() {
+        // alert('postComment') 
+
+        var id = "{{post.id}}"
+        let comments = $('#comments').val()
+        // let id = $('#comments').val()
+        console.log(comments, id)
+        let url = "{% url 'blog-comment' %}"
+        $.ajax(
+            {
+                type: "post",
+                url: url,
+
+                data: {
+                    id: id,
+                    comments: comments,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function (data) {
+
+                    if (data == 200) {
+
+                        console.log(data)
+                        $('#modal-title').html('<i class="fas fa-2x fa-check-circle text-success"></i>' + '  ' + "<span style='font-size: 30px;'class='text-success'> <b> Success ! </b> </span>")
+                        $('#body-modal').html('Your comment posted successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+
+                    }
+
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+
+
+            })
+
+    }
+</script>
+{%endblock content%}

@@ -1,0 +1,29 @@
+{%extends "lsc_app/common_template/lsc_base.html"%}
+{% load static %}
+
+{% block content %}
+
+<br>
+<br><br>
+<h1 align ='center'>Patient Details</h1>
+<table class="table table-striped" style="margin-left:auto;margin-right:auto;">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Place</th>
+    <th>Bloodgroup</th>
+    <th>Medication</th>
+  </tr>
+  {% for info in pd %}
+   <tr>
+    <td>{{info.patient_basic_info.name}}</td>
+    <td>{{info.patient_basic_info.age}}</td>
+    <td>{{info.patient_basic_info.address}}</td>
+    <td>{{info.patient_basic_info.blood_group}}</td>
+    <td>{{info.current_medication}}</td>
+   </tr>
+  {%endfor%}
+
+</table>
+
+{% endblock content %}

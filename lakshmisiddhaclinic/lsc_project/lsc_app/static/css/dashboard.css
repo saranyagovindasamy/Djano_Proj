@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #fff !important;
+}
+
+.sidebar {
+  position: fixed;
+  top: 20px;
+  /* rtl:raw:
+  right: 0;
+  */
+  bottom: 0;
+  /* rtl:remove */
+  left: 0;
+  /* z-index: 0!important; Behind the navbar */
+  padding: 40px 0 0; /* Height of navbar */
+  /* box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1); */
+  width: 150px !important;
+  border: 0;
+}
+
+.fa-angle-right {
+  float: right !important;
+}
+
+/* Trainer Home */
+.lsc_home {
+  /* width: calc(100% - 250px) !important; */
+  margin-left: 100px !important;
+  margin-top: 100px;
+  padding-left: 100px !important;
+}
+
+.dropdown-menu {
+  min-width: 60px !important;
+}

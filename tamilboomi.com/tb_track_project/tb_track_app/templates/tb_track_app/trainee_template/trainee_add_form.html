@@ -1,0 +1,207 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{%block content%}
+<script src="{% static 'js_files/trainee.js' %}"></script>
+<div class="container justify-content-center">
+    <div class="container-fluid">
+        <div class="trainee-add-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+                        offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+            <form id="trainee_add_form"
+                class="row g2 mt-5 needs-validation justify-content-center justify-content-sm-center 
+                        justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center" novalidate>
+
+                {% csrf_token %}
+                <h1 class="text-center mt-2">Add New Trainee</h1>
+
+                <!-- First Name -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="first_name" placeholder="First Name" required>
+                        <label for="first_name">First Name</label>
+                        <div class="invalid-tooltip">
+                            Provide Trainee's First Name.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Last Name -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="last_name" placeholder="Last Name" required>
+                        <label for="last_name">Last Name</label>
+                        <div class="invalid-tooltip">
+                            Provide Trainee's Last Name.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Number -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="tel" class="form-control" id="contact" pattern="^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d| 
+                        2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]| 
+                        4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$" required
+                            placeholder="Mobile No">
+                        <label for="contact">Mobile No</label>
+                        <div class="invalid-tooltip">
+                            Provide Trainee's Mobile Number.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- email id -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                        <label for="email">Email address</label>
+                        <div class="invalid-tooltip">
+                            Provide Trainee's e-Mail id.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Courses -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <select class="form-select" onchange="load_batch()" id="course" required>
+                            <option>-------</option>
+                            {% for course in course_filter %}
+                            <option id={{course.id}}>{{course.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="course">Available Courses</label>
+                        <div class="invalid-tooltip">
+                            Choose Course.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Batch -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <select class="form-select" id="batch" required>
+
+                        </select>
+                        <label for="batch">Available Batches</label>
+                        <div class="invalid-tooltip">
+                            Choose Batch.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div
+                    class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 mb-3 justify-content-center d-flex  py-3">
+                    <div class="enroll-btn">
+                        <button type="button" class="btn btn-primary" id="add_trainee_btn" onclick="formValidator()">Add
+                            Trainee Details</button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<!-- For Telephone Number field -->
+<script>
+
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let first_name = document.querySelector('#first_name');
+        let last_name = document.querySelector('#last_name');
+        let contact = document.querySelector("#contact");
+        let email = document.querySelector("#email");
+        let course = document.querySelector("#course");
+        let batch = document.querySelector('#batch');
+
+        // If form valid then submit the data's
+        if (first_name.checkValidity() === true && last_name.checkValidity() === true &&
+            contact.checkValidity() === true && email.checkValidity() === true &&
+            course.checkValidity() === true && batch.checkValidity() === true) {
+            let name = $('#first_name').val() + " " + $('#last_name').val()
+            let contact = $('#contact').val();
+            let email = $('#email').val();
+            let course = $('#course option:selected').attr('id');
+            let batch = $('#batch').val();
+            console.log(name, contact, email, course, batch)
+
+            $.post('', {
+                name: name,
+                contact: contact,
+                email: email,
+                course: course,
+                batch: batch,
+
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Trainee Details Exist Already!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('New Trainee Details saved successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                });
+            return false;
+        }
+
+    }
+
+</script>
+{%endblock content%}

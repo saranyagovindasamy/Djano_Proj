@@ -1,0 +1,162 @@
+{% extends "project03_base.html" %}
+{% load static%}
+{%block home_content%}
+
+<section class="all-product-sec">
+    <div class="container">
+        <div class="row all-product-row">
+
+            <div class="single-product-row">
+
+                <div class="single-prod-col col-md-4">
+                    <img src="{% static 'images/project03/gallery-1.jpg' %}" alt="" class="img-fluid" id="productImg">
+                    <div class="img-row">
+                        <div class="img-col-small">
+                            <img src="{% static 'images/project03/gallery-1.jpg' %}" alt="" class="img-fluid small-img">
+                        </div>
+                        <div class="img-col-small">
+                            <img src="{% static 'images/project03/gallery-2.jpg' %}" alt="" class="img-fluid small-img">
+                        </div>
+                        <div class="img-col-small">
+                            <img src="{% static 'images/project03/gallery-3.jpg' %}" alt="" class="img-fluid small-img">
+                        </div>
+                        <div class="img-col-small">
+                            <img src="{% static 'images/project03/gallery-4.jpg' %}" alt="" class="img-fluid small-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-desc col-md-4">
+                    <p>Home/T-Shirt</p>
+                    <h2>Red Printed T-Shirt <br> by HRX</h2>
+
+                    <h5>&#x20B9 500.00</h5>
+
+                    <select>
+                        <option>Select Size</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                        <option>XXL</option>
+                    </select>
+                    <br><br>
+                    <input type="number" value="1">
+                    <a href="{% url 'cart' %}"> <button type="button" class="btn-store" data-hover="Add to Cart">
+                            <div><i class="fas fa-shopping-cart"></i></div>
+                        </button></a>
+                    <h5>Product Details</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum fugit debitis aperiam
+                        nostrum voluptate inventore laudantium dolor? Voluptatum iste veniam explicabo quaerat
+                        fugit, recusandae quos nulla ad modi deleniti consequatur!</p>
+                </div>
+
+            </div>
+            <div class="row related-product">
+                <div class="col-md-6">
+                    <h2>Related Prodducts</h2>
+                </div>
+                <div class="col-md-6 text-center">
+                    <p>View more</p>
+                </div>
+            </div>
+            <div class="row all-product-row">
+
+                <div class="product-col">
+                    <img src="{% static 'images/project03/product-9.jpg' %}" alt="" class="img-fluid img-1">
+                    <div class="feature-desc">
+                        <h4>Puma Grey Sports Shoes</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+
+                        <p>&#x20B9 950.00</p>
+                    </div>
+                </div>
+                <div class="product-col">
+                    <img src="{% static 'images/project03/product-10.jpg' %}" alt="" class="img-fluid img-2">
+                    <div class="feature-desc">
+                        <h4>HRX Sports Shoes</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>&#x20B9 750.00</p>
+                    </div>
+                </div>
+                <div class="product-col">
+                    <img src="{% static 'images/project03/product-11.jpg' %}" alt="" class="img-fluid img-1">
+                    <div class="feature-desc">
+                        <h4>HRX Gray Trackpants</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>&#x20B9 450.00</p>
+                    </div>
+                </div>
+                <div class="product-col">
+                    <img src="{% static 'images/project03/product-12.jpg' %}" alt="" class="img-fluid img-2">
+                    <div class="feature-desc">
+                        <h4>Blue Printed T-Shirt</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>&#x20B9 550.00</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="footer-sec">
+
+    {% include "includes/footer.html" %}
+
+</section>
+
+<script>
+    var productImg = document.getElementById("productImg");
+    var height = productImg.style.height;
+    var width = productImg.style.width;
+    var smallImg = document.getElementsByClassName("small-img")
+
+    smallImg[0].onclick = function () {
+        productImg.style.height = height;
+        productImg.style.width = width;
+        productImg.src = smallImg[0].src;
+    }
+    smallImg[1].onclick = function () {
+        productImg.style.height = height;
+        productImg.style.width = width;
+        productImg.src = smallImg[1].src;
+    }
+    smallImg[2].onclick = function () {
+        productImg.style.height = height;
+        productImg.style.width = width;
+        productImg.src = smallImg[2].src;
+    }
+    smallImg[3].onclick = function () {
+        productImg.style.height = height;
+        productImg.style.width = width;
+        productImg.src = smallImg[3].src;
+    }
+
+</script>
+
+{%endblock home_content%}

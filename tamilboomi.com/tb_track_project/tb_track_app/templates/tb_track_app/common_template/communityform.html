@@ -1,0 +1,268 @@
+{% extends "tb_track_app/index/base.html" %} 
+{%load static%} 
+{%block content%}
+<div class="container form-v10">
+  <h1 class="text-center form-head">Join Our Community</h1>
+  <div class="page-content">
+    <div class="form-v10-content">
+      <form class="form-detail" action="#" method="post" id="myform">
+      {% csrf_token %}
+        <div class="form-left">
+          <h2>General Infomation</h2>
+          <div class="form-group">
+            <div class="form-row form-row-1">
+              <input type="text" name="first_name" id="first_name" class="input-text" placeholder="First Name"
+                required />
+            </div>
+            <div class="form-row form-row-2">
+              <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Last Name"  />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <select class="form-select" id="course" placeholder="Technology Interested In" required>
+              <option>Technology Interested In</option>
+              {%for i in course%}
+              <option  id={{i.id}}>{{i.name}}</option>
+              {%endfor%}
+              <!--<option class="option" value="bigdata">Big Data</option>
+              <option class="option" value="snowflake">Snow Flake</option>
+              <option class="option" value="clouddevops">Cloud Devops</option> -->
+            </select>
+            <span class="select-btn">
+              <i class="zmdi zmdi-chevron-down"></i>
+            </span>
+          </div>
+
+          <div class="form-row">
+            <select name="hearus" id="hearus" required>
+              <option value="" hidden>How Did You Hear About Us?</option>
+              <option id="SearchEngine" value="searchenginer">Search Engine</option>
+              <option id="Facebook" value="facebook">Facebook</option>
+              <option id="YouTube" value="youtube">YouTube</option>
+              <option id="Twitter" value="twitter">Twitter</option>
+              <option id="Instagram" value="instagram">Instagram</option>
+            </select>
+            <span class="select-btn">
+              <i class="zmdi zmdi-chevron-down"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-right">
+          <h2>Contact Details</h2>
+            <div class="form-group">
+              <div class="form-row form-row-1">
+                <input type="text" name="code" class="code" id="code" placeholder="Code +" pattern="[0-9]*" />
+              </div>
+          <div class="form-row form-row-2">
+            <input type="text" name="phone" class="phone" id="phone" placeholder="MobileNo " pattern="[0-9]*" required/>
+          </div>
+</div>
+          <div class="form-row">
+            <input type="text" name="your_email" id="your_email" class="input-text " 
+              pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" onblur="sendEmail()" placeholder="me@example.com" required />
+          </div>
+
+            
+          
+          <div class="form-row">
+            <div class="form-floating">
+              <input type="password" class="email_verify" id="email_verify_code" placeholder="Verify Code">
+              <!-- <label for="email_verify_code">Verify Code</label> -->
+            </div>
+            <!-- <input type="password" name="email_verify" class="email_verify" id="email_verify"
+              placeholder="Email Verification Code"  /> -->
+              <span id="validation_status"></span>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row form-row-1">
+              <input type="button" name="email_verify_btn" class="register mt-3 p-3" onclick="verifyCode()" value="Verify Email ID" />
+            </div>
+            <div class="form-row form-row-2 .form-row-last text-center">
+              <button type="button" class=" register btn btn-light p-3 mt-3 rounded-pill " id="register-btn" onclick="formValidator()" value="Register" disabled>Register</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- modal Dialog box -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p class="modal-title" id="modal-title"></p>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+      
+            <div class="modal-body">
+              <p class="modal-body" id="body-modal"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  // var testvalue = document.getElementById("hearus");
+  // // var checkvalue = testvalue.options[testvalue.selectedIndex].value;
+  // // var checktext = testvalue.options[testvalue.selectedIndex].text;
+  // testvalue.addEventListener("change", (e) => {
+  //   var value = e.target.value;
+
+  //   if (value == "") {
+  //     console.log("error");
+  //   }
+  //   else {
+  //     console.log(value);
+  //   }
+
+  // })
+      $(document).ready(function () {
+        // $('#notify-div').hide();
+   
+      });
+  
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        let home = "{%url 'home' %}"
+      window.location.href = home;
+      // location.reload();
+    });
+
+var code_sent = ""
+
+  function validateEmail(value) {
+    var input = document.createElement('input');
+
+    input.type = 'email';
+    input.required = true;
+    input.value = value;
+
+    return typeof input.checkValidity === 'function' ? input.checkValidity() : /\S+@\S+\.\S+/.test(value);
+  }
+
+function sendEmail(){
+  let email = $("#your_email").val();
+
+  let result = validateEmail(email)
+  console.log(result)
+  console.log(email)
+
+  if (result == true)
+  {
+  let url = '/send_email_ajax/'
+  $.ajax({
+    type: 'GET',
+    url: url,
+    data: {
+      'email': email,
+    },
+    success: function (data) {
+      console.log(data)
+      code_sent = data
+    },
+    error: function (response) {
+      console.log(response)
+    }
+  })
+  }
+  else
+  {
+    alert("Provide a valid email id field")
+  }
+}
+ function verifyCode(){
+   var entered_code = $('#email_verify_code').val()
+    console.log(entered_code)
+   if(entered_code == code_sent){
+     console.log("code match")
+     $('#register-btn').removeAttr("disabled");
+    $('#validation_status').html('Verification code matched').css('color', 'White')
+         $('#validation_status').html('Verification code matched').css('font-size', '20px')
+
+
+      // $('#validation_status').html("Verification code matched. You will be registered")
+      // $('#modal').modal('toggle');
+      // formValidator()
+      // alert("Thanks!!! Please do Register")
+   }
+   else{
+       console.log("code not match")
+     $('#validation_status').html("Verification code doesn't match. Please try Again").css('color', 'red')
+      // $('#validation_status').html("Verification code doesn't match. Please try Again")
+      $('#email_verify_code').html('')
+   }
+ }
+  function formValidator()
+  {
+    let firstname = $('#first_name').val() 
+    let lastname = $('#last_name').val();
+    //console.log(name)
+      let email = $("#your_email").val();
+
+    console.log(email)
+    let phone = $("#phone").val();
+     console.log(phone)
+    
+    // get value from dropdown in ajax
+
+    let course = $('#course option:selected').attr('id');
+    console.log(course);
+    let hearus = $("#hearus").children("option").filter(":selected").text()
+    console.log(hearus)
+    $.post('', {
+      'firstname': firstname,
+      'lastname' : lastname,
+      'phone': phone,
+      'email': email,
+      'course': course,
+      'hearus': hearus,
+      'csrfmiddlewaretoken': '{{ csrf_token }}'
+    },
+       function (data, status) {
+        console.log(data)
+        $('#status-final').text('');
+        // if contact details exist
+        if (data == 409) {
+          console.log(data)
+          $('#modal-title').html('Thank you for your interest !.')
+          $('#body-modal').html('We already have your Contact Details in our database!. Our admin team will contact you');
+          var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+            keyboard: false
+          })
+          myModal.show()
+        }
+
+        else if (data == 200) {
+
+          console.log(data)
+
+          $('#modal-title').html('Thank you for your interest!.')
+          $('#body-modal').html('Your Contact Details saved successfully!. Our admin team will contact you');
+          var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+            keyboard: false
+          })
+          myModal.show()
+        }
+
+      });
+    return false;
+  }
+
+
+  //let hearus = $('#hearus option:selected').attr('id');
+ 
+  // let hearus = $('#hearus option :selected').text();
+  // console.log(hearus);
+
+</script>
+{%endblock content%}

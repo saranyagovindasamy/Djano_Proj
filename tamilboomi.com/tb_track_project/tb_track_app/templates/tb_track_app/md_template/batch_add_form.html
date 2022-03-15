@@ -1,0 +1,239 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{%block content%}
+<script src="{% static 'js_files/md.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<div class="container">
+    <div class="container-fluid justify-content-center justify-content-sm-center 
+    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+        <div class="batch-create-form col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11  col-xxl-11">
+            <form id="batch_create_form" class="row needs-validation" novalidate>
+
+                {% csrf_token %}
+                <h1 class="text-center mt-5">Create New Batch</h1>
+                <div
+                    class="row d-flex justify-content-center justify-content-sm-center 
+                justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+
+                    <!-- Languages -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <select class="form-select" onchange="load_courses()" id="language" required>
+                             
+                                {% for language in form.language %}
+                                {{language}}
+
+                                {% endfor %}
+                            </select>
+                            <label for="language">Programming Languages</label>
+                            <div class="invalid-tooltip">
+                                Choose Language.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Courses -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <select class="form-select" onchange="load_trainer(); batch_name_suggest() " id="courses" required>
+                                <option>-------</option>
+                            </select>
+                            <label for="courses">Available Courses</label>
+                            <div class="invalid-tooltip">
+                                Choose Course.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Batch Start Date -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="start_date" placeholder="Start Date" required
+                                onchange="batch_name_suggest()">
+                            <label for="start_date">Start Date</label>
+                            <div class="invalid-tooltip">
+                                Select a Valid Date.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date In -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="end_date" placeholder="End Date" required>
+                            <label for="end_date">End Date</label>
+                            <div class="invalid-tooltip">
+                                Select a Valid Date.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trainer -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <select class="form-select" id="trainer" required>
+                                <option>-------</option>
+                            </select>
+                            <label for="trainer">Available Trainers</label>
+                            <div class="invalid-tooltip">
+                                Choose Trainer.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Batch Name -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="batch_name" placeholder="Name">
+                            <label for="batch_name">Batch Name</label>
+                            <div class="invalid-tooltip">
+                                Provide A Valid Name.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div
+                        class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 mb-3 justify-content-center d-flex  py-3">
+                        <div class="enroll-btn">
+                            <button type="button" class="btn btn-primary" id="create_batch_btn"
+                                onclick="formValidator()">Create Batch</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+ 
+    $(document).ready(function () {
+        var courses = document.getElementById("courses");
+        var trainer = document.getElementById("trainer");
+        $('#courses').attr('disabled', false);
+        $(courses).empty();
+        $(trainer).empty();
+
+    });
+
+
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+
+    function getMonthName(month) {
+        const d = new Date();
+        d.setMonth(month - 1);
+        const monthName = d.toLocaleString("default", { month: "long" });
+        return monthName;
+    }
+
+    function batch_name_suggest() {
+        let start_date = $('#start_date').val().split('-');
+        let course = $('#courses').val();
+        let year = start_date[0].slice(-2)
+        let month = getMonthName(start_date[1]).slice(0,3)
+        let date = start_date[2]
+        console.log(course)
+       
+        if (course != null && month != null) {
+            let batch_name = course + '-' + month+'-'+year
+            document.getElementById('batch_name').value = batch_name
+        }
+        if (course != null && month == null) {
+            let batch_name = course
+            document.getElementById('batch_name').value = batch_name
+        }
+
+    }
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let courses = document.querySelector('#courses');
+        let start_date = document.querySelector('#start_date');
+        let end_date = document.querySelector("#end_date");
+
+
+        // If form valid then submit the data's
+        if (courses.checkValidity() === true && start_date.checkValidity() === true &&
+            end_date.checkValidity() === true) {
+            let batch_name = $('#batch_name').val();
+            let language = $('#language').val();
+            let course = $('#courses').val();
+            let start_date = $('#start_date').val();
+            let end_date = $('#end_date').val();
+            let trainer = $('#trainer').val();
+            console.log(batch_name, language, course, start_date, end_date, trainer)
+            $.post('', {
+                batch_name:batch_name,
+                language: language,
+                course: course,
+                start_date: start_date,
+                end_date: end_date,
+                trainer: trainer,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    $('#status-final').text('');
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html( batch_name + 'batch Exist Already!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html( batch_name +' Details saved successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                });
+            return false;
+        }
+    }
+
+</script>
+{%endblock content%}

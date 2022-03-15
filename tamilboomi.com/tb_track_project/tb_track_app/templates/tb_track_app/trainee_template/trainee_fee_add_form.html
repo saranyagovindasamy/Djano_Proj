@@ -1,0 +1,244 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{%block content%}
+<script src="{% static 'js_files/trainee.js' %}"></script>
+<div class="container justify-content-center">
+    <div class="container-fluid justify-content-center justify-content-sm-center 
+    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+        <div class="trainee-add-form row col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+                        offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+
+
+            {% csrf_token %}
+
+            <div class="left-side col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6">
+
+                <form id="trainee_add_form"
+                    class="row mt-5 needs-validation justify-content-center justify-content-sm-center 
+                    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center" novalidate>
+                    <!-- Courses -->
+                    <h1 class="text-center mt-2">Add Payment Details</h1>
+
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-5 position-relative">
+                        <div class="form-floating">
+                            <select class="form-select" onchange="load_batch()" id="course" required>
+                                <option>-------</option>
+                                {% for course in course_filter %}
+                                <option id={{course.id}}>{{course.name}}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="course">Available Course</label>
+                            <div class="invalid-tooltip">
+                                Choose Course.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-5 position-relative">
+                        <div class="form-floating">
+                            <select class="form-select" onchange="load_trainees()" id="batch" required>
+                           
+                            </select>
+                            <label for="batch">Available Batch</label>
+                            <div class="invalid-tooltip">
+                                Choose Batch.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-5 position-relative">
+                        <div class="form-floating">
+                            <select class="form-select" onchange="load_selected_trainee_details()" id="trainee"
+                                required>
+
+                            </select>
+                            <label for="trainee">Trainee Details</label>
+                            <div class="invalid-tooltip">
+                                Choose Trainee.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="payment_date" placeholder="Date" required>
+                            <label for="payment_date">Date</label>
+                            <div class="invalid-tooltip">
+                                Select a Valid Date.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Credit Payment -->
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="number" step="any" class="form-control" id="amount_paying"
+                                placeholder="Amount Paying" required>
+                            <label for="amount_paying">Amount Paying</label>
+                            <div class="invalid-tooltip">
+                                Provide Amount Paying.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="remarks" placeholder="Remarks">
+                            <label for="remarks">Remarks</label>
+                            <div class="invalid-tooltip">
+                                Provide A Valid Remarks.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div
+                        class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-4 mb-3 px-5 justify-content-center py-3">
+                        <div class="enroll-btn">
+                            <button type="button" class="btn btn-primary" id="add_trainee_btn"
+                                onclick="formValidator()">Add
+                                Details</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+            <div class="right-side col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6 mt-4" id="right-side">
+
+                <h3 class="text-center mt-5">Trainee Details</h3>
+                <div class="table-responsive mt-3">
+                    <table class=" table nowrap" style="width:100%">
+                        <tr class="table-success">
+                            <th scope="row">Trainee Name :</th>
+                            <td><span id="record_name" style="font-weight: bold;"></span></td>
+                        </tr>
+                        <tr class="table-success">
+                            <th scope="row">e-Mail ID :</td>
+                            <td><span id="email" style="font-weight: bold;"></span></td>
+                        </tr>
+                        <tr class="table-success">
+                            <th scope="row">Mobile No :</td>
+                            <td><span id="mobile_no" style="font-weight: bold;"></span></td>
+                        </tr>
+                        <tr class="table-warning">
+                            <th scope="row">Course :</td>
+
+                            <td><span id="course_entrolled" style="font-weight: bold;"></span></td>
+
+                        </tr>
+                        <tr class="table-warning">
+                            <th scope="row">Batch :</td>
+                            <td><span id="batch_name" style="font-weight: bold;"></span></td>
+                        </tr>
+                        <tr class="table-info">
+                            <th scope="row">Amount Paid :</td>
+                            <td><span id="amount_paid" style="font-weight: bold;"></span></td>
+                        </tr>
+                        <tr class="table-info">
+                            <th scope="row">Balance Fee :</td>
+                            <td><span id="balance_fee" style="font-weight: bold;"></span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- modal Dialog box -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modal-title" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<!-- For Telephone Number field -->
+<script>
+
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let course = document.querySelector('#course');
+        let batch = document.querySelector('#batch');
+        let trainee = document.querySelector("#trainee");
+        let payment_date = document.querySelector("#payment_date");
+        let amount_paying = document.querySelector("#amount_paying");
+
+
+        // If form valid then submit the data's
+        if (course.checkValidity() === true && batch.checkValidity() === true && trainee.checkValidity() === true &&
+            payment_date.checkValidity() === true && amount_paying.checkValidity() === true) {
+            let course_id = $('#course option:selected').attr('id');
+            let batch_id = $('#batch').val();
+            let trainee_name = $('#trainee').val();
+            let payment_date = $('#payment_date').val();
+            let amount_paying = $('#amount_paying').val();
+            let remarks = $('#remarks').val();
+            console.log(course_id, batch_id, trainee_name, payment_date, amount_paying, remarks)
+
+            $.post('', {
+                course_id: course_id,
+                batch_id: batch_id,
+                trainee_name: trainee_name,
+                payment_date: payment_date,
+                amount_paying: amount_paying,
+                remarks: remarks,
+
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    // if contact details exist
+                    if (data == 200) {
+                        load_selected_trainee_details()
+                        console.log(data)
+
+                        $('#modal-title').html('Payment details for ' + trainee_name + ' saved successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+
+                    }
+
+                });
+            return false;
+        }
+
+    }
+
+</script>
+{%endblock content%}

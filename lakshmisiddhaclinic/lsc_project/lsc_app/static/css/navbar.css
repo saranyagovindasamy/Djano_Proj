@@ -1,0 +1,96 @@
+
+/*---------------------------- Navbar Styles------------------------------- */
+
+.navbar .navbar-nav .nav-item
+{
+    list-style:none;
+    font-size:15px;
+   
+}
+.navbar .navbar-nav .nav-item a 
+{
+   text-decoration:none;
+   padding:  10px 10px 5px 10px;
+
+   margin-right:20px;
+}
+ul li a:hover
+{
+
+  border-bottom: 2px solid #068440 !important;
+ 
+}
+ ul li a.active{
+     /* background-color:#068440!important; */
+     border-bottom: 2px solid #068440 !important;
+     color: #068440 !important;
+     font-weight: bold;
+ }
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .sticky-toggler {
+    position: fixed;
+    width: auto;
+    z-index: 10;
+  }
+  .sticky + .about {
+    padding-top: 60px;
+  }
+
+
+  @media only screen and (max-width:568px)
+  {
+    .navbar .navbar-brand img
+    {
+        display: none;
+    }
+   
+    .navbar {
+    /* height:100px; */
+      position: relative;
+      
+    }
+    
+    .nav-toggle {
+     
+      /* margin:30px; */
+      display:block;
+      position: absolute;
+     right: 200%;
+      transform: translateY(-50%)!important;
+    }
+    .navbar-collapse .navbar-nav .nav-item{
+        z-index:999!important;
+        background-color:#068440;
+    }
+    .navbar-nav li a
+    {
+      color: white !important;
+      font-size: 15px;
+    }
+    
+    ul li a:hover
+    {
+
+    border-right: 5px solid white !important;
+    width: auto !important;
+    }
+    ul li a.active{
+    /* background-color:#068440!important; */
+    border-right: 5px solid white !important;
+    color: white !important;
+    font-weight: bold;
+    
+    }
+  }
+
+
+ 
+  

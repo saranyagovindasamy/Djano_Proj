@@ -1,0 +1,171 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{%block content%}
+<script src="{% static 'js_files/md.js' %}"></script>
+<div class="container">
+    <div class="container-fluid d-flex justify-content-center justify-content-sm-center 
+    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center offset-1 offset-md-1 offset-sm-1">
+        <div class="language-create">
+            <form id="language_create_form"
+                class="row g-1 needs-validation justify-content-center justify-content-sm-center 
+                        justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center" novalidate>
+
+                {% csrf_token %}
+                <h1 class="mb-2 text-center">Programming Lanaguage Details</h1>
+
+                <div class="col-6 col-sm-6 col-md-5 col-lg-5 col-xl-4  col-xxl-4 mt-3 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="language" placeholder="Language" required>
+                        <label for="language">Programming Language</label>
+                        <div class="invalid-tooltip">
+                            Provide Programming Language Name.
+                        </div>
+                    </div>
+                </div>
+                <!-- Submit -->
+                <div
+                    class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 mt-3 col-xxl-6 justify-content-center d-flex  py-3">
+                    <div class="enroll-btn">
+                        <button type="button" class="btn btn-primary" id="create_lang_btn"
+                            onclick="formValidator()">Create Language</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-10 col-10 offset-md-1">
+
+        <div class="col-12 col-md-12 d-flex flex-row justify-content-end">
+            <button type="button" class="btn" id="export" data-export="export"> <span
+                    style="font-size: 20px; color: #0d6efd;"><i class="fas fa-file-export"></i></span></button>
+        </div>
+
+        <table id="language-data" class="table language-data table-bordered nowrap align-middle" style="width:100%">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Programming Lanaguage</th>
+                    <th scope="col">Created Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lang in language %}
+                <tr class="w-auto">
+                    <td> {{lang.id}}</td>
+                    <td> {{lang.name}} </td>
+                    <td> {{lang.created_at}}</td>
+
+                </tr>
+
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+<!-- For Telephone Number field -->
+<script>
+
+    jQuery(document).ready(function ($) {
+
+        $('#language-data').DataTable(
+            {
+                scrollX: true,
+                scrollCollapse: true,
+                responsive: true,
+                order: [[1, 'desc']],
+
+            }
+        );
+    });
+
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let language = document.querySelector('#language');
+
+
+        // If form valid then submit the data's
+        if (language.checkValidity() === true) {
+
+            let language = $('#language').val();
+
+            console.log(language)
+            $.post('', {
+                language: language,
+
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    $('#status-final').text('');
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Current Details Exist Already!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('New Programming Language Added Successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+
+                    }
+
+                });
+            return false;
+        }
+
+    }
+
+</script>
+{%endblock content%}

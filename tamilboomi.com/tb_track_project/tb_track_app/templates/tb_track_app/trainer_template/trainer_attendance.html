@@ -1,0 +1,253 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{%block content%}
+
+<style>
+  #trainee-data {
+    display: none;
+  }
+</style>
+<script src="{% static 'js_files/trainer.js' %}"></script>
+<div class="container">
+  <div class="container-fluid ">
+    <div class="trainee-attendance-form row col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+    offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+
+      {% csrf_token %}
+      <h1 class="text-center mt-4">Trainee Attendance</h1>
+      <form id="trainee-attendance-form"
+        class="row g-4 needs-validation justify-content-center justify-content-sm-center 
+                    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center" novalidate>
+        <!-- Courses -->
+
+
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3 mt-3 position-relative">
+          <div class="form-floating">
+            <select class="form-select" onchange="load_trainer_batch(); load_languages()" id="course" required>
+              <option>-------</option>
+              {% for course in course_details %}
+              <option id={{course.id}}>{{course.name}}</option>
+              {% endfor %}
+            </select>
+            <label for="course">Available Course</label>
+            <div class="invalid-tooltip">
+              Choose Course.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3 mt-3 position-relative">
+          <div class="form-floating">
+            <select class="form-select" id="language">
+              <option>-------</option>
+            </select>
+            <label for="language">Programming Language</label>
+            <div class="invalid-tooltip">
+              Choose Language.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3 mt-3 position-relative">
+          <div class="form-floating">
+            <select class="form-select" onchange="load_selected_batch_trainees()" id="batch" required>
+
+            </select>
+            <label for="batch">Available Batch</label>
+            <div class="invalid-tooltip">
+              Choose Batch.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3 mt-3 position-relative">
+          <div class="form-floating">
+            <input type="date" class="form-control" id="attendance_date" placeholder="Date" required>
+            <label for="attendance_date">Date</label>
+            <div class="invalid-tooltip">
+              Select a Valid Date.
+            </div>
+          </div>
+        </div>
+
+
+        <div id="trainee-data" class="trainee-data text-center mt-5 container-fluid justify-content-center justify-content-sm-center 
+        justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+
+          <table id="trainees-data"
+            class="table table-bordered align-middle dt-responsive nowrap table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl table-responsive-xxl">
+            <thead>
+              <tr>
+                <th scope="col">Trainee ID</th>
+                <th scope="col">Trainee Name</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Batch Name</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for trainee in trainees_list%}
+              <tr class="w-auto align-middle">
+                <td>{{trainee.id}}</td>
+                <td>{{trainee.name}}</td>
+                <td>{{trainee.contact}}</td>
+                <td>{{trainee.course_name}}</td>
+                <td>{{trainee.batch_name}}</td>
+                <td><input class="form-check-input" type="checkbox" name='cb1' value="present" id="{{trainee.id}}"></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+
+          <!-- Submit -->
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-4 mb-3 px-5 py-3">
+            <div class="enroll-btn">
+              <button type="button" class="btn btn-primary" id="add_trainee_btn" onclick="formValidator()">Add
+                Details</button>
+            </div>
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <!-- modal Dialog box -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+<!-- For Telephone Number field -->
+<script>
+  $(document).ready(function () {
+
+    $('table').DataTable(
+      {
+        scrollX: true,
+        scrollCollapse: true,
+        responsive: true,
+        order: [[1, 'desc']],
+      }
+    );
+
+    $('#attendance_date').val(today());
+
+  });
+
+  $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+    location.reload();
+  });
+
+  function today() {
+    let d = new Date();
+    let currDate = d.getDate();
+    let currMonth = d.getMonth() + 1;
+    let currYear = d.getFullYear();
+    return currYear + "-" + ((currMonth < 10) ? '0' + currMonth : currMonth) + "-" + ((currDate < 10) ? '0' + currDate : currDate);
+  }
+
+  function lang_function() {
+    let language = $('#language').val();
+    return language
+  }
+  function formValidator() {
+    console.log("form validation")
+
+    'use strict'
+
+    var forms = document.querySelectorAll('.needs-validation')
+
+    var validation = Array.prototype.filter.call(forms, function (form) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      form.classList.add("was-validated");
+    });
+
+    let batch = document.querySelector('#batch');
+    let course = document.querySelector('#course');
+    let attendance_date = document.querySelector("#attendance_date");
+    let language = document.querySelector("#language");
+
+
+    // If form valid then submit the data's
+    if (batch.checkValidity() === true && course.checkValidity() === true &&
+      attendance_date.checkValidity() === true && language.checkValidity() === true) {
+
+      let batch_id = $('#batch').val();
+      let batch_name = $('#batch').find(":selected").text();
+      let course_id = $('#course').val();
+      let language = $('#language').find(":selected").text();
+      let attendance_date = $('#attendance_date').val();
+
+      var data_table = document.getElementById('trainees-data');
+      var trainees_details = []
+
+      var trainees_status = [];
+      $("input:checkbox[name=cb1]:checked").each(function () {
+        console.log($(this).attr('id'));
+        trainees_status.push($(this).attr('id'))
+      });
+      console.log(trainees_status)
+
+      for (i = 1; i < data_table.rows.length; i++) {
+        var result_dict = {}
+        // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+        var objCells = data_table.rows.item(i).cells;
+        result_dict['trainee_id'] = objCells.item(0).innerHTML;
+        result_dict['language'] = language;
+        trainees_details.push(result_dict)
+      }
+
+      trainees_status = JSON.stringify(trainees_status)
+      trainees_details = JSON.stringify(trainees_details)
+      console.log(trainees_details)
+
+      $.post('', {
+        trainees_status: trainees_status,
+        trainees_details: trainees_details,
+        'csrfmiddlewaretoken': '{{ csrf_token }}'
+      },
+        function (data, status) {
+          console.log(data)
+          // if contact details exist
+          if (data == 200) {
+
+            console.log(data)
+
+            $('#modal-title').html('Attendance details of ' + batch_name + ' for ' + attendance_date + ' saved successfully!');
+            var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+              keyboard: false
+            })
+            myModal.show()
+          }
+
+        });
+      return false;
+    }
+
+  }
+
+</script>
+{%endblock content%}

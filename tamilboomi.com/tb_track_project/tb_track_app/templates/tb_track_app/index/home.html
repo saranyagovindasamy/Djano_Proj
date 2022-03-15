@@ -1,0 +1,526 @@
+{% extends "tb_track_app/index/base.html" %}
+{%load static%}
+{%block content%}
+<!--------------scroll iconbar------------ -->
+<div class="icon-bar">
+    <a href="https://wa.me/message/EBWNGVF6IZFMJ1" target="_blank"><img src="{%static 'images/whatsapp.png'%}"
+            style="height:40px;width:40px;" alt="whats-app" class="img-fluid"></a>
+    <a href="mailto: admin@tamilboomi.com" target="_blank"><img src="{%static 'images/gmail.png'%}"
+            style="height:40px;width:40px;" alt="gmail" class="img-fluid"></a>
+</div>
+<!--Hero image-->
+<section class="hero-page">
+    <div class="container">
+        {% if up_batches|length == 0 %}
+        <div class="hero-text d-flex flex-column justify-content-center align-items-center mt-5">
+            <h1 class="hero-head ">Welcome to TamilBoomi Technologies !!!</h1>
+            <button class="btn hero-btn w-25 fs-5 btn-primary mt-5"><a href="{%url 'communityform'%}">Join Our
+                    Community</a></button>
+        </div>
+
+
+        <!-- upcoming batches -->
+        {% elif up_batches|length != 0 %}
+        <div class=" hero-text">
+            <h1 class="hero-head">Welcome to TamilBoomi Technologies !!!</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn hero-btn w-25 fs-5 btn-primary mt-5"><a href="{%url 'communityform'%}">Join Our
+                        Community</a></button>
+
+            </div>
+            <div class="col-md-6">
+                <div id="carouselExampleControls" class="carousel slide upcoming-batches" data-bs-ride="carousel"
+                    style="align-items: center;">
+                    <div class="carousel-inner">
+                        {% for upb in up_batches%}
+
+                        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}" data-interval="100">
+                            <div class="card">
+                                <h1>{{upb.course.name}}</h1>
+                                <span>Starting Date : <b>{{upb.uc_batch_start_date | date:"M d, Y"}}</b></span>
+
+
+                                <p style="font-size: 18px;">To get more details about the course <a
+                                        href="{%url 'courses'%}">click here..</a>
+                                </p>
+                                <a href="{%url 'enroll'%}" style="text-decoration:none;" class="btn">Enroll Now</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {%endif%}
+
+    </div>
+</section>
+
+<!-- Home Page -->
+<section class="home-page" id="home">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="left-content col-md-6">
+                <img src="{%static 'images/Telecommuting-rafiki.png'%}" alt="home-page" class="img-fluid">
+            </div>
+            <div class="right-content col-md-6 flex-wrap">
+                <h4 class="mt-2" style="color:#101341;">Want to Change your Career?</h4>
+                <p class="mt-5" style="font-size: 50px;">Learn from the Industry Experts</p>
+                <a href="{%url 'enroll'%}" style="text-decoration:none;" class="btn btn-primary mt-5"
+                    id="btn-home">CONNECT WITH US</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--What to Choose-->
+<section class="what-choose" id="what-choose">
+    <div class="container-fluid">
+        <h1 class="text-center top-bottom pt-5">What To Choose?</h1>
+        <div class="choose-image mx-auto d-block pt-3 ">
+            <img src="{%static 'images/lecture_png.png'%}" alt="what-to-choose" class="img-fluid">
+        </div>
+        <div class="cards-sec mx-auto d-block">
+
+            <div class="row cards">
+                <div class="col-md-3">
+
+                    <div class="content ">
+                        <h6>Big Data</h6>
+                        <a href="{%url 'fullstack'%}"><img src="{%static 'images/Big-Data-Analytics.jpg'%}"
+                                class="img-fluid mx-auto d-block"></a>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="content">
+                        <h6>Cloud-Devops</h6>
+                        <a href="{%url 'devops'%}"> <img src="{%static 'images/Cloud-DevOps.jpg'%}"
+                                class="img-fluid mx-auto d-block"></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="content">
+                        <h6>Full Stack</h6>
+                        <a href="{%url 'fullstack'%}"> <img src="{%static 'images/fullstack.png'%}"
+                                class="img-fluid mx-auto d-block"></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="content">
+                        <h6>Snow Flake</h6>
+                        <a href="{%url 'snowflake'%}"> <img src="{%static 'images/snowflak.jpg'%}"
+                                class="img-fluid mx-auto d-block"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- About Us Page -->
+<section class="about-us" id="about-us">
+    <div class="container">
+        <h1 class="text-center top-bottom pt-5">About TamilBoomi</h1>
+        <div class="row about-row pt-0">
+            <div class="right-content1 col-md-6 flex-wrap ">
+                <h5 style="font-size: 25px; color:white;">Mr.Arumugam established TamilBoomi Technologies
+                    with the goal of providing industry-based Big Data training.</h5> <br> <br>
+                <h5 style="font-size: 25px; color:white;">Tamilboomi Technologies has been giving training on different
+                    domains for last 5 years which is committed to quality & easy delivery.</h5>
+                <!-- <h1>Learn from <br> the Industry Experts</h1>
+                <button class="btn btn-primary mt-5" id="btn-home">CONNECT WITH US</button> -->
+            </div>
+            <div class="left-content col-md-6">
+                <img src="{%static 'images/Webinar-pana.png'%}" alt="webinar image" class="img-fluid">
+            </div>
+
+        </div>
+        <h1 class="text-center top-bottom pt-5" style="padding-bottom: 20px;">What we offer?</h1>
+        <div class="row offer">
+            <div class="col-md-2">
+                <div class="offer-text1">
+                    <h6 class="offer-h6">Learn from anywhere in the globe</h6>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="offer-text2">
+                    <h6 class="offer-h6">Beginner to intermediate level training</h6>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="offer-text3">
+                    <h6 class="offer-h6">A lifetime recording option</h6>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="offer-text4">
+                    <h6 class="offer-h6">Training with Real-world Projects</h6>
+                </div>
+            </div>
+            <div class="col-sm-2 ">
+                <div class="offer-text5">
+                    <h6 class="offer-h6">Advice on how to prepare for a job or an interview</h6>
+                </div>
+            </div>
+        </div>
+        <div class="row founder">
+            <div class="col-md-7 founder-content">
+                <img src="{%static 'images/logo.jfif'%}" alt="image">
+                <b>
+                    <h2>Mr.Arumugam Punnaivanam</h2>
+                    <p><span>Founder</span></p>
+                </b>
+                <p>With over 10+ years of experience in cloud technologies, <b>Arumugam</b> is well-versed in bigdata.
+                    For a long time, he has been teaching bigdata to working professionals and freshers.
+                </p>
+                <p>Now, he has been conducting a training institute to educate people in many fields.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Contact Us Page -->
+<section class="contact-us" id="contact-us">
+    <div class="container">
+        <h1 class="text-center top-bottom pt-5">Contact Us</h1>
+        <div class="row contact-row">
+            <div class="col-md-5">
+
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15550.092134431461!2d80.243733!3d13.00233!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa0493e42e935dd67!2sTamilboomi%20Technologies!5e0!3m2!1sen!2sin!4v1568859764685!5m2!1sen!2sin"
+                    width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+            </div>
+
+            <div class="col-md-5 offset-md-1">
+                <div class="contact-div1">
+                    <h4 style="color:#F36416"> <i class="fa fa-road px-2"></i> Address</h4>
+                    <p>69/37 Bajanai Kovil street, Pallipattu,<br />
+                        Tharamani, Chennai, Tamil Nadu. 600113</p>
+                </div>
+                <div class="contact-div2">
+                    <h4 style="color:green;font-size:28px"> <i class="fa fa-phone px-2"></i>Phone Number</h4>
+                    <p><a style="text-decoration: none; color: black;font-size: 18px;" href="tel:+919619663272">+91 9619
+                            663 272</a></p>
+                </div>
+                <div class="contact-div3">
+                    <h4 style="color:#bd060f"><i class="fa fa-envelope px-2"></i>E-mail</h4>
+                    <p style="font-size:20px;color:black;text-decoration:none">
+                        <a style="font-size:18px;color:black;text-decoration:none"
+                            href="mailto:admin@tamilboomi.com">admin@tamilboomi.com</a><br />
+                        <a style="font-size:18px;color:black;text-decoration:none"
+                            href="mailto:arumugam@tamilboomi.com">arumugam@tamilboomi.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Reviews page -->
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <h1 class="text-center top-bottom pt-5">Testimonials</h1>
+        <div class="row review-header">
+            <div class="card" style="width: 20rem;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Rating in Google Maps</h5>
+                    <div class="rating">
+                        <h2 class="card-text">4.9</h2>
+                        <i class="fas fa-star "> </i>
+                        <i class="fas fa-star "> </i>
+                        <i class="fas fa-star "> </i>
+                        <i class="fas fa-star "> </i>
+                        <i class="fas fa-star "> </i>
+                    </div>
+                    <a href="https://www.google.com/maps/place/Tamilboomi+Technologies/@13.0008665,80.2423986,20z/data=!4m7!3m6!1s0x3a5267900ee62f8f:0xa0493e42e935dd67!8m2!3d13.0023298!4d80.2437383!9m1!1b1"
+                        class="btn btn-primary mt-3" target="_blank">All Reviews</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="row review-row">
+            <div class="col-md-10">
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <!-- <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div> -->
+                    <div class="carousel-inner">
+                        <!-- First Slide -->
+                        <div class="carousel-item  active">
+                            <div class="testimonial card text-center">
+                                <!--Avatar-->
+                                <div class="avatar py-4">
+                                    <img src="https://lh3.googleusercontent.com/a/AATXAJyCgCuLhMtxU1hOydKTA2FwnQZxeU-imX04hum1=s128-c0x00000000-cc-rp-mo"
+                                        class="rounded-circle img-fluid" alt="First sample avatar image">
+                                </div>
+                                <!--Content-->
+                                <div class="review-text">
+                                    <p class="mx-4 text-start">
+                                        <i class="fas fa-quote-left"></i> Best place to learn Bigdata concepts and
+                                        trainer is real polite and whatever doubt regarding concepts we have he will
+                                        explain us very clearly. I strongly recommend this place.
+                                    </p>
+                                </div>
+                                <h3 class="font-weight-bold"><a href="https://goo.gl/maps/bwdZmF3h2G9jQKV99"
+                                        target="_blank">Jayamurugan
+                                        Jayaraman</a></h3>
+
+                                <!--Review-->
+                                <div class="rating pb-4">
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Second Slide -->
+                        <div class="carousel-item ">
+                            <div class="testimonial card text-center">
+                                <!--Avatar-->
+                                <div class="avatar py-4">
+                                    <img src="https://lh3.googleusercontent.com/a-/AOh14GiS1Ngi3BFS-181-vhKTQfqess3KmhXlpJnoIm17Q=s128-c0x00000000-cc-rp-mo"
+                                        class="rounded-circle img-fluid" alt="First sample avatar image">
+                                </div>
+                                <!--Content-->
+                                <div class="review-text">
+                                    <p class="mx-4 text-start">
+                                        <i class="fas fa-quote-left"></i> Glad, I chose the right place! Course
+                                        materials
+                                        are simply the best.I personally thank the trainer Usman who made the sessions
+                                        more
+                                        practical and interactive with realtime explanations..
+                                    </p>
+                                </div>
+                                <h3 class="font-weight-bold"> <a href="https://goo.gl/maps/nwNLnjQepo6Cg92f7"
+                                        target="_blank">
+                                        Naveen G </a> </h3>
+
+                                <!--Review-->
+                                <div class="rating pb-4">
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Third Slide -->
+                        <div class="carousel-item ">
+                            <div class="testimonial card text-center">
+                                <!--Avatar-->
+                                <div class="avatar py-4">
+                                    <img src="https://lh3.googleusercontent.com/a-/AOh14GgXlA6v-NUR1Q0M9jS6gYuAuPuOSH8qntndErBTCw=s128-c0x00000000-cc-rp-mo"
+                                        class="rounded-circle img-fluid" alt="First sample avatar image">
+                                </div>
+                                <!--Content-->
+                                <div class="review-text">
+                                    <p class="mx-4 text-start">
+                                        <i class="fas fa-quote-left"></i> I hope this message will helpful for anyone
+                                        who wants to change their domain to Big data
+                                        Tamilboomi team helped me to learn big data technologies <span
+                                            id="dots">...</span>
+                                        <span id="more">with professional tutor and
+                                            they guided me to learn current industry tech stack.<br>
+                                            Tamilboomi team will help and support even if you are from Non programming
+                                            background or Manufacturing.<br>
+                                            I strongly recommend ,it would be best platform for learn Big data
+                                            technologies..</span> <button class="readmore" onclick="readmore()"
+                                            id="myBtn">Read More</button>
+                                    </p>
+                                </div>
+                                <h3 class="font-weight-bold"> <a href="https://goo.gl/maps/k6bziUYtXNmLSpsV8"
+                                        target="_blank">Dinesh
+                                        kumar </a> </h3>
+
+                                <!--Review-->
+                                <div class="rating pb-4">
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Fourth Slide -->
+                        <div class=" carousel-item ">
+                            <div class="testimonial card text-center">
+                                <!--Avatar-->
+                                <div class="avatar py-4">
+                                    <img src="https://lh3.googleusercontent.com/a/AATXAJww3-ZYvu67aDKw0BVip20vZ0x5KpiMM99s5Ci7=s128-c0x00000000-cc-rp-mo"
+                                        class="rounded-circle img-fluid" alt="First sample avatar image">
+                                </div>
+                                <!--Content-->
+                                <div class="review-text">
+                                    <p class="mx-4 text-start">
+                                        <i class="fas fa-quote-left"></i> "Data is Wealth " <br>
+                                        Following Tamilboomi youtube channel since 2017 to till date.
+                                        This Instuite faculties <span id="dots1">...</span>
+                                        <span id="more1">Arumugam, Dinesh,Usman,Babu ,Aritra
+                                            Banerjee,Parudhi, Ganapathy have extensive experince on
+                                            Bigdata,AI,Cloud Tech,Machine Learning,Devops,web/app dev,Data scientist.
+                                            In market most of the Training Instuites cheat money and waste our time but
+                                            in my experience i felt only this Instuite mentors strive to help others for
+                                            switching companies,Enhance the skills,build the strong Network,keep
+                                            themselves
+                                            updated and get the IT jobs (freshers).<br> <br>
+
+                                            1.Course contents are updated as per Dynamic IT Trends<br> <br>
+
+                                            2.Carrier Menthorship for Everyone<br>
+                                            <br>
+                                            I warmely Recommend everyone to subscribe(keep themselves updated) and
+                                            signup the courses in TamilBhoomi Instuite ( To Enhance the Carrier)<br>
+
+                                            Thanks Tamilboomi Technogies for their genuine service </span> <button
+                                            class="readmore" onclick="readmore1()" id="myBtn1">Read More</button>
+                                    </p>
+                                </div>
+                                <h3 class="font-weight-bold"> <a href="https://goo.gl/maps/TkfNDXFweZM6B7Vj8"
+                                        target="_blank">Yokesh
+                                        Kave</a>
+                                </h3>
+
+                                <!--Review-->
+                                <div class="rating pb-4">
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fifth Slide -->
+                        <div class="carousel-item ">
+                            <div class="testimonial card text-center">
+                                <!--Avatar-->
+                                <div class="avatar py-4">
+                                    <img src="https://lh3.googleusercontent.com/a-/AOh14GjwPo8_TfFOwAknIfM8BP6MrCVzUAQG7ldJxh9xDQ=s128-c0x00000000-cc-rp-mo"
+                                        class="rounded-circle img-fluid" alt="First sample avatar image">
+                                </div>
+                                <!--Content-->
+                                <div class="review-text">
+                                    <p class="mx-4 text-start">
+                                        <i class="fas fa-quote-left"></i> I enrolled into Data Science classes with
+                                        TamilBoomi Technologies when I had no idea about DS.
+                                        Aritra Banerjee, the trainer, has taken us through each and every topic in
+                                        detail <span id="dots2">...</span><span id="more2">
+                                            with examples and hands-on(Python, Statistics, Tableau, & Machine
+                                            Learning).
+                                            I strongly recommend this course to anyone who wants to start learning Data
+                                            Science
+                                            from scratch.</span> <button class="readmore" onclick="readmore2()"
+                                            id="myBtn2">Read More</button>
+                                    </p>
+                                </div>
+                                <h3 class="font-weight-bold"> <a href="https://goo.gl/maps/CHrfs3m2bQ7wrYzc6"
+                                        target="_blank">Sadhvi
+                                        Mishra</a></h3>
+
+                                <!--Review-->
+                                <div class="rating pb-4">
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                    <i class="fas fa-star "> </i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+
+<script>
+    function readmore() {
+
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+        }
+    }
+    function readmore1() {
+
+        var dots1 = document.getElementById("dots1");
+        var moreText1 = document.getElementById("more1");
+        var btnText1 = document.getElementById("myBtn1");
+
+        if (dots1.style.display === "none") {
+            dots1.style.display = "inline";
+            btnText1.innerHTML = "Read more";
+            moreText1.style.display = "none";
+        } else {
+            dots1.style.display = "none";
+            btnText1.innerHTML = "Read less";
+            moreText1.style.display = "inline";
+        }
+    }
+
+    function readmore2() {
+
+        var dots2 = document.getElementById("dots2");
+        var moreText2 = document.getElementById("more2");
+        var btnText2 = document.getElementById("myBtn2");
+
+        if (dots2.style.display === "none") {
+            dots2.style.display = "inline";
+            btnText2.innerHTML = "Read more";
+            moreText2.style.display = "none";
+        } else {
+            dots2.style.display = "none";
+            btnText2.innerHTML = "Read less";
+            moreText2.style.display = "inline";
+        }
+    }
+</script>
+{%endblock content%}

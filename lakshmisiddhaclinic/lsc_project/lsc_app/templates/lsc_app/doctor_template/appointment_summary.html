@@ -1,0 +1,30 @@
+{%extends "lsc_app/base/lsc_app_base.html"%}
+{% load static %}
+
+{% block content %}
+
+<br>
+<br><br>
+<h1 align ='center'>Appointments Booked</h1><br>
+<table align="center" class="table table-striped" style="margin-left:200px; width: 70%;">
+  <tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Place</th>
+    <th>Date</th>
+    <th>Reason</th>
+
+  </tr>
+  {% for info in data %}
+   <tr>
+    <td>{{info.patient.patient_medical_info.patient_basic_info.name}}</td>
+    <td>{{info.patient.patient_medical_info.patient_basic_info.mobile}}</td>
+    <td>{{info.patient.patient_medical_info.patient_basic_info.address}}</td>
+    <td>{{info.appointment_time}}</td>
+    <td>{{info.description}}</td>
+
+   </tr>
+  {%endfor%}
+
+</table>
+{% endblock content %}

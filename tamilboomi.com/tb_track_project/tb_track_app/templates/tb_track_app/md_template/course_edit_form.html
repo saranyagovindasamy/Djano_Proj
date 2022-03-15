@@ -1,0 +1,156 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{%block content%}
+
+<div class="container">
+    <div class="container-fluid d-flex justify-content-center justify-content-sm-center 
+    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+        <div class="batch-create-form col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11  col-xxl-11 ">
+            <form id="batch_create_form" class="row needs-validation" novalidate>
+
+                {% csrf_token %}
+                <h1 class="text-center mt-2">Edit Course</h1>
+                <div class="row d-flex justify-content-center justify-content-sm-center 
+                justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+
+                    <div class="d-inline col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <select class="form-select" id="course_name" required>
+                                <option>-------</option>
+                                {% for course in courses %}
+                                <option id={{course.id}}>{{course.name}}</option>
+
+                                {% endfor %}
+                            </select>
+                            <label for="course_name">Select Course</label>
+                            <div class="invalid-tooltip">
+                                Choose Course.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Languages -->
+                    <div class="d-inline col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <select class="form-select" id="language" required>
+                                <option>-------</option>
+
+                                {% for language in languages %}
+
+                                <option id={{language.id}}>{{language.name}}</option>
+
+                                {% endfor %}
+
+                            </select>
+                            <label for="language">Select Programming Languages</label>
+                            <div class="invalid-tooltip">
+                                Choose Language.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit -->
+                    <div
+                        class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 mb-3 justify-content-center d-flex  py-3">
+                        <div class="enroll-btn">
+                            <button type="button" class="btn btn-primary" id="create_lang_btn"
+                                onclick="formValidator()">Create Course</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- For Telephone Number field -->
+<script>
+
+    function formReset() {
+        location.reload();
+    }
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let language = document.querySelector('#language');
+        let course_name = document.querySelector('#course_name')
+
+
+
+        // If form valid then submit the data's
+        if (language.checkValidity() === true) {
+            // $('#my_select option:selected').attr('id');  $('#language').val();
+            let language = $('#language').val();
+            let language_id = $('#language option:selected').attr('id');
+            let course_name = $('#course_name').val();
+            console.log(course_name)
+            console.log(language)
+            $.post('', {
+                language: language_id,
+                name: course_name,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    $('#status-final').text('');
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Selected ' + language + 'Programming Language added already to course ' + course_name + ' !');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('Selected ' + language + 'Programming Language Added Successfully to course ' + course_name + ' !');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                        formReset();
+                    }
+
+                });
+            return false;
+        }
+
+    }
+
+</script>
+{%endblock content%}

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/project06/project06.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <section class="home-page">
+
+        <div class="header">
+            <img id="logo-img" src="{% static 'images/project06/logo.png'%}">
+            <span id="logo-txt">Travel Together</span>
+            <button class="btn btn-log">Log-In</button>
+            <div class="content">
+                <h1>Travel Across the Globe <br>with US</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, eveniet.</p>
+            </div>
+
+            <section class="intro">
+                <div class="bg-image h-100">
+                    <div class="mask d-flex align-items-center h-100">
+                        <div class="container">
+                            <div class="row search-box">
+                                <div class="col-10 mb-4">
+                                    <div class="input-group">
+                                        <div class="form-outline flex-fill">
+                                            <input type="search" id="form1" class="form-control form-control-lg"
+                                                style="background-color: rgba(0, 0, 0, 0.137); color: #fff;"
+                                                placeholder="Search Country or City" />
+                                        </div>
+                                        <button type="button" class="btn btn-search">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </section>
+
+
+    <section class="destination">
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center">Popular Destinations</h1>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                            <img src="{% static 'images/project06/singapore.jpg'%}" class=" card-img-top img-fluid" />
+                            <!-- <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                            </a> -->
+                            <div class="price">
+                                <p>100$</p>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Singapore</h5>
+                            <p class="card-text">
+                                Some quick example text to build on the card title and make up the bulk of the
+                                card's content.Some quick example text to build on the card title and make up the bulk
+                                of the
+                                card's content.
+                            </p>
+                            <div class="bottom-card">
+                                <i class="fas fa-map-marker-alt"> Singapore</i>
+                                <i class="far fa-sun"> 4 Days</i>
+                                <i class="far fa-moon"> 3 Night</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                            <img src="{% static 'images/project06/malaysia.jpg'%}" class=" card-img-top img-fluid" />
+                            <!-- <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                            </a> -->
+                            <div class="price">
+                                <p>100$</p>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Malaysia</h5>
+                            <p class="card-text">
+                                Some quick example text to build on the card title and make up the bulk of the
+                                card's content.Some quick example text to build on the card title and make up the bulk
+                                of the
+                                card's content.
+                            </p>
+                            <div class="bottom-card">
+                                <i class="fas fa-map-marker-alt"> Kuala Lumpur</i>
+                                <i class="far fa-sun"> 4 Days</i>
+                                <i class="far fa-moon"> 3 Night</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                            <img src="{% static 'images/project06/hong-kong.jpg'%}" class=" card-img-top img-fluid" />
+                            <!-- <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                            </a> -->
+                            <div class="price">
+                                <p>100$</p>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Hong Kong</h5>
+                            <p class="card-text">
+                                Some quick example text to build on the card title and make up the bulk of the
+                                card's content.Some quick example text to build on the card title and make up the bulk
+                                of the
+                                card's content.
+                            </p>
+                            <div class="bottom-card">
+                                <i class="fas fa-map-marker-alt"> Hong Kong</i>
+                                <i class="far fa-sun"> 4 Days</i>
+                                <i class="far fa-moon"> 3 Night</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="travel-gallery">
+        <div class="container">
+
+            <div class="row text-center">
+                <h1 class="text-center">Travelelling Gallery</h1>
+                <div class="col-md-3 travel">
+                    <div class="bg-image hover-overlay hover-zoom hover-shadow ripple">
+                        <img src="{% static 'images/project06/travel-1.jpg'%}" class="w-100 center-block" />
+                        <h6>Singapore</h6>
+                    </div>
+                </div>
+                <div class="col-md-3 travel">
+                    <div class="bg-image hover-overlay hover-zoom hover-shadow ripple">
+                        <img src="{% static 'images/project06/travel-2.jpg'%}" class="w-100" />
+                        <h6>Hong Kong</h6>
+                    </div>
+                </div>
+                <div class="col-md-3 travel">
+                    <div class="bg-image hover-overlay hover-zoom hover-shadow ripple">
+                        <img src="{% static 'images/project06/travel-3.jpg'%}" class="w-100" />
+                        <h6>Malaysia</h6>
+                    </div>
+                </div>
+
+                <div class="col-md-3 travel">
+                    <div class="bg-image hover-overlay hover-zoom hover-shadow ripple">
+                        <img src="{% static 'images/project06/travel-4.jpg'%}" class="w-100" />
+                        <h6>India</h6>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <section class="offer text-center">
+        <div class="container">
+            <!-- <img src="{% static 'images/project06/offer.png" class="img-fluid"> -->
+            <div class="offer-head">
+                <img src="{% static 'images/project06/offer.png'%}">
+                <div class="offer-content">
+                    <h1>Get 30% on top destinations</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, amet.</p>
+                    <button>Book Now</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="user-reviews text-center">
+        <div class="container">
+            <div class="row">
+                <h1>User Reviews</h1>
+
+                <div class="col-md-4">
+
+                    <div class="card testimonial-card">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="{% static 'images/project06/user-2.png'%}" class="img-fluid" alt="woman avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Martha Smith</h4>
+                            <hr>
+                            <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Eos,
+                                adipisci</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card testimonial-card">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="{% static 'images/project06/user.png'%}" class="img-fluid" alt="woman avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Martien Smith</h4>
+                            <hr>
+                            <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Eos,
+                                adipisci</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="card testimonial-card">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="{% static 'images/project06/user-2.png'%}" class="img-fluid" alt="woman avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Martha Smith</h4>
+                            <hr>
+                            <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Eos,
+                                adipisci</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3 ft-logo">
+                    <img id="logo-img" src="{% static 'images/project06/logo.png'%}">
+                    <span id="logo-txt">Travel Together</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id corrupti sed beatae reprehenderit
+                        nesciunt adipisci architecto esse ad qui! Earum.</p>
+                </div>
+
+                <div class="col-md-3 ft-feature">
+                    <p>Features</p>
+                    <ul class="list-unstyled">
+                        <li>Deals & Offers</li>
+                        <li>Customer Reviews</li>
+                        <li>Cancellation Policy</li>
+
+                    </ul>
+                </div>
+
+                <div class="col-md-3 ft-contact">
+                    <p>Quick Contact</p>
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-phone"></i>+ 01 234 567 89</li>
+                        <li><i class="fas fa-envelope"></i>abcdef@abcdefg.com</li>
+                        <li><i class="fas fa-home"></i>ABCD Road, Abcd Complex</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 ft-follow">
+                    <p>Follow Us On</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fab fa-facebook"></i> Facebook</li>
+                        <li><i class="fab fa-twitter"></i> Twitter</li>
+                        <li><i class="fab fa-instagram"></i> Instragam</li>
+                        <li><i class="fab fa-youtube"></i> Youtube</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+</body>
+
+</html>

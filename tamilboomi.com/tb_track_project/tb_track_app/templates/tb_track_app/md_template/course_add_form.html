@@ -1,0 +1,147 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{%block content%}
+
+<div class="container justify-content-center">
+    <div class="container-fluid">
+        <div class="batch-create-form col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11  col-xxl-11  
+        offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+            <form id="batch_create_form"
+                class="row g1 needs-validation justify-content-center justify-content-sm-center 
+                        justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center" novalidate>
+
+                {% csrf_token %}
+                <h1 class="text-center mt-2">ADD Course</h1>
+
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="course_name" placeholder="Course Name" required>
+                        <label for="course_name">Course Name</label>
+                        <div class="invalid-tooltip">
+                            Provide Course Name.
+                        </div>
+                    </div>
+                </div>
+                <!-- Languages -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                    <div class="form-floating">
+                        <select class="form-select"  id="language" required>
+
+                            {% for language in form.language %}
+                            {{language}}
+
+                            {% endfor %}
+                        </select>
+                        <label for="language">Programming Languages</label>
+                        <div class="invalid-tooltip">
+                            Choose Language.
+                        </div>
+                    </div>
+                </div>
+                <!-- Submit -->
+                <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 mb-3 justify-content-center d-flex  py-3">
+                    <div class="enroll-btn">
+                        <button type="button" class="btn btn-primary" id="create_lang_btn"
+                            onclick="formValidator()">Create Course</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- For Telephone Number field -->
+<script>
+
+
+
+    function formReset() {
+        location.reload();
+    }
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let language = document.querySelector('#language');
+        let course_name = document.querySelector('#course_name')
+        
+
+
+        // If form valid then submit the data's
+        if (language.checkValidity() === true) {
+
+                let language = $('#language').val();
+                let course_name = $('#course_name').val();
+                console.log(course_name)
+                console.log(language)
+            $.post('', {
+                language: language,
+                name: course_name,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    $('#status-final').text('');
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Course Exist Already. Please use Edit option to Add Languages!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('New Course Added Successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                        formReset();
+
+                    }
+
+                });
+            return false;
+        }
+
+    }
+
+</script>
+{%endblock content%}

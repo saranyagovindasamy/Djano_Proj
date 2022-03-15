@@ -1,0 +1,22 @@
+{%extends "lsc_app/common_template/lsc_base.html"%}
+{% load static %}
+
+{% block content %}
+ <div class="right-menu">
+          <button type="button" class="btn btn-success btn-sm"><a style="text-decoration:none;color:Black" href="{%url 'logout'%}">Logout</a></button>
+        </div>
+<div class="banner container-fluid d-flex align-items-center justify-content-center ">
+    <h1> Choose an action </h1><br>
+   <div class="Aboutus">
+     <a href="{% url 'addpatient' %}">Add Patient Record</a>
+     <a href="#">Edit Patient Record</a>
+     <a href="{% url 'patientprofile' %}">View Patient Summary</a>
+   </div>
+
+</div>
+  {% if messages %}
+        {% for message in messages %}
+         <script>alert("{{ message }}")</script>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}

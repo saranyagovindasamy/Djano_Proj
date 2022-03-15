@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+        }
+
+        div.dataTables_wrapper {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            color: darkorange;
+        }
+
+        .table-div {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h3 {
+            color: darkorchid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="text-center">
+            <h1>Total Cases - Global Summary</h1>
+        </header>
+        <div class="row">
+            <div class="table-div col-md-6 mt-5">
+                <table class="table order-column " id="table-data" style="width:100%">
+
+                </table>
+            </div>
+            <div class="chart-div col-md-6">
+                <h3 id="country-selected"></h3>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+<script>
+    var country_data_array = [];
+    initialize();
+
+    // https://documenter.getpostman.com/view/10808728/SzS8rjbc#00030720-fae3-4c72-8aea-ad01ba17adf8 
+
+    function initialize() {
+
+        var url = "https://api.covid19api.com/summary";
+        var countries_list = "https://api.covid19api.com/countries";
+
+        fetch(url)
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                let country_code = data.Countries;
+
+                for (let i = 0; i < country_code.length; i++) {
+                    var test_arry = [];
+                    test_arry.push(country_code[i].Country, country_code[i].TotalDeaths, country_code[i].NewConfirmed);
+                    country_data_array.push(test_arry);
+
+                }
+               // console.log(country_data_array)
+                tableCreation(country_data_array);
+            })
+    }
+
+    function tableCreation(country_data_array) {
+        $('#table-data').DataTable({
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            data: country_data_array,
+            columns: [
+                { title: "Country Name" },
+                { title: "Total Confirmed" },
+                { title: "Total Deaths" },
+            ],
+            "scrollX": true
+        });
+    }
+
+    $('#table-data').on('click', 'tr', function () {
+        var str_split = $(this).text().split(/(\d+)/);
+
+        countryData(str_split[0]);
+        //alert( $( this ).text() );
+    });
+
+    function countryData(country_name) {
+        document.getElementById("country-selected").innerHTML = country_name;
+        var country_url = 'https://api.covid19api.com/total/country/' + country_name;
+
+        fetch(country_url)
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data[data.length - 1]);
+            })
+
+// 
+        fetch("https://api.covid19api.com/country/vietnam/status/confirmed")
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data[data.length - 1]);
+            })
+    }
+
+
+
+
+</script>
+
+</html>
+
+<!-- <thead>
+    <tr>
+        <th>Country Name</th>
+        <th>TotalConfirmed</th>
+        <th>TotalDeaths</th>
+    </tr>
+</thead> -->

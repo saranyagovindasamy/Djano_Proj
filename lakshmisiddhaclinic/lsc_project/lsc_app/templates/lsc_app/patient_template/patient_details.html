@@ -1,0 +1,20 @@
+{%extends "lsc_app/base/lsc_app_base.html"%}
+{% load static %}
+
+{% block content %}
+
+                <div
+                    class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 mb-3 justify-content-center d-flex  py-3">
+                    <div class="enroll-btn">
+                        <a href="{% url 'addpatient'%}"><button type="button" class="btn btn-primary" id="add_basic_btn">Personal Details</button></a>
+                    </div>
+                </div>
+
+                <div
+                    class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 mb-3 justify-content-center d-flex  py-3">
+                    <div class="enroll-btn">
+                        <a href="{% url 'addmedical'%}"><button type="button" class="btn btn-primary" id="add_medical_btn">Medical Details</button></a>
+                    </div>
+                </div>
+
+{%endblock content%}

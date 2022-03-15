@@ -1,0 +1,333 @@
+{%extends "lsc_app/base/base.html"%}
+{% load static %}
+{%block content%}
+<!-- Carousel with Caption -->
+<section class="home-section">
+
+  <div id="carouselHome" class="carousel col-xs-1 col-md-12 slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item dark active ">
+        <img src="{% static 'lsc_app/lsc_images/motorpistal.jpg' %}" class="img-fluid d-block w-100" alt="2">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Welcome to Lakshmi Siddha Clinic</h1>
+          <h5 class="text-dark">We are one of the trusted Siddha Clinic in India offering natural treatments. To get the
+            ancient medical treatment which do not cause any side effects, reach Lakshmi Siddha Clinic, the Best Siddha Hospital in Tirunelveli,
+            TamilNadu..</h5>
+
+        </div>
+      </div>
+
+      <div class="carousel-item dark">
+        <img src="{% static 'lsc_app/weight-loss.jpg' %}" class="img-fluid  w-100" alt="2">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Weight Loss</h1>
+          <h5 class="text-dark">You Cannot Always control what goes on outside. But you can always control what goes on
+            inside.</h5>
+
+        </div>
+      </div>
+      <div class="carousel-item dark">
+        <img src="{% static 'lsc_app/yoga.jpg' %}" class=" img-fluid w-100" alt="1">
+        <div class="carousel-caption d-none d-md-block ">
+          <h1>Yoga</h1>
+          <h5 class="text-dark">Dream of what you want to BE. Wake up Fighting for it.</h5>
+
+        </div>
+      </div>
+      <div class="carousel-item dark">
+        <img src="{% static 'lsc_app/massage.jpg' %}" class="img-fluid w-100" alt="3">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Body Massage</h1>
+          <h5 class="text-dark">Massage is not LUXURY. It's a way to be Healthy & Happy Life.</h5>
+
+        </div>
+      </div>
+      <div class="carousel-item dark">
+        <img src="{% static 'lsc_app/diabetic.jpg' %}" class="img-fluid w-100" alt="3">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Diabetes Treatment</h1>
+          <h5 class="text-dark">We have diabetes, it gets to come along with us, it doesn't get to stop us.</h5>
+
+        </div>
+      </div>
+      <div class="carousel-item dark">
+        <img src="{% static 'lsc_app/asthma.jpg' %}" class="img-fluid w-100" alt="3">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Asthma Treatment</h1>
+          <h5 class="text-dark">Breath is the finest gift of nature. Be grateful for this wonderful gift.</h5>
+
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" href="#carouselHome" data-bs-target="#carouselHome"
+      data-bs-slide="prev">
+      <span style="color: #068440;">
+        <i class="fas fa-2x fa-chevron-left"></i> </span>
+      <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" href="#carouselHome" data-bs-target="#carouselHome"
+      data-bs-slide="next">
+      <span style="color: #068440;">
+        <i class="fas fa-2x fa-chevron-right"></i> </span>
+      <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <!-- About Siddha -->
+  <div class="about container pt-5 mb-5">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" data-aos="fade-right" data-aos-duration="1000"
+        data-aos-easing="ease-in-sine">
+        <h2 class="text-center pb-5">Welcome to Lakshmi Siddha Clinic</h2>
+        <div class="about-list d-flex justify-content-md-evenly" data-aos="fade-up">
+          <ul>
+            <li>
+              The Siddha System of Medicine is one among the foremost of all other medical systems of the world.
+            </li>
+            <li>
+              Siddha System propounded by the Siddhars is a vast and unique system which defines health as a
+              perfect state of Physical, Psychological, Social and Spiritual well being of an individual.
+            </li>
+            <li> The system not only deals with medicine, but with spirituality, righteous way of living, rejuvenation
+              and its main aim kaivalya or Attainment of perfection.
+            </li>
+            <li>
+              The physical fitness program is conducted by means of Yoga, Pranayama and meditation techniques at
+              our premises.
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" data-aos="fade-left" data-aos-duration="1000"
+        data-aos-easing="ease-in-sine">
+        <img src="{% static 'lsc_app/lsc_images/siddha2.jpg'%}" class="img-fluid">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- cards -->
+  <div class="container cards pt-5 " data-aos="fade-left" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+    <div class="card-container">
+      <h2 class="text-center pb-3">Our Services</h2>
+    </div>
+
+    <div class="row pt-5 d-flex justify-content-center">
+      <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mb-5" style="width: 18rem; height:18rem"> -->
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mb-5">
+        <div class="card shadow p-2 mb-5 bg-body rounded" data-aos="fade-right">
+          <h2>Consultation</h2>
+          <div class="card-body">
+            <p class="card-text">We provide 24/7 consultation for all kind of Health Issues.Our experienced Doctor will
+              helps you to understand about your Health status and explains further Treatments.</p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mb-5" style="width: 18rem; height:18rem"> -->
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mb-5">
+        <div class="card shadow p-2 mb-5 bg-body rounded">
+          <h2>Health Education</h2>
+          <div class="card-body">
+            <p class="card-text">Health Education is a profession of educating people about health. It's positively
+              influence the health behavior of individuals as well as the living and working conditions that influence
+              their health.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mb-5" style="width: 18rem; height:18rem"> -->
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4 mb-5">
+        <div class="card shadow p-2 mb-5 bg-body rounded">
+          <h2>Disease Prevention</h2>
+          <div class="card-body">
+            <p class="card-text">Treatment normally begins either before signs and symptoms of the disease occur, or shortly thereafter.
+              We believe Prevention is better than cure.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- About Founder -->
+  <div class="container about-heading mb-5 pb-5">
+    <h1 class="text-center m-5 p-5">About Founder</h1>
+    <div class="row">
+      <div class="col-md-12 col-lg-6">
+        <img src="{% static 'lsc_app/lsc_images/aboutimg.jpeg'%}" class="img-fluid">
+      </div>
+      <div class="col-md-12 col-lg-6 d-flex flex-column align-items-center justify-content-center ">
+        <div class="about-doctor d-flex flex-column align-items-center justify-content-center ">
+          <p><strong>Dr.Chitra</strong> BSMS , MD</p>
+          <p class="card-text">Dr.Chitra is a Obicity Specialist, Siddha Gynecologist and Siddha in Kuthukalvalasai, Tirunelveli
+            and has an experience of 11 years in these fields. Dr.Chithra practices at Lakshmi Siddha Clinic in
+            Kuthukalvalsai, Tirunelveli. She completed BSMS from ATSVS SIDDHA MEDICAL COLLEGE & HOSPITAL, MUNCHIRAI in
+            2010 and MD-Siddha from National Institute of Siddha, Tambaram in 2013.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- counter -->
+  <div class="counter container-fluid pt-5 h-100">
+    <div class="container">
+      <div class="row d-flex justify-content-around" data-aos="zoom-in" data-aos-duration="1000"
+        data-aos-easing="ease-in-sine">
+        <div
+          class="m-4 d-flex flex-column justify-content-center align-items-center border bg-light shadow mb-5 bg-body rounded  col-sm-12 col-md-4"
+          style="width: 18rem; height:15rem">
+          <h1 class=" text-dark">Happy Clients</h1>
+          <i class="far fa-smile-beam"></i>
+          <h1 class="count">1000</h1>
+        </div>
+        <div
+          class="m-4 d-flex flex-column justify-content-center align-items-center border bg-light shadow mb-5 rounded col-sm-12 col-md-4 align-self-center"
+          style="width: 18rem; height:15rem">
+          <h1 class="text-dark">Experience</h1>
+          <i class="fa-regular fa-calendar-days"></i>
+          <h1 class="count text-dark">20</h1>
+        </div>
+        <div
+          class=" m-4 d-flex flex-column justify-content-center align-items-center border bg-light shadow  mb-5 bg-body rounded  col-sm-12 col-md-4 align-self-center"
+          style="width: 18rem; height:15rem">
+          <h2 class=" text-dark">No of Treatments</h2>
+          <i class="fas fa-hospital-user"></i>
+          <h1 class="count text-dark">20</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- testimonial -->
+  <div class="container mt-5 ">
+    <div class="card-container">
+      <h1 class="text-center text-success pb-3 mb-5">Memorable Moments</h1>
+    </div>
+    <div class="container">
+      <div id="carouselTestimonial" class="carousel slide carousel-dark testimonial" data-bs-ride="carousel">
+
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="3"
+            aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="4"
+            aria-label="Slide 5"></button>
+        </div>
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <h4 class=" mt-5 text-center text-dark">Timely and effective treatment for Kidney stones</h4>
+            <div class="carousel-content p-5">
+              <i class="fa fa-quote-left"></i>
+              <p><em>After checking with allopathy Doctors for my Kidney stone problem, I was not comfortable with going
+                  through hospitalisation for the 3.5 mm stone detected in my scans. I reached out to Dr. Chitra for a
+                  second opinion. Despite getting treatment remotely, I felt well cared for. The doctor was very prompt
+                  in sending me medicines in time and understood my problems well. She was also available to clarify any
+                  doubts I had over WhatsApp and calls. Medication and the dietary changes suggested by the doctor not
+                  only helped me get cured of Kidney stone within 2 months, but also helped me and my family to continue
+                  the healthy practices suggested by her and enrich our overall lifestyle.
+                  I have already recommended <strong>Dr. Chitra</strong> to my mother and would happily do so for others
+                  as well.
+                  <i class="fa fa-quote-right"></i> </em></p>
+              <div class="testimonial-client text-center">
+                <h6>Narendhar/</h6>
+                <h6>Chennai</h6>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="carousel-item">
+            <h4 class="mt-5 text-center text-dark">Thanks for all the services</h4>
+            <div class="carousel-content p-5">
+              <p><i class="fa fa-quote-left"></i><em>It was never a feeling as if I was in a hospital. I got the best
+                  care and response. I am very much glad to note my feedback and grateful. Thanks for all the services,
+                  no doubt it is the best hospital.
+                </em><i class="fa fa-quote-right"></i></p>
+              <div class="testimonial-client text-center">
+                <h6>Mr Chadrasekaran</h6>
+                <h6>Senior Accountant / RGK Granites &amp; Minerals </h6>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="carousel-item">
+            <h4 class=" mt-5 text-center text-dark">Excellent Dedication..</h4>
+            <div class="carousel-content p-5">
+              <p><i class="fa fa-quote-left"></i><em> I recently found myself under your care for a cardiac issue. While
+                  there, accompanied by my wife, we found that the Lakshmi Siddha clinic was exceedingly professional
+                  and efficient. You should be proud of your outstanding dedication and service.
+                  <i class="fa fa-quote-right"></i> </em></p>
+              <div class="testimonial-client text-center">
+                <h6> Mr Rajesh Kumar</h6>
+
+                <h6> Assitant Manager / Welton Technologies</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <h4 class=" mt-5 text-center text-dark">Appreciate for the Special Care</h4>
+            <div class="carousel-content p-5">
+              <p><i class="fa fa-quote-left"></i><em>We would like to let you know how much we appreciate the special
+                  care on our daughter was given by Dr Chitra and staff at your Clinic. Your organization should be
+                  proud to have such kind hearted people. They made sure that my daughter’s medication was very
+                  pleasant.<i class="fa fa-quote-right"></i>
+                </em></p>
+              <div class="testimonial-client text-center">
+                <h6> Mr Anand Kumaraswamy </h6>
+
+                <h6> Operations Executive / Andavar Constructions </h6>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="carousel-item">
+            <h4 class=" mt-5 text-center text-dark">Thank You For Your Great Support</h4>
+            <div class="carousel-content p-5">
+              <p><i class="fa fa-quote-left"></i> <em> I am writing on behalf of my brother who was a patient in your
+                  hospital. I would like to thank you on behalf of my entire family for the help and consideration shown
+                  to me in what was a very difficult time. Again, I would like to thank you for the services you provide
+                  to patients and their families.</em><i class="fa fa-quote-right"></i></p>
+              <div class="testimonial-client text-center">
+                <h6> Mr Santhosh Arjunan </h6>
+
+                <h6> Administrative Officer / Allied Pesticides</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <button class="carousel-control-prev" type="button" href="#carouselTestimonial" data-bs-target="#carouselTestimonial"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" href="#carouselTestimonial" data-bs-target="#carouselTestimonial"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button> -->
+    </div>
+  </div>
+</section>
+<script>
+  // counter js
+  $('.count').counterUp({
+    delay: 10,
+    time: 1000
+  });
+</script>
+{%endblock content%}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{%load static%}
+{%block content%}
+
+ <div class="circle">
+    <div class="logo">
+        <img src="{%static 'images/arunmadhu.png'%}" alt="" class="img-fluid logo-img">
+    </div>
+    <div class="text">
+        <p>Arun Madhu - Better Late Than Never -  </p>
+    </div>
+
+</div>
+<script>
+    const text = document.querySelector('.text p');
+    text.innerHTML = text.innerText.split("").map(
+        (char, i) =>
+            `<span style="transform:rotate(${i * 9.5}deg)">${char}</span>`).
+        join("")
+
+</script>
+
+{%endblock content%}

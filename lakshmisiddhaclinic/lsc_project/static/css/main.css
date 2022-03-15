@@ -1,0 +1,552 @@
+/* Extra small (xs)          <576px
+Small (sm)                ≥576px
+Medium (md)               ≥768px
+Large (lg)                ≥992px
+Extra large (xl)          ≥1200px
+Extra extra large (xxl)   ≥1400px */
+
+* {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* carousel */
+.carousel-item img {
+  height: 90vh;
+  object-fit: cover;
+  width: 50px;
+  /* background-color:linear-gradient(rgba(4,9,30,0.6),rgba(11, 12, 12, 0.9)); */
+  /* background-image: linear-gradient(to right top, #828181, #948c8e, #a4979f, #afa4b3, #b6b2c9, #a2a8bf, #8f9fb4, #7d95a7, #59707a, #3b4d50, #212b2c, #030908); */
+}
+.carousel-caption {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.carousel-caption h1 {
+  color: #068440 !important;
+}
+.carousel-caption h5 {
+  color: #000080 !important;
+  font-weight: bold;
+  letter-spacing: 1.8px;
+}
+/* .carousel .carousel-control-next-icon, .carousel-control-prev-icon { background-image: none; } */
+
+.dark::after {
+  content: "";
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  background: #000;
+  opacity: 0.1;
+}
+/* about */
+.about img {
+  object-fit: cover;
+  max-height: 400px;
+  width: 800px;
+}
+.about h2 {
+  color: #068440;
+}
+
+.about-list li {
+  list-style: none;
+}
+.about-list li::before {
+  content: "";
+  height: 10px;
+  width: 10px;
+  background-color: #138808;
+  margin-right: 10px;
+  display: inline-block;
+  transform: rotate(45deg);
+}
+/* -------------about doctor-------------------------- */
+.about-heading h1 {
+  color: #138808;
+}
+.about-doctor {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 20px !important;
+}
+
+/* cards */
+
+.cards h2 {
+  color: #068440;
+  text-align: center;
+}
+.card:hover {
+  box-shadow: 10px 10px #6ede8a;
+}
+.underline {
+  width: 60px;
+  height: 20px;
+}
+.card-container {
+  position: relative;
+}
+.card-container h2::before {
+  content: "";
+  border-bottom: 3px solid #068440;
+  width: 50px;
+  display: block;
+  position: absolute;
+  height: 2px;
+  left: 45%;
+  padding: 30px;
+}
+/* counter */
+.counter {
+  background-image: url("/static/lsc_app/lsc_images/siddha1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 40px;
+  object-fit: fill;
+  opacity: 0.7;
+}
+.counter i {
+  color: #068440 !important;
+  font-size: 32px;
+}
+/* Testimonial */
+.carousel-content {
+  color: Black !important;
+}
+.testimonial {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.card-container {
+  position: relative;
+}
+.card-container h1::before {
+  content: "";
+  border-bottom: 3px solid #068440;
+  width: 50px;
+  display: block;
+  position: absolute;
+  height: 2px;
+  left: 50%;
+  padding: 30px;
+}
+/* form */
+form,
+.location {
+  box-shadow: 0 0 10px #d2e4d0;
+  border-radius: 20px;
+}
+form h3,
+.location h3 {
+  background-color: #ff9933;
+}
+/* form h3
+{
+    background: linear-gradient(to right, #FF9933 0%, #000080 100% );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+} */
+
+.btn {
+  background-color: #408fd8;
+  color: white;
+  letter-spacing: 2px;
+}
+.btn:hover {
+  background-color: #ff9933;
+  transition: 0.5s ease-out;
+  color: white;
+}
+/* form input
+{
+    border: none !important;
+    border-radius: 0% !important;
+    border-bottom: 3px solid #000080 !important;
+    cursor: text;
+} */
+/*------------------------------------------------ footer-------------------------------------------------- */
+/* .footer-section
+{
+    <svg id="wave" style="transform:rotate(0deg); transition: 0.3s" viewBox="0 0 1440 490" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(6, 132, 64, 1)" offset="0%"></stop><stop stop-color="rgba(6, 132, 64, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,49L80,40.8C160,33,320,16,480,57.2C640,98,800,196,960,220.5C1120,245,1280,196,1440,179.7C1600,163,1760,180,1920,196C2080,212,2240,229,2400,204.2C2560,180,2720,114,2880,106.2C3040,98,3200,147,3360,171.5C3520,196,3680,196,3840,212.3C4000,229,4160,261,4320,269.5C4480,278,4640,261,4800,236.8C4960,212,5120,180,5280,212.3C5440,245,5600,343,5760,367.5C5920,392,6080,343,6240,318.5C6400,294,6560,294,6720,277.7C6880,261,7040,229,7200,236.8C7360,245,7520,294,7680,269.5C7840,245,8000,147,8160,106.2C8320,65,8480,82,8640,81.7C8800,82,8960,65,9120,122.5C9280,180,9440,310,9600,351.2C9760,392,9920,343,10080,285.8C10240,229,10400,163,10560,163.3C10720,163,10880,229,11040,212.3C11200,196,11360,98,11440,49L11520,0L11520,490L11440,490C11360,490,11200,490,11040,490C10880,490,10720,490,10560,490C10400,490,10240,490,10080,490C9920,490,9760,490,9600,490C9440,490,9280,490,9120,490C8960,490,8800,490,8640,490C8480,490,8320,490,8160,490C8000,490,7840,490,7680,490C7520,490,7360,490,7200,490C7040,490,6880,490,6720,490C6560,490,6400,490,6240,490C6080,490,5920,490,5760,490C5600,490,5440,490,5280,490C5120,490,4960,490,4800,490C4640,490,4480,490,4320,490C4160,490,4000,490,3840,490C3680,490,3520,490,3360,490C3200,490,3040,490,2880,490C2720,490,2560,490,2400,490C2240,490,2080,490,1920,490C1760,490,1600,490,1440,490C1280,490,1120,490,960,490C800,490,640,490,480,490C320,490,160,490,80,490L0,490Z"></path></svg>
+} */
+
+.footer p a:hover {
+  color: #138808 !important;
+  text-decoration: underline !important;
+  font-weight: 600;
+  transition: all 0.5s ease-in-out;
+}
+.footer .follow-us .fa {
+  border-radius: 10px;
+  font-size: 25px;
+  padding: 7px;
+  color: white !important;
+  background-color: #000080;
+  transition: 0.5s ease-in-out;
+}
+.footer .follow-us .fa:hover {
+  background-color: #ff9933;
+  color: white !important;
+}
+/* .icon-bar{
+    position:fixed;
+    top:50%;
+    transform:translateY(-50%);
+} */
+/* .icon-bar a{
+    display:block;
+    text-align:center;
+    padding:16px;
+    color:white;
+    font-size:20px;
+} */
+.icon-bar .fa {
+  border-radius: 50%;
+  font-size: 25px;
+  padding: 7px;
+  color: white !important;
+  background-color: #000080;
+  transition: all 0.5s ease-out;
+}
+.icon-bar .fa:hover {
+  background-color: #ff9933;
+  color: white !important;
+}
+
+/*----------------------------------------------- Specialist Page--------------------------------------------- */
+
+.banner {
+  background-image: url("/static/lsc_app/specialist/banner1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  opacity: 0.7;
+}
+.banner h1 {
+  color: White;
+  padding: 20px;
+  /* background: rgba( 255, 255, 255, 0.7 ); */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.specialities {
+  background-image: url("/static/lsc_app/specialist/side-banner.jpeg");
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.specialities h1 {
+  color: #10b233;
+}
+.specialities-head {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.specialities-head h1 {
+  display: inline-block;
+  padding: 10px 60px 10px 60px;
+
+  color: #10b233;
+}
+.specialist-content ul {
+  list-style-type: none;
+  position: relative;
+  font-size: medium;
+  font-weight: bold;
+}
+.specialist-content ul li::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: 0px;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: contain;
+  background-size: 50px 70px;
+  border-radius: 50%;
+  display: inline-block;
+  background-image: url("/static/lsc_app/specialist/leaf.jpg");
+}
+
+.specialities-img img {
+  border-radius: 25px;
+  width: 500px;
+  height: 400px;
+  object-fit: cover;
+}
+
+/*-------------------------------------------- Treatments---------------------------------------- */
+
+.appointment h1 {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.treatments-card {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.treatments-card img {
+  border-radius: 50%;
+  /* width:100px;
+    height:100px; */
+  /* object-fit:cover; */
+}
+.card-title {
+  color: #10b233;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 568px) {
+  .book-appointment h1 {
+    font-size: 15px;
+    text-align: center !important;
+    justify-content: center;
+  }
+  .book-appointment img {
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+
+/* ---------------Blog--------------------------------- */
+.blog-images img {
+  object-fit: cover;
+}
+/* ---------------contact us --------------------------- */
+.contact-background {
+  background-image: url("/static/lsc_app/contactus-background.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-position:left; */
+  height: 350px;
+  width: 100vw;
+  opacity: 0.6;
+}
+.contact-background h1 {
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+  line-height: 54px;
+  display: block;
+  padding: 8px;
+  margin: 15px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+}
+.contact {
+  margin-top: 50px !important;
+}
+.contact-head {
+  text-align: center;
+}
+.contact h1 {
+  color: #10b233;
+  display: inline;
+  padding: 30px 30px;
+}
+
+.contact-card {
+  background-color: #cb9e00 !important;
+  background: linear-gradient(145deg, #0e9a2c, #12ca3a);
+  border-radius: 10%;
+  margin-top: 35px;
+  margin-right: 12px;
+}
+.contact-card i {
+  font-size: 30px !important;
+  color: white !important;
+  padding: 10px;
+  text-align: center;
+}
+.contact-data {
+  margin-top: -95px !important;
+  background-color: white;
+  /* z-index:1; */
+  color: #408fd8;
+  border-radius: 10px;
+  /* background:#CB9E00; */
+}
+
+.contact button {
+  background-color: #10b233 !important;
+  color: white;
+}
+.contact-body {
+  font-size: 15px;
+  color: white;
+}
+/* -------------------Login-------------------------- */
+/* .login{
+    margin-top:-10px;
+    background-image:url("/static/lsc_app/lsc_images/login1.jpg");
+    background-position:right;
+    background-repeat:no-repeat;
+    background-size:cover;
+   width:100vw;
+   height:100vh;
+ } */
+
+.login-head h1 {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.input-container {
+  display: flex;
+  margin-bottom: 15px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+/* Style the form icons */
+/* .icon {
+    padding: 15px;
+    background: #408FD8 !important;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+  }
+   */
+/* Style the input fields */
+/* .input-field {
+    width: 30%;
+    padding: 10px;
+    outline: none;
+  }
+  
+  .input-field:focus {
+    border: 2px solid #CB9E00;
+  } */
+/* style for forget password */
+.forget-password a {
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+/* Set a style for the submit button */
+/* .login-button {
+    color: white;
+    font-size:25px !important;
+    border: none;
+    cursor: pointer;
+    width:30%;
+    opacity: 0.9;
+    
+  }
+   */
+
+/*-------------------------------------- appointment form--------------------------------------------*/
+
+.app-button {
+  border-radius: 2px;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+}
+
+.app-button:hover {
+  opacity: 1;
+}
+
+/* -----contact us - Media Query----------- */
+/* desktop:1200px; */
+/* laptop:1024px; */
+/* tablet:768px; */
+/* phone:480px; */
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("/static/lsc_app/lsc_images/Logo_images/50 LSC fevicon 1006_ROUNDED.png");
+}
+
+@media only screen and (max-width: 568px) {
+  /* header
+    {
+        height: 70px;
+       
+    }
+    */
+
+  .banner {
+    background-size: auto;
+  }
+  .about-doctor {
+    text-align: justify;
+    text-justify: auto;
+  }
+
+  .login-logo {
+    display: none;
+  }
+  .login-form {
+    padding: 0px !important;
+    margin-top: 0px !important;
+  }
+}
+@media only screen and (max-width: 812px) {
+  .contact-card {
+    margin-bottom: 5px;
+    margin: 20px;
+    text-align: center;
+    align-items: center;
+    width: auto;
+  }
+  .contact-bottom {
+    padding: 20px;
+    margin: 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .contact-background h1 {
+    margin: 10px;
+    padding: 10px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .contact-background h1 {
+    margin: 10px;
+    padding: 10px;
+  }
+}

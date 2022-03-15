@@ -1,0 +1,295 @@
+{% extends 'lsc_app/base/lsc_app_base.html' %}
+{% load static %}
+
+{%block content%}
+<style>
+    .post {
+        background-color: none;
+    }
+
+    iframe.note-fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw !important;
+        height: 100vh !important;
+        z-index: 4000;
+    }
+</style>
+<link href="{% static 'summernote/summernote-bs4.min.css' %}" rel="stylesheet" />
+<link href="{% static 'summernote/django_summernote.css' %}" rel="stylesheet" />
+
+<div class="container post ">
+    <h1 class="text-center mb-3">Create Post</h1>
+    <div class="row justify-content-md-center">
+
+        <div class="col-10 col-md-10 col-lg-10">
+
+            <form method="POST" class="needs-validation p-3" enctype='multipart/form-data'
+                style="border: 2px solid green;">
+                {% csrf_token %}
+                <!-- title-->
+                <div class="m-3">
+                    <b><label for="blog_title"> Title:</label></b>
+                    <input type="text" id="blog_title">
+                </div>
+
+                <!--image  -->
+                <div class="m-3 ">
+                    <b><label for="blog_image"> Cover Image:</label></b>
+                    <input type="file" id="blog_image" value="Upload">
+                </div>
+
+                <div class="form-row field-description">
+
+                    <div>
+                        <label class="required" for="id_description">Description:</label>
+
+                        <textarea name="description" cols="40" rows="10" id="id_description" hidden="true">
+                        </textarea>
+                        <script>
+                            var settings_id_description = { "airMode": false, "width": "100%", "height": "480", "lang": "en-US", "toolbar": [["style", ["style"]], ["font", ["bold", "italic", "underline", "superscript", "subscript", "strikethrough", "clear"]], ["fontname", ["fontname"]], ["fontsize", ["fontsize"]], ["color", ["color"]], ["para", ["ul", "ol", "paragraph"]], ["height", ["height"]], ["table", ["table"]], ["insert", ["link", "picture", "video", "hr"]], ["view", ["fullscreen", "codeview"]], ["help", ["help"]]], "url": { "language": "/static/summernote/lang/summernote-en-US.min.js", "upload_attachment": "/summernote/upload_attachment/" } };
+                        </script>
+                        <style>
+                            iframe.note-fullscreen {
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100vw !important;
+                                height: 100vh !important;
+                                z-index: 4000;
+                            }
+                        </style>
+                        <div class="summernote-div" cols="40" rows="10" width="100%" height="480">
+                            <iframe id="id_description_iframe" src="/summernote/editor/id_description/" frameborder="0"
+                                width="100%" height="480"></iframe>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- <b><label for="blog_description"> Description:</label></b>
+                <div class="m-3" id="summernote-div">
+                    <textarea name="" rows="10" id="summernote"></textarea>
+
+                    <div class="summernote" rows="10">
+                                           
+                                        </div>
+        </div> -->
+
+
+
+                <!-- modal Dialog box -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="modal-title"></p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <p class="modal-body" id="body-modal"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--button  -->
+                <div class="m-3">
+                    <button type="button" onclick="formValidator()" class="btn btn-primary">Create Post</button>
+                    <button type="button" onclick="formReset()" class="btn btn-light">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" /> -->
+<!-- <script type="text/javascript" src="cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
+<script src="{% static 'summernote/jquery.ui.widget.js' %}"></script>
+<script src="{% static 'summernote/jquery.iframe-transport.js' %}"></script>
+<script src="{% static 'summernote/jquery.fileupload.js' %}"></script>
+<script src="{% static 'summernote/summernote-bs4.min.js' %}"></script>
+<script src="{% static 'summernote/ResizeSensor.js' %}"></script>
+<script>
+
+    $(document).ready(function () {
+        $('#summernote').summernote({
+            tabsize: 2,
+            height: 200,
+            minHeight: 100,
+            maxHeight: 300,
+            focus: true,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']],
+            ],
+            popover: {
+                image: [
+                    ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                    ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                    ['remove', ['removeMedia']]
+                ],
+                link: [
+                    ['link', ['linkDialogShow', 'unlink']]
+                ],
+                table: [
+                    ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+                    ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+                ],
+                air: [
+                    ['color', ['color']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['para', ['ul', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture']]
+                ]
+            },
+
+            callbacks: {
+                onImageUpload: function (image) {
+                    editor = $(this);
+                    uploadImageContent(image[0], editor);
+                }
+            }
+        });
+
+    });
+
+    function uploadImageContent(image, editor) {
+        var data = new FormData();
+        data.append("image", image);
+        console.log(image)
+        var url = '/load_blog_images_ajax/'
+        console.log(data)
+        $.ajax({
+            url: url,
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: data,
+            image: image,
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            type: "post",
+            success: function (file_url) {
+                console.log(file_url)
+                // {{ MEDIA_URL }}
+                var media_url = "{{MEDIA_URL}}"
+                // var image = "<img src='" + file_url + "'/>"
+                var image = $('<img>').attr('src', file_url);
+                console.log(image)
+                $(editor).summernote("insertNode", image[0]);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    }
+    function formReset() {
+        $('#modal-title').html('<i class="fas fa-1x text-danger fa-exclamation-circle"></i>' + '  ' + "<span style='font-size: 30px;'class='text-danger'> <b> Warning </b> </span>")
+        $('#body-modal').html('The form will be reset. Press to "OK" to Confirm');
+        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+            keyboard: false
+        })
+        myModal.show()
+
+    }
+
+
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let blog_title = document.querySelector('#blog_title');
+
+
+
+
+        // If form valid then submit the data's
+        if (blog_title.checkValidity() == true) {
+
+            let blog_title = $('#blog_title').val()
+
+            // $("#content").html($($sumNote.code()).text());
+            let blog_content = $('#id_description').val()
+            console.log(blog_content)
+            let blog_description = $('#frameID').contents().find('body').html()
+            let blog_image = $('#blog_image').val()
+
+
+            console.log(blog_title, blog_content, blog_image)
+            $.post('', {
+                blog_title: blog_title,
+                blog_content: blog_content,
+                blog_image: blog_image,
+
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    $('#status-final').text('');
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('<i class="fas fa-1x text-danger fa-exclamation-circle"></i>' + '  ' + "<span style='font-size: 30px;'class='text-danger'> <b> Warning </b> </span>")
+                        $('#body-modal').html('exists already');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('<i class="fas fa-1x fa-check-circle text-success"></i>' + '  ' + "<span style='font-size: 30px;'class='text-success'> <b> Success ! </b> </span>")
+                        $('#body-modal').html('created successfully');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 500) {
+                        console.log(data)
+                    }
+                });
+            return false;
+        }
+
+    }
+
+</script>
+{%endblock content%}

@@ -1,0 +1,212 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{%block content%}
+<script src="{% static 'js_files/md.js' %}"></script>
+<div class="container">
+    <div class="container-fluid justify-content-center justify-content-sm-center 
+    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+        <div class="batch-create-form col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11  col-xxl-11">
+            <form id="batch_create_form" class="row needs-validation" novalidate>
+
+                {% csrf_token %}
+                <h1 class="text-center mt-2">Edit Batch Details for {{id__name}}</h1>
+                <div
+                    class="row g2 d-flex justify-content-center justify-content-sm-center 
+                justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+
+                    <!-- Languages -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <select class="form-select" onchange="load_courses()" id="language" required value="{{language}}">
+
+                                {% for language in form.language %}
+                                {{language}}
+
+                                {% endfor %}
+                            </select>
+                            <label for="language">Programming Languages</label>
+                            <div class="invalid-tooltip">
+                                Choose Language.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Courses -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <select class="form-select" onchange="load_trainer()" id="courses" required value="{{course}}">
+                                <option>-------</option>
+                            </select>
+                            <label for="courses">Available Courses</label>
+                            <div class="invalid-tooltip">
+                                Choose Course.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Batch Start Date -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="start_date" placeholder="Start Date" required value="{{start_date}}">
+                            <label for="start_date">Start Date</label>
+                            <div class="invalid-tooltip">
+                                Select a Valid Date.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date In -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="end_date" placeholder="End Date" required value="{{end_date}}">
+                            <label for="end_date">End Date</label>
+                            <div class="invalid-tooltip">
+                                Select a Valid Date.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trainer -->
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative" value="{{trainer}}">
+                        <div class="form-floating">
+                            <select class="form-select" id="trainer" required>
+                                <option>-------</option>
+                            </select>
+                            <label for="trainer">Available Trainers</label>
+                            <div class="invalid-tooltip">
+                                Choose Trainer.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="name" placeholder="Name" value="{{name}}">
+                            <label for="name">Batch Name</label>
+                            <div class="invalid-tooltip">
+                                Provide A Valid Name.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit -->
+                    <div
+                        class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 mb-3 justify-content-center d-flex  py-3">
+                        <div class="enroll-btn">
+                            <button type="button" class="btn btn-primary" id="create_batch_btn"
+                                onclick="formValidator()">Update Details</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- For Telephone Number field -->
+<script>
+
+    jQuery(document).ready(function ($) {
+        var courses = document.getElementById("courses");
+        var trainer = document.getElementById("trainer");
+        $('#courses').attr('disabled', false);
+        $(courses).empty();
+        $(trainer).empty();
+    });
+
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let courses = document.querySelector('#courses');
+        let start_date = document.querySelector('#start_date');
+        let end_date = document.querySelector("#end_date");
+
+
+
+        // If form valid then submit the data's
+        if (courses.checkValidity() === true && start_date.checkValidity() === true &&
+            end_date.checkValidity() === true) {
+
+            let language = $('#language').val();
+            let course = $('#courses').val();
+            let start_date = $('#start_date').val();
+            let end_date = $('#end_date').val();
+            let trainer = $('#trainer').val();
+            console.log(language, course, start_date, end_date, trainer)
+            $.post('', {
+                language: language,
+                course: course,
+                start_date: start_date,
+                end_date: end_date,
+                trainer: trainer,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    $('#status-final').text('');
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Current Details Exist Already!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('Batch Details updated successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+
+                    }
+                });
+            return false;
+        }
+
+    }
+
+</script>
+{%endblock content%}

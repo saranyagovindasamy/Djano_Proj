@@ -1,0 +1,110 @@
+{%extends "lsc_app/common_template/lsc_base.html"%}
+{% load static %}
+
+{% block content %}
+
+  <div class="col-md-6" data-aos="flip-down" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+        <form method="POST" class="mt-5 p-5">
+          {% csrf_token %}
+          <h3 class="mt-2 text-center mb-2 p-2">Registration Form</h3>
+          <div class="row">
+            <!-- name -->
+            <div class="col-md-6">
+              <div class="form-group mt-2">
+                <label for="patientid"><b>Patient ID <small class="text-danger">*</small></b></label>
+                <input class="form-control" type="text" placeholder="Your Name" name="patientid" required>
+              </div>
+            </div>
+            <!-- name -->
+            <div class="col-md-6">
+              <div class="form-group mt-2">
+                <label for="name"><b>Name <small class="text-danger">*</small></b></label>
+                <input class="form-control" type="text" placeholder="Your Name" name="name" required>
+              </div>
+            </div>
+            <!-- aadhar number -->
+            <div class="col-md-6">
+              <div class="form-group mt-2">
+                <label for="aadhar"><b class="text-success">Aadhar Number <small class="text-danger">*</small></b>
+                </label>
+                <input class="form-control" type="text" placeholder="Aadhar No" name="aadhar" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- age -->
+            <div class="col-md-6">
+              <div class="form-group mt-2">
+                <label for="age"><b class="text-success">Age <small class="text-danger">*</small></b></label>
+                <input class="form-control" type="number" name="age" placeholder="Age" required>
+              </div>
+            </div>
+            <!-- dob -->
+            <div class="col-md-6">
+              <div class="form-group mt-2">
+                <label for="dob"><b class="text-success">Date Of Birth</b></label>
+                <input class="form-control" type="date" name="dob">
+              </div>
+            </div>
+            <!-- Bloodgroup -->
+            <div class="col-md-6">
+              <div class="form-group mt-2">
+                <label for="bloodgroup"><b class="text-success">Blood Group</b></label>
+                <input class="form-control" type="text" name="bloodgroup">
+              </div>
+            </div>
+          </div>
+
+          <!-- gender - radio button -->
+          <div class="form-group mt-2">
+            <label for="gender"><b class="text-success">Gender</b></label> <br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="male" value="male" name="gender-male">
+              <label for="gender-male" class="form-check-label">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="male" value="female" name="gender-female">
+              <label for="gender-female" class="form-check-label">Female</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="male" value="transgender" name="gender-transgender">
+              <label for="gender-transgender" class="form-check-label">Transgender</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- age -->
+            <div class="col-md-6">
+              <div class="form-group mt-2">
+                <label for="phone"><b class="text-success">Phone <small class="text-danger">*</small></b></label>
+                <input class="form-control" type="number" name="phone" placeholder="0987654321" required>
+              </div>
+            </div>
+            <!-- dob -->
+            <div class="col-md-6">
+              <div class="form-group mt-2">
+                <label for="emergency-contact"> <b class="text-success">Emergency
+                    Contact</b> <span class="text-muted"><small>(Opt)</small></span></label>
+                <input class="form-control" type="number" name="emergency-contact" placeholder="0987654321">
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-2">
+            <label for="email"><b class="text-success">Email</b></label>
+            <input class="form-control" type="email" name="email" placeholder="name@mail.com">
+          </div>
+          <div class="form-group mt-2">
+            <label for="address"><b class="text-success">Address</b></label>
+            <input class="form-control" type="text" name="address" placeholder="residential address">
+          </div>
+          <div class="form-group mt-2">
+            <label for="insurance"><b class="text-success">Insurance</b></label>
+            <input class="form-control" type="text" name="insurance" placeholder="insurance details">
+          </div>
+          <div class="form-group mt-2">
+            <button class="btn" type="submit"><b>Register</b></button>
+          </div>
+        </form>
+
+      </div>
+{% endblock content %}

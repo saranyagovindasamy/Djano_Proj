@@ -1,0 +1,44 @@
+{% extends 'lsc_app/base/base.html' %}
+{%block content%}
+<div class="row">
+
+    <div class="content col-sm-6 col-md-5 col-lg-6 offset-md-3">
+        <article class="content-section mt-5">
+            <div class="article-body">
+
+                <h2 class="article-title">{{post.title}}</h2>
+                <p class="article-content">{{post.description|safe}}</p>
+               
+            </div>
+            <div class="article-metadata">
+                {% if post.user == user %}
+                <span>Post by : </span><a class="mr-2 text-muted"
+                    href="#">You</a><br>
+                <span>Posted On : </span><small class="text-muted">{{post.created_date|date:"d F, Y"}}</small>
+
+                
+                {%else%}
+                <span>Post by : </span><a class="mr-2 text-muted"
+                    href="#">{{post.user}}</a><br>
+                <span>Posted On : </span><small class="text-muted">{{post.updated_date|date:"d F, Y"}}</small>
+                {% endif %}
+            </div>
+        </article>
+    </div>
+</div>
+<div class="container">
+<h2>Comments are ...</h2>
+{%for i in comment%}
+<p>{{i.body}}</p>
+{%endfor%}
+
+
+<form method="POST">
+ <label for="comments">Comments:</label>
+ <br>
+<textarea id="comments" name="comments" rows="4" cols="50" placeholder="Your Comment please ...">
+</textarea>
+<button class="btn btn-sucess">Submit</button>
+</form>
+</div>
+{%endblock content%}

@@ -1,0 +1,16 @@
+
+.blog_section{
+    height: 90vh;
+    width: 100%;
+    
+    display:flex;
+    justify-content:center;
+    text-align:center;
+}
+.comments ul li {
+list-style-type: none;
+}
+.comment{
+    padding:100px;
+    background-color:none;
+}

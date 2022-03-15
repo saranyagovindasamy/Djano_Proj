@@ -1,0 +1,79 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="container text-center">
+
+
+        <div class="col-md-10 col-10 offset-md-1 mt-5">
+            <h1>Current Batch's Details</h1>
+            <table id="batch-data" class="table table-bordered nowrap align-middle" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col">Batch ID</th>
+                        <th scope="col">Batch Name</th>
+                        <th scope="col">Course Name</th>
+                        <th scope="col">Language</th>
+                        <th scope="col">Trainer Name</th>
+                        <th scope="col">No Of Trainees</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for batch in batches %}
+                    <tr class="w-auto">
+                        <td> {{batch.id}}</td>
+                        <td> {{batch.name}} </td>
+                        <td> {{batch.course}} </td>
+                        <td> {{batch.language}}</td>
+                        <td> {{batch.trainer}}</td>
+                        <td> {{batch.trainees}}</td>
+                        <td> {{batch.start_date}}</td>
+                        <td> {{batch.end_date}}</td>
+                    </tr>
+                    
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('table').DataTable(
+            {
+                scrollX: true,
+                scrollCollapse: true,
+                responsive: true,
+                // columnDefs: [{
+                //     orderable: false,
+                //     className: 'select-checkbox',
+                //     targets: 0
+
+                // }],
+                // select: {
+                //     style: 'multi',
+                //     selector: 'td:first-child'
+                // },
+
+                order: [[1, 'desc']],
+                // "columnDefs": [
+                //     {
+                //         "targets": [1],
+                //         "visible": false,
+                //         "searchable": false
+                //     }
+                // ]
+            }
+        );
+    });
+</script>
+{% endblock content %}

@@ -1,0 +1,140 @@
+{% extends "project03_base.html" %}
+{% load static%}
+{%block home_content%}
+
+<section class="all-product-sec">
+    <div class="container">
+        {% include "includes/featured.html" %}
+        <div class="row all-product-row">
+            <div class="product-col">
+                <img src="{% static 'images/project03/product-5.jpg' %}" alt="" class="img-fluid img-1">
+                <div class="feature-desc">
+                    <h4>Puma Grey Sports Shoes</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>&#x20B9 950.00</p>
+                </div>
+            </div>
+            <div class="product-col">
+                <img src="{% static 'images/project03/product-6.jpg' %}" alt="" class="img-fluid img-2">
+                <div class="feature-desc">
+                    <h4>HRX Sports Shoes</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>&#x20B9 750.00</p>
+                </div>
+            </div>
+            <div class="product-col">
+                <img src="{% static 'images/project03/product-7.jpg' %}" alt="" class="img-fluid img-1">
+                <div class="feature-desc">
+                    <h4>HRX Gray Trackpants</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>&#x20B9 450.00</p>
+                </div>
+            </div>
+            <div class="product-col">
+                <img src="{% static 'images/project03/product-8.jpg' %}" alt="" class="img-fluid img-2">
+                <div class="feature-desc">
+                    <h4>Blue Printed T-Shirt</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>&#x20B9 550.00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row all-product-row">
+            <div class="product-col">
+                <img src="{% static 'images/project03/product-9.jpg' %}" alt="" class="img-fluid img-1">
+                <div class="feature-desc">
+                    <h4>Puma Grey Sports Shoes</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+
+                    <p>&#x20B9 950.00</p>
+                </div>
+            </div>
+            <div class="product-col">
+                <img src="{% static 'images/project03/product-10.jpg' %}" alt="" class="img-fluid img-2">
+                <div class="feature-desc">
+                    <h4>HRX Sports Shoes</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>&#x20B9 750.00</p>
+                </div>
+            </div>
+            <div class="product-col">
+                <img src="{% static 'images/project03/product-11.jpg' %}" alt="" class="img-fluid img-1">
+                <div class="feature-desc">
+                    <h4>HRX Gray Trackpants</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>&#x20B9 450.00</p>
+                </div>
+            </div>
+            <div class="product-col">
+                <img src="{% static 'images/project03/product-12.jpg' %}" alt="" class="img-fluid img-2">
+                <div class="feature-desc">
+                    <h4>Blue Printed T-Shirt</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>&#x20B9 550.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-btn">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span><i class="fas fa-arrow-circle-right"></i></span>
+        </div>
+    </div>
+</section>
+
+<section class="footer-sec">
+    {% include "includes/footer.html" %}
+</section>
+
+{%endblock home_content%}

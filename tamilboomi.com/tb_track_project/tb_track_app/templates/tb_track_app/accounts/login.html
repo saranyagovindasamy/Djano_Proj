@@ -1,0 +1,86 @@
+{% extends 'tb_track_app/index/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="row mt-4 ">
+  <div class="col-4 mx-auto">
+
+    <h2 class="font-weight-bold">Login</h2>
+    <hr class="mb-4" />
+
+    <div id="login">
+      <form class="form-horizontal mb-5 needs-validation" name="LoginForm" action="/login/" method="post" novalidate>
+        {% csrf_token %}
+
+        <div class="container">
+
+          <div class="form-floating">
+            <input type="text" class="form-control" id="username" name="username" placeholder="User Name" required>
+            <label for="uname">User Name</label>
+            <div class="invalid-tooltip">
+              Please enter a valid username.
+            </div>
+          </div>
+
+          <div class="form-floating mt-4">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            <label for="psw">Password</label>
+            <div class="invalid-tooltip">
+              Please provide a valid password.
+            </div>
+          </div>
+          {% if form.non_field_errors %}
+          <ul class="alert " role="alert" style="list-style-type:none;">
+            {% for error in form.non_field_errors %}
+            <li class="link-alert"> <b>{{ error }}</b></li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <!-- <label for="uname"><b>Username</b></label>
+          <input type="text" class="mt-3" placeholder="Enter Username" name="uname" required>
+      
+          <label for="psw" class="mt-3"><b>Password</b></label>
+          <input type="password" class="mt-3" placeholder="Enter Password" name="psw" required>
+       -->
+          <div class="form-floating mt-3 d-flex justify-content-around">
+
+            <span class="psw mt-3"> <b>Forgot password?</b></span>
+            <button type="submit" class="btn btn-primary">Log In</span></button>
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+
+
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+</script>
+{% endblock %}

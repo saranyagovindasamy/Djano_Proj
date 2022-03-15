@@ -1,0 +1,49 @@
+{%extends "lsc_app/base/lsc_app_base.html"%}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<h1 align ='center'>Patient Details</h1>
+<br><br>
+
+<div class="container justify-content-center">
+    <div class="container-fluid">
+        <div class="trainee-add-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10
+                        offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+
+<table id="patient">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Place</th>
+    <th>Bloodgroup</th>
+    <th>Medication</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for info in pd %}
+   <tr>
+    <td>{{info.patient_basic_info.name}}</td>
+    <td>{{info.patient_basic_info.age}}</td>
+    <td>{{info.patient_basic_info.address}}</td>
+    <td>{{info.patient_basic_info.blood_group}}</td>
+    <td>{{info.current_medication}}</td>
+   </tr>
+    {%endfor%}
+   </tbody>
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+  <script>
+  $(function(){
+    $("#patient").dataTable({
+     pageLength: 3
+    });
+  })
+  </script>
+
+</table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

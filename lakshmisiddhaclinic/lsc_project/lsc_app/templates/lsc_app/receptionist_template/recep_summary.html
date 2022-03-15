@@ -1,0 +1,50 @@
+{%extends "lsc_app/base/lsc_app_base.html"%}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<h1 align ='center'>Receptionist Details</h1>
+<br><br>
+
+<div class="container justify-content-center">
+    <div class="container-fluid">
+        <div class="trainee-add-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10
+                        offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+
+<table id="recep">
+  <thead>
+    <tr>
+    <th>Name</th>
+    <th>ID</th>
+    <th>Place</th>
+    <th>Mobile</th>
+    <th>Qualification</th>
+    </tr>
+  </thead>
+
+ <tbody>
+  {% for info in data %}
+   <tr>
+    <td>{{info.name}}</td>
+    <td>{{info.receptionist_id}}</td>
+    <td>{{info.address}}</td>
+    <td>{{info.mobile}}</td>
+    <td>{{info.qualification}}</td>
+   </tr>
+  {%endfor%}
+    </tbody>
+
+</table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+  <script>
+  $(function(){
+    $("#recep").dataTable({
+     pageLength: 3
+    });
+  })
+  </script>
+{% endblock content %}

@@ -1,0 +1,72 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container ">
+    <div class="container-fluid d-flex justify-content-center justify-content-sm-center 
+    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center ">
+        <div class="col-md-6 col-6 my-2 text-center ">
+
+            <h1>Course Details</h1>
+            <div class="row d-flex justify-content-center justify-content-sm-center 
+            justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+
+                <table id="trainers-data" class="table table-bordered nowrap align-middle" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">Course Name</th>
+                            <th scope="col">Programming Lanaguage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for course in courses %}
+                        <tr class="w-auto">
+                            <td> {{course.name}} </td>
+                            <td> {{course.language}} </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('table').DataTable(
+            {
+                scrollX: true,
+                scrollCollapse: true,
+                responsive: true,
+                // columnDefs: [{
+                //     orderable: false,
+                //     className: 'select-checkbox',
+                //     targets: 0
+
+                // }],
+                // select: {
+                //     style: 'multi',
+                //     selector: 'td:first-child'
+                // },
+
+                order: [[1, 'asc'], [2, 'asc']],
+                // "columnDefs": [
+                //     {
+                //         "targets": [1],
+                //         "visible": false,
+                //         "searchable": false
+                //     }
+                // ]
+            }
+        );
+    });
+</script>
+{% endblock content %}

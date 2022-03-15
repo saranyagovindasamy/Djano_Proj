@@ -1,0 +1,220 @@
+{%extends "lsc_app/base/base.html"%}
+{%load static%}
+{%block content%}
+<section class="book-appointment">
+    <div class="container mb-5">
+        <div class="book-appointment p-4 d-flex flex-column justify-content-center align-items-center ">
+
+            <h1 class="text-center mt-4 p-2 mb-5 w-75">Engage with our Expert Team!</h1>
+
+            <div class="row ">
+                <div class="col-sm-12 col-lg-6 col-md-12">
+                    <img src="{% static 'lsc_app/appointment/positive.jpg' %}" class="img-fluid text-center" alt="" style="height: 500px; width: 500px;">
+                </div>
+                <div class="col-sm-12 col-lg-6 col-md-12">
+                    <form id="enroll-form"
+                        class="row p-4 needs-validation  justify-content-center justify-content-sm-center 
+                                  justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center"
+                        novalidate>
+                        {% csrf_token %}
+                        <!-- Full Name -->
+                        <div class="mt-2 pt-2">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+                                <label for="name">Full Name</label>
+                                <div class="invalid-tooltip">
+                                    Provide your Full Name.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Number -->
+                        <div class="mt-4">
+                            <div class="form-floating">
+                                <input type="tel" class="form-control" id="contact" pattern="^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d| 
+                        2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]| 
+                        4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$" required placeholder="Mobile No">
+                                <label for="contact">Mobile No</label>
+                                <div class="invalid-tooltip">
+                                    Enter a valid Mobile Number with country code.
+                                </div>
+                            </div>
+                        </div>
+                <!-- email id -->
+                    <div class="mt-4" position-relative>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="address" placeholder="Address">
+                            <label for="address">Address</label>
+                            <div class="invalid-tooltip">
+                                Provide your Address.
+                            </div>
+                        </div>
+                    </div>
+                        <!-- date -->
+                        <div class="mt-4 ">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" id="appointment_date" placeholder="Date"
+                                    required>
+                                <label for="appointment_date">Date</label>
+                                <div class="invalid-tooltip">
+                                    Select a Valid Date.
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- First Visit -->
+                    <div class="mt-4">
+                     <div class="form-control">
+                       <div>
+                        <label style="display: inline-block;">First visit?</label>
+                        <div style="display: inline-block;" id="first">
+                            <select name="firsttime" id="firsttime">
+                              <option value="yes">Yes</option>
+                              <option value="no">No</option>
+                            </select>
+                        </div>
+                       </div>
+                     </div>
+
+                        <div class="mt-4 ">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="reason" placeholder="Remarks" required>
+                                <label for="reason">Reason</label>
+                                <div class="invalid-tooltip">
+                                    Provide A Valid Reason.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="mt-4 my-3 justify-content-center d-flex ">
+                            <div class="book-btn">
+                                <button type="button" class="btn btn-primary" id="book-btn"
+                                    onclick="formValidator()">Book
+                                    Appointment
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- modal Dialog box -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modal-title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title" id="modal-title"></p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <p class="modal-body" id="body-modal"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $('#notify-div').hide();
+        $('#upcoming-div').hide();
+    });
+
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+
+
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let name = document.querySelector('#name');
+        let contact = document.querySelector("#contact");
+        let address = document.querySelector("#address");
+        let date = document.querySelector("#appointment_date");
+        let reason = document.querySelector("#reason");
+
+
+        // If form valid then submit the data's
+        if (name.checkValidity() === true  &&
+            contact.checkValidity() === true &&
+            address.checkValidity() === true &&
+            date.checkValidity() === true) {
+            let name = $('#name').val()
+            let contact = $('#contact').val();
+            let address = $('#address').val();
+            let date = $('#appointment_date').val();
+            let reason = $('#reason').val();
+            let first_visit=$('#firsttime').val();
+
+
+            $.post('', {
+                name: name,
+                contact: contact,
+                address: address,
+                reason: reason,
+                date: date,
+                first_visit:first_visit,
+
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    $('#status-final').text('');
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Thank you for your interest !.')
+                        $('#body-modal').html('We already have your Contact Details in our database!. Our admin team will contact you');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('<i class="fas fa-2x fa-check-circle text-success"></i>' + '  ' + "<span style='font-size: 30px;'class='text-success'> <b> Success ! </b> </span>")
+                        $('#body-modal').html('Your Appointment booked successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+                });
+            return false;
+        }
+    }
+
+</script>
+
+
+{%endblock content%}

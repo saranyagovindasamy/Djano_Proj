@@ -1,0 +1,50 @@
+{% load static %}
+<nav class="navbar navbar-dark bg-dark sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{%url 'home'%}">
+      <span>TamilBoomi Technologies</span> </a>
+
+    <div class="navbar-nav">
+   
+      <div class="nav-item text-nowrap">
+        <a class="nav-link px-3" href="{% url 'logout' %}">Log out</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse fixed-left">
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+    <ul class="nav flex-column mt-5">
+
+      {% if user.is_authenticated and user.username == 'test' %}
+      {%include 'tb_track_app/includes/md_sidebar.html'%}
+      {% elif user.is_authenticated and user.userprofile.user_category == '1' %}
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'md-home'%}"> {{user.username}}</a>
+      </li>
+        {%include 'tb_track_app/includes/md_sidebar.html'%}
+      <!-- Side Navbar for Trainer -->
+        {% elif user.is_authenticated and user.userprofile.user_category == '2' %}
+        <li class="nav-item">
+           <a class="nav-link active" aria-current="page" href="{%url 'trainer-home'%}"> {{user.username}}</a>
+        </li>
+        {%include 'tb_track_app/includes/trainer_sidebar.html'%}
+        <!-- Side Navbar for Trainee -->
+        {% elif user.is_authenticated and user.userprofile.user_category == '3' %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{%url 'trainee-home'%}"> {{user.username}}</a>
+        </li>
+        {%include 'tb_track_app/includes/trainee_sidebar.html'%}
+      {% endif %}
+    </ul>
+    </div>
+</nav>
+
+<style>
+  a.nav-link:first-letter {
+    text-transform: uppercase;
+}
+</style>

@@ -1,0 +1,257 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{%block content %}
+{% load static %}
+
+<script src="{% static 'js_files/signup.js' %}"></script>
+<div class="container-fluid">
+  <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11  col-xxl-11  
+offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+    <div class="row mt-5">
+
+
+      <div class="signup-form">
+
+        <form id="login_add_form" class="row needs-validation justify-content-center justify-content-sm-center 
+        justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center"
+          novalidate>
+          <h2 class="text-center font-weight-bold">Create New Login</h2>
+          <hr class="mb-1" />
+          {% csrf_token %}
+
+
+          <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+            <div class="form-floating">
+              <select class="form-select" onchange="load_selected_category_users()" id="user_category" required>
+                <option>-------</option>
+                {% for user in form.user_category %}
+                <option id={{user.id}}>{{user}}</option>
+                {% endfor %}
+              </select>
+              <label for="user_category">Choose User Category</label>
+              <div class="invalid-tooltip">
+                Choose your Course.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-5 position-relative">
+            <div class="form-floating">
+              <select class="form-select" onchange="suggest_username()" id="userprofile_tocreate" required>
+
+              </select>
+              <label for="userprofile_tocreate">Choose User</label>
+              <div class="invalid-tooltip">
+                Select the user.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="username" placeholder="User Name" required>
+              <label for="username">User Name</label>
+              <div class="invalid-tooltip">
+                Enter user name.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="user_id_field" placeholder="User ID" required>
+              <label for="user_id">User ID</label>
+              <div class="invalid-tooltip">
+                Enter user name.
+              </div>
+            </div>
+          </div>
+          <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+            <div class="form-floating">
+              <input type="password" class="form-control" id="password1" placeholder="Password" onfocusout="checkPassword1()" required>
+              <span id="spn-password1" style="color: red; size: 10px;"></span>
+              <label for="password1">Password</label>
+              <div class="invalid-tooltip">
+                Your password must contain at least 8 characters
+              </div>
+            </div>
+          </div>
+
+          <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-5 position-relative">
+            <div class="form-floating">
+              <input type="password" class="form-control" id="password2" onfocusout="checkPassword()" placeholder="Password" required>
+              <span id="spn-password2" style="color: red; size: 10px;"></span>
+              <label for="password2">Password Confirmation:</label>
+              <div class="invalid-tooltip">
+                Enter the same password as before, for verification.
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Submit -->
+          <div
+            class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 my-3 justify-content-center d-flex  mt-5">
+            <div class="enroll-btn">
+              <button type="button" class="btn btn-primary" id="signup-btn" onclick="formValidator()">Create Login
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- modal Dialog box -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="modal-title"></p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <p class="modal-body" id="body-modal"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script>
+
+  $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+    location.reload();
+  });
+
+
+  function checkPassword1() {
+    password1 = $('#password1').val();
+
+    // If password not entered
+    if (password1 == '') {
+      $('#spn-password1').html("*Password field cant be empty")
+    }
+  }
+
+  function checkPassword() {
+    password1 = $('#password1').val();
+    password2 = $('#password2').val();
+
+    // If password not entered
+    if (password1 == '') {
+      $('#spn-password1').html("*Password field cant be empty")
+    }
+    else if (password2 == '') {
+      $('#spn-password2').html("*Password field cant be empty")
+    }
+    else if (password1 == '' && password2 == '') {
+      $('#spn-password1').html("*Password field cant be empty")
+      $('#spn-password2').html("*Pleased reenter the same passoword")
+
+    }
+
+    else if (password1 != password2) {
+      // $('#password1').tooltip('show')
+      $('#spn-password1').html("*Password did not match: Please try again...")
+      $('#spn-password2').html("*Password did not match: Please try again...")
+    }
+
+    // If same return True.
+    else {
+      $('#spn-password1').html("")
+      $('#spn-password2').html("")
+      // alert("Password Match: Welcome to GeeksforGeeks!")
+
+    }
+  }
+
+  function formValidator() {
+    console.log("form validation")
+
+    'use strict'
+
+    var forms = document.querySelectorAll('.needs-validation')
+
+    var validation = Array.prototype.filter.call(forms, function (form) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      form.classList.add("was-validated");
+    });
+
+    let user_category = document.querySelector('#user_category');
+    let userprofile_tocreate = document.querySelector('#userprofile_tocreate');
+    let username = document.querySelector("#username");
+    let user_id_field = document.querySelector("#user_id_field");
+    let password1 = document.querySelector("#password1");
+    let password2 = document.querySelector("#password2");
+
+
+    // If form valid then submit the data's
+    if (user_category.checkValidity() === true && userprofile_tocreate.checkValidity() === true &&
+      username.checkValidity() === true && user_id_field.checkValidity() === true &&
+      password1.checkValidity() === true && password2.checkValidity() === true) {
+
+      let user_category = $('#user_category').val();
+      let userprofile_tocreate = $('#userprofile_tocreate').val();
+      let username = $('#username').val();
+      let user_id_field = $('#user_id_field').val();
+      let password1 = $('#password1').val();
+      let password2 = $('#password2').val();
+      console.log(user_category, userprofile_tocreate, username, user_id_field, password1, password2)
+      $.post('', {
+        user_category: user_category,
+        userprofile_tocreate: userprofile_tocreate,
+        username: username,
+        user_id_field: user_id_field,
+        password1: password1,
+        password2: password2,
+        'csrfmiddlewaretoken': '{{ csrf_token }}'
+      },
+        function (data, status) {
+          console.log(data)
+          $('#status-final').text('');
+          // if contact details exist
+          if (data == 409) {
+            console.log(data)
+            $('#modal-title').html('Error !')
+            $('#body-modal').html('User Login creation failed for ' + userprofile_tocreate);
+            var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+              keyboard: false
+            })
+            myModal.show()
+          }
+          else if (data == 200) {
+
+            console.log(data)
+
+            $('#modal-title').html('Success!.')
+            $('#body-modal').html('User Login created for ' + userprofile_tocreate);
+            var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+              keyboard: false
+            })
+            myModal.show()
+
+
+          }
+
+        });
+      return false;
+    }
+
+  }
+
+</script>
+{% endblock %}

@@ -1,0 +1,896 @@
+{%extends "lsc_app/base/base.html"%} {%load static%} {%block content%}
+<!-- book an appointment -->
+<section class="treaments-background">
+  <!-- Treaments content -->
+  <div class="container-fluid pt-5 overflow-hidden">
+    <div
+      class="d-flex flex-column align-items-center justify-content-center mt-4"
+    >
+      <h1 class="p-2 mb-5">Treatments</h1>
+
+      <a
+        type="button"
+        href="{% url 'bookanappointment' %}"
+        class="btn btn-lg text-center fs-4"
+        >Book An Appointment</a
+      >
+    </div>
+
+    <!-- Treatments card -->
+
+    <h3 class="text-center p-2 m-5">Major Treatments</h3>
+
+    <div class="row mt-5">
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/autism.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="autism"
+              />
+            </div>
+
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Autism</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Early Intervention.</li>
+                    <li>Nutritional Therapy.</li>
+                    <li>Behaviour Management.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/cancer treatment.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="cancer"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Cancer Treatment</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Advice on Special Diet.</li>
+                    <li>Bowel cleansing.</li>
+                    <li>Herbal Medicine.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/diabetes.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="diabetes"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Diabetes Treatment</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Advice on Special Diet.</li>
+                    <li>Lowering Blood Pressure.</li>
+                    <li>Ayurveda Medicine.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/infertility.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="infertility"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Infertility</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Dietry Management.</li>
+                    <li>Follow principles in Ayurveda.</li>
+                    <li>Ayurvedic Herbs.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/skin-diease.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="skin-diease"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Skin Treatment</h5>
+                <ul>
+                  <li>Solves LongTerm problems.</li>
+                  <li>Discover skin health.</li>
+                  <li>Restore doshic balance.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/migrane.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="migraine"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Migraine</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Supports to practice Calm.</li>
+                    <li>Cold and Hot compress.</li>
+                    <li>Support ease pressure.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="text-center p-2 m-5">Therapy</h3>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/oil-massage.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="oil massage"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Oil Massage Therapy</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Improve Skin Health.</li>
+                    <li>Delay Age-Related Changes.</li>
+                    <li>Increase Energy & Alertness.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/mud-theraphy.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="mud-theraphy"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Mud Therapy</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Good for Heart Problems.</li>
+                    <li>Chronic skin problems.</li>
+                    <li>Helps treating Arthritis.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/naturotheraphy.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="naturotheraphy"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Naturopathy</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Stimulate positive thinking.</li>
+                    <li>Reduce Anxiety & Depression.</li>
+                    <li>Improves overall Health.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/physiotherapy.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="physiotherapy"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h6 class="card-title text-center">
+                  Physiotherapy & Rehabilitation
+                </h6>
+                <ul>
+                  <li>Eliminating or Reducing Pain.</li>
+                  <li>Helps in avoiding surgery.</li>
+                  <li>Reduce medicine intake.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/accupanture.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="accupanture"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Acupuncture</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Improve Immune System.</li>
+                    <li>Enhance Mental Clarity.</li>
+                    <li>Relieve Joint Pain.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/accupressure.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="accupressure"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Acupressure</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Natural Pain Relief.</li>
+                    <li>Lowers High Blood Pressure.</li>
+                    <li>Muscle Relaxation.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/allergy.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="allergy"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Allergy Lab</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Improve Skin Health.</li>
+                    <li>Delay Age-Related Changes.</li>
+                    <li>Increase Energy & Alertness.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/anatal-care.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="anatal-care"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Antenatal Care</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Health control of Pregnant.</li>
+                    <li>Reduced complex Obstetric.</li>
+                    <li>Info of pregnancy & delivery.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/memory-concentration.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="memory"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Memory Focus</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Advised to Regular Exercise.</li>
+                    <li>Provide Diet Chart.</li>
+                    <li>Developing Positive Thinking.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-center p-2 m-5">Massages</h3>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/feet-reflexology.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="feet-reflexology"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Feet Reflexology</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Improves Blood Circulation.</li>
+                    <li>Promotes Better Sleep.</li>
+                    <li>Relieves Body pains.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/rejunvationmessage.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="rejunvationmessage"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Rejuvenation Massage</h5>
+                <ul>
+                  <li>Reduces fine-lines & wrinkles.</li>
+                  <li>Relieves Redness & Rosacea.</li>
+                  <li>Deep relaxation & calm.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/steam-bath.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="steam-bath"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Steam Bath</h5>
+                <ul>
+                  <li>Loosens stiff joints.</li>
+                  <li>Clears congestion.</li>
+                  <li>Improves Blood circulation.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/plaintain-leaf.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="plaintain-leaf"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Plantain Leaf</h5>
+                <ul>
+                  <li>Supports Digestive Health.</li>
+                  <li>Remedy for Cough & Wounds.</li>
+                  <li>Improve Immune System.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/stress-massage.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="stress-massage"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Stress Massage</h5>
+                <ul>
+                  <li>Reduce Stress.</li>
+                  <li>Increasing Relaxation.</li>
+                  <li>Releasing good hormones.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-center p-2 m-5">Yoga & Meditation</h3>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/yoga-class.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="yoga-class"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Yoga Class</h5>
+                <ul>
+                  <li>Increases Flexibility.</li>
+                  <li>Improves muscle strength .</li>
+                  <li>Improves energy & vitality.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/pranayama.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="pranayama"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Pranayama</h5>
+                <ul>
+                  <li>Strengthen Body & Mind.</li>
+                  <li>Promotes Mindfulness</li>
+                  <li>Improves overall Health.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/meditation.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="meditation"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Meditation</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Learn skills to manage stress.</li>
+                    <li>Increase Self-awareness.</li>
+                    <li>Reducing Negative Emotions.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-center p-2 mt-5">Weight Loss Treatments</h3>
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/detox.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="detox"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Detoxification</h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Toxin removal and Detox.</li>
+                    <li>Better Digestive Health.</li>
+                    <li>Balancing body pH.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/weightloss.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="weightloss"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">Weight Loss</h5>
+                <ul>
+                  <li>Improve mobility & ease pain.</li>
+                  <li>Higher self-esteem.</li>
+                  <li>Building Inner Confident.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="treatments-card mb-3">
+          <div class="row p-2">
+            <div class="col-lg-4">
+              <img
+                src="{% static 'lsc_app/treatments/dietkitchen.jpg'%}"
+                class="mx-auto d-block img-fluid rounded-circle"
+                alt="dietkitchen"
+              />
+            </div>
+            <div class="col-lg-8">
+              <div
+                class="
+                  treatments-card-body
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                "
+              >
+                <h5 class="card-title text-center">
+                  Diet Kitchen & Counselling
+                </h5>
+                <div class="card-text">
+                  <ul>
+                    <li>Supports Muscles.</li>
+                    <li>Boosts Immunity.</li>
+                    <li>Helps you live longer.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{%endblock content%}

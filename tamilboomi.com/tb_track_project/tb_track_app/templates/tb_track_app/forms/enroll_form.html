@@ -1,0 +1,251 @@
+{% extends "tb_track_app/index/base.html" %}
+{% load static %}
+{%block content%}
+
+<script src="{% static 'js_files/enroll.js' %}"></script>
+
+<div class="container justify-content-center">
+    <div class="container-fluid">
+        <div class="signup-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+                      offset-sm-1 offset-md-1 offset-lg-1 offset-xl-1  offset-xxl-1 offset-1">
+
+            <form id="enroll-form"
+                class="row g2 needs-validation justify-content-center justify-content-sm-center 
+                                  justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center"
+                novalidate>
+                {% csrf_token %}
+                <h1 class="text-center mt-3 form-head">Enroll to be an Expert !</h1>
+
+                <!-- First Name -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-3 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="first_name" placeholder="First Name" required>
+                        <label for="first_name">First Name</label>
+                        <div class="invalid-tooltip">
+                            Provide your First Name.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Last Name -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-3 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="last_name" placeholder="Last Name">
+                        <label for="last_name">Last Name</label>
+                        <div class="invalid-tooltip">
+                            Provide your Last Name.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Number -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-3 position-relative">
+                    <div class="form-floating">
+                        <input type="tel" class="form-control" id="contact" pattern="^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d| 
+                        2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]| 
+                        4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$" required placeholder="Mobile No">
+                        <label for="contact">Mobile No</label>
+                        <div class="invalid-tooltip">
+                            Enter a valid Mobile Number.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- email id -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-3" position-relative>
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                        <label for="email">Email address</label>
+                        <div class="invalid-tooltip">
+                            Provide your e-Mail id.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Courses -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-3 position-relative">
+                    <div class="form-floating">
+                        <select class="form-select" onchange="load_enroll_batch()" id="course">
+                            <option>-------</option>
+                            {% for course in course_filter %}
+                            <option id={{course.id}}>{{course.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="course">Available Courses</label>
+                        <div class="invalid-tooltip">
+                            Choose your Course.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- language -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-3 position-relative">
+                    <div class="form-floating">
+                        <select class="form-select" id="language">
+
+                        </select>
+                        <label for="language">Select Programming Language</label>
+                        <div class="invalid-tooltip">
+                            Choose Programming Language.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Batches -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-3 position-relative"
+                    id='upcoming-div'>
+                    <div class="form-floating">
+                        <select class="form-select" id="up_batch">
+
+                        </select>
+                        <label for="up_batch">Upcoming Batches Start Date</label>
+                        <div class="invalid-tooltip">
+                            Choose your preferred Upcoming Batch.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CheckBox -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-3 position-relative" id='notify-div'>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="notify_future_batch">
+                        <label class="form-check-label" for="notify_future_batch">Notify me for next batch</label>
+                    </div>
+                </div>
+
+
+                <!-- Submit -->
+                <div
+                    class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3 col-xxl-8 my-3 justify-content-center d-flex ">
+                    <div class="enroll-btn">
+                        <button type="button" class="btn btn-primary" id="enrollnow-btn"
+                            onclick="formValidator()">Enroll
+                            Now</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="modal-title"></p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="modal-body" id="body-modal"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $('#notify-div').hide();
+        $('#upcoming-div').hide();
+    });
+
+    $('#staticBackdrop').on('hidden.bs.modal', function (e) {
+
+        location.reload();
+    });
+
+
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let firstName = document.querySelector('#first_name');
+        let lastName = document.querySelector('#last_name');
+        let contact = document.querySelector("#contact");
+        let email = document.querySelector("#email");
+        let course = document.querySelector("#course");
+        let up_batch = document.querySelector("#up_batch ");
+        let notify_future_batch = document.querySelector("#notify_future_batch");
+
+        // If form valid then submit the data's
+        if (firstName.checkValidity() === true && lastName.checkValidity() === true &&
+            contact.checkValidity() === true && email.checkValidity() === true &&
+            course.checkValidity() === true) {
+            let name = $('#first_name').val() + " " + $('#last_name').val()
+            let contact = $('#contact').val();
+            let email = $('#email').val();
+            let course = $('#course option:selected').attr('id');
+            console.log(course);
+
+            let language = $('#language').val();
+            if (language == "<option>-------</option>") {
+                language = null
+            }
+            let up_batch = $('#up_batch').val();
+            let notify_future_batch = $('#notify_future_batch').is(":checked");
+            console.log(name, contact, email, course, up_batch, language, notify_future_batch)
+            $.post('', {
+                name: name,
+                contact: contact,
+                email: email,
+                up_batch: up_batch,
+                course: course,
+                language: language,
+                notify_future_batch: notify_future_batch,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    $('#status-final').text('');
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Thank you for your interest !.')
+                        $('#body-modal').html('We already have your Contact Details in our database!. Our admin team will contact you');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+
+                        console.log(data)
+
+                        $('#modal-title').html('Thank you for your interest!.')
+                        $('#body-modal').html('Your Contact Details saved successfully!. Our admin team will contact you');
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                });
+            return false;
+        }
+
+    }
+
+</script>
+{%endblock content%}

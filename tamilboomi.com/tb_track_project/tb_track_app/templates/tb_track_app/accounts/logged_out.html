@@ -1,0 +1,13 @@
+{% extends 'tb_track_app/index/base.html' %}
+{% block title %}See you!{% endblock %}
+{% block content %}
+<div class="row mt-5">
+  <div class="col-4 mx-auto mb-5">
+    <div class="container justify-content-center">
+      <h2>Logged out</h2>
+      <p>You have been successfully logged out.</p>
+      <p><a href="{% url 'login' %}">Log in</a> again.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

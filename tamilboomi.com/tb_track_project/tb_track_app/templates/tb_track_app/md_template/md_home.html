@@ -1,0 +1,414 @@
+{% extends 'tb_track_app/index/tb_track_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row mt-1">
+        <div class="col-lg-3 col-6 small-box bg-info">
+            <!-- small box -->
+            <div class=" row g2 text-center mt-2">
+                <div class="inner col-6">
+                    <h1 class="trainees-count">{{trainee_total_count }}</h1>
+                    <p>Trainees</p>
+                </div>
+                <div class="icon col-5">
+                    <i class="fas fa-4x fa-user-graduate"></i>
+                </div>
+            </div>
+            <a href="{%url 'trainees-details'%}" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
+
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-5 small-box bg-success">
+            <!-- small box -->
+            <div class="row g2 text-center mt-2">
+
+                <div class="inner col-6">
+                    <h1>{{ course_total_count }}</h1>
+
+                    <p>Total Courses Taken</p>
+                </div>
+                <div class="icon col-5 ">
+                    <i class="fas fa-4x p-3 fa-chalkboard-teacher"></i>
+                </div>
+            </div>
+            <a href="{%url 'course_details'%}" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
+        </div>
+
+        <div class="col-lg-3 col-6 small-box bg-danger">
+            <!-- small box -->
+            <div class=" row g2 text-center mt-2">
+                <div class="inner col-6">
+                    <h3>{{ language_total_count }}</h3>
+
+                    <p>Total Languages</p>
+                </div>
+                <div class="icon col-5">
+                    <i class="fas fa-4x fa-laptop-code"></i>
+                </div>
+            </div>
+            <a href="{%url 'language_details'%}" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
+
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6 small-box bg-warning">
+            <!-- small box -->
+            <div class=" row g2 text-center mt-2">
+                <div class="inner col-6">
+                    <h3>{{ batch_total_count }}</h3>
+
+                    <p>Total Batches</p>
+                </div>
+                <div class="icon col-5" style="border: 2px solid black;">
+                    <i class="fas fa-4x fa-university"></i>
+                </div>
+            </div>
+            <a href="{%url 'batch-details'%}" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
+
+        </div>
+        <!-- ./col -->
+
+        <!-- ./col -->
+    </div>
+    {% comment %} Boxes Section Ends {% endcomment %}
+
+    <div class="row">
+        <div class="col-lg-6">
+            <!-- PIE CHART1 -->
+            <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title">Trainee and Trainer Count</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas id="pieChart1"
+                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+
+        <div class="col-lg-6">
+            <!-- DOUGHNUT CHART -->
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Languages in Each Course</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <canvas id="doughnutChart"
+                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <!-- PIE CHART2 -->
+            <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title">Total Trainees in Each Course</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas id="pieChart2"
+                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+
+        <div class="col-lg-6">
+            <!-- PIE CHART3 -->
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Total Trainees in Each Programming Languages</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <canvas id="pieChart3"
+                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- BAR CHART1 -->
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Staff Attendance vs Leave</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <canvas id="barChart1"
+                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- BAR CHART2 -->
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Student Attendance vs Leave</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <canvas id="barChart2"
+                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+
+</div><!-- /.container-fluid -->
+
+
+
+
+
+
+<!-- chartjs javascript -->
+
+<!-- chartjs cdn -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/patternomaly@1.3.2/dist/patternomaly.min.js"></script>
+
+
+<!-- Trainer and trainee chart - PIE CHART-->
+<script>
+      var ctx = document.getElementById('pieChart1').getContext('2d');
+        var pieChart = new Chart(ctx, {
+            type: 'pie',// bar, horizontalBar, pie, line, doughnut, radar, polarArea
+
+            data: {
+                labels: ["Trainer","Trainee"],
+                datasets: [{
+                    label: "Trainer and Trainee count",
+                    data: [{{trainer_total_count|safe}},{{trainee_total_count|safe}}],
+                    backgroundColor: {{color_list|safe}},
+                    borderWidth: 2,
+                    hoverOffset: 1,
+                    hoverBorderColor:'black',
+                }]
+            },
+             options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position:'right',
+                    labels: {
+                        color: 'black',
+                    }
+                }
+            },
+        }
+        });
+         
+</script>
+
+<!-- Total Programming Languages in Each Course - DOUGHNUT CHART -->
+<script>
+    const ctx1 = document.getElementById('doughnutChart').getContext('2d');
+    const doughnutChart = new Chart(ctx1, {
+        type: 'doughnut',
+        data:
+        {
+            labels: {{course_name_list|safe}},
+            datasets: [{
+                label: 'Total programming languages in each course',
+                data: {{course_language_count_list}},
+                backgroundColor: {{color_list|safe}},
+                borderWidth: 2,
+                hoverOffset: 1,
+                hoverBorderColor:'black',
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position:'right',
+                    labels: {
+                        color: 'black',
+                    }
+                }
+            },
+        }
+    });
+
+</script>
+
+<!-- Total Trainees in Each Course -PIE CHART -->
+<script>
+    const ctx2 = document.getElementById('pieChart2').getContext('2d');
+    const pieChart2 = new Chart(ctx2, {
+        type: 'pie',
+        data:
+        {
+            labels: {{course_name_list|safe}},
+            datasets: [{
+                label: 'Total Trainees in Each Course',
+                data: {{course_trainee_count_list}},
+                backgroundColor: {{color_list|safe}},
+                borderWidth: 2,
+                hoverOffset: 1,
+                hoverBorderColor:'black',
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position:'right',
+                    labels: {
+                        color: 'black',
+                    }
+                }
+            },
+        }
+    });
+</script>
+
+<!-- Total Trainees in Each Programming Languages -PIE CHART -->
+<script>
+    const ctx3 = document.getElementById('pieChart3').getContext('2d');
+    const pieChart3 = new Chart(ctx3, {
+        type: 'pie',
+        data:
+        {
+            labels: {{total_language_list|safe}},
+            datasets: [{
+                label: 'Total Trainees in Each Course',
+                data: {{trainee_count_list_in_each_language|safe}},
+                backgroundColor: {{color_list|safe}},
+                borderWidth: 2,
+                hoverOffset: 1,
+                hoverBorderColor:'black',
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position:'right',
+                    labels: {
+                        color: 'black',
+                    }
+                }
+            },
+        }
+    });
+</script>
+
+<!-- Trainer attendance vs leave - BAR CHART -->
+<!-- <script>
+    const ctx4 = document.getElementById('barChart1').getContext('2d');
+    const barChart1 = new Chart(ctx4, {
+        type: 'bar',
+        data:
+        {
+            labels: ['Nov-1', 'Nov-2', 'Nov-3', 'Nov-4'],
+            datasets: [{
+                label: 'Trainer Attendance',
+                fillColor: "rgba(220,220,220,0.5)",
+                strokeColor: "rgba(220,220,220,0.8)",
+                highlightFill: "rgba(220,220,220,0.75)",
+                highlightStroke: "rgba(220,220,220,1)",
+                data: [10, 5, 8, 9],
+                backgroundColor: ['#4B4375'],
+                borderColor: ['white'],
+                borderWidth: 2
+            },
+            {
+                label: 'Trainer Leave',
+                data: [0, 5, 2, 1],
+                backgroundColor: ['#9B90A2'],
+                borderColor: ['white'],
+                borderWidth: 2
+            }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    min: 0,
+                    max: 15,
+                }
+            }
+        },
+    });
+</script> -->
+{% endblock content %}
+</script>
+
+
