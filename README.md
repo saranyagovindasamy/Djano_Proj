@@ -1,2 +1,2 @@
-# Djano_Proj
+# Djano Proj
 Freelancing Django Projects
