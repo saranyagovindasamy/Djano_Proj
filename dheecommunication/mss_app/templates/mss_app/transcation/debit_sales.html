@@ -1,0 +1,74 @@
+{% extends 'mss_app/base/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container justify-content-center mt-4">
+
+    {% csrf_token %}
+    <h1 class="mt-4 text-center">Debit Transactions Sales per day Per Category</h1>
+
+    <div class="mx-5 pb-5 mt-5">
+
+        <div class="table-responsive">
+            <table id="mcash-data" class="table table-bordered align-middle" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">FSE1</th>
+                        <th scope="col">FSE2</th>
+                        <th scope="col">FSE3</th>
+                        <th scope="col">FSE4</th>
+                        <th scope="col">Auto Refill</th>
+                        <th scope="col">Manual</th>
+                        <th scope="col">Digital</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sale in sales_grouped_values %}
+                    <tr class="w-auto">
+                        <td class="text-center">{{sale.date}}</td>
+                        <td class="text-center">{{sale.FSE1}}</td>
+                        <td class="text-center">{{sale.FSE2}}</td>
+                        <td class="text-center">{{sale.FSE3}}</td>
+                        <td class="text-center">{{sale.FSE4}}</td>
+                        <td class="text-center">{{sale.Auto_Refill}}</td>
+                        <td class="text-center">{{sale.Manual_Recharge}}</td>
+                        <td class="text-center">{{sale.Digital}}</td>
+                        <td class="text-center">{{sale.total_debit}} </td>
+                    </tr>
+                    {%endfor%}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="div pb-5"></div>
+</div>
+
+</div>
+<!--  -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('table').DataTable(
+            {
+                scrollX: true,
+                scrollCollapse: true,
+                responsive: true,
+                order: [[1, 'desc']],
+
+            }
+        );
+    });
+
+</script>
+{% endblock content %}

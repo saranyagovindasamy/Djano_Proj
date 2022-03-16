@@ -1,0 +1,90 @@
+{% extends "mss_app/base/base.html" %}
+{%load static%}
+{%block content%}
+<style>
+  .progress-bar
+  {
+    color: white; /*Progress bar label text color*/
+    font-size: 15px;
+  }
+
+  
+</style>
+<div class="container justify-content-center mt-4">
+
+  <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+                    offset-sm-2 offset-md-2 offset-lg-2 offset-xl-2  offset-xxl-2 offset-2 mt-2">
+    <div class='progress-wrapper' style="height: 10px; color: gray;">
+      <div id='progress-bar' class='progress-bar progress-bar-striped progress-bar-animated bg-danger' style="width: 100%;" aria-valuemin="0" aria-valuemax="100">&nbsp;</div>
+    </div>
+    <div id="progress-bar-message" class="mt-4">Waiting for progress to start...</div>
+  </div>
+</div>
+<script src="{% static 'celery_progress/celery_progress.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+  // var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
+
+  // function customResult(resultElement, result) {
+  //   $(resultElement).append(
+  //     $('<p>').text('Sum of all seconds is ' + result)
+  //   );
+  // }
+
+
+  // CeleryProgressBar.initProgressBar(progressUrl, {
+  //   onResult: customResult,
+  // })
+
+  function processProgress(progressBarElement, progressBarMessageElement, progress) {
+			progressBarElement.style.width = progress.percent + "%";
+			var description = progress.description || "Importing ";
+			progressBarMessageElement.innerHTML = description;
+      document.getElementById("progress-bar-message").innerHTML = "Importing "+ progress.percent + "% completed";
+      document.getElementById("progress-bar").innerHTML =  progress.percent + "%";
+
+      if (progress.percent == 100 || progress.description == "Success! Done")
+      {
+        console.log(progress.percent)
+        document.getElementById("progress-bar").style.background = 'green'
+
+      }
+		}
+
+	function processResult(resultElement, result) {
+		if (result.includes("Success! Done")) {
+      console.log(resultElement)
+			$( resultElement ).append(
+				$('<br>')
+			);
+			$( resultElement ).append(
+				$('<p class="text-center">').text(result)
+			);
+		}
+	}
+
+	// Progress Bar (JQuery)
+	$(function () {
+		var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
+    showLogoLoader()
+		CeleryProgressBar.initProgressBar(progressUrl, {
+			onProgress: processProgress,
+			onResult: processResult,
+		})
+	});
+
+    
+  function showLogoLoader ()
+    {
+      document.querySelector(
+        "#loader-spin").style.visibility = "visible";
+    }
+    function hideLogoLoader() {
+      document.querySelector(
+        "#loader-spin").style.display = "none";
+    }
+
+</script>
+
+
+{%endblock content%}

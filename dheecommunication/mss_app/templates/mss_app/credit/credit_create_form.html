@@ -1,0 +1,238 @@
+{% extends 'mss_app/base/base.html' %}
+{% load static %}
+{%block content%}
+
+<script src="{% static 'js_files/clients_details.js' %}"></script>
+<div class="container justify-content-center mt-4">
+    <div class=" justify-content-center justify-content-sm-center 
+    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+        <div class="trainer-add-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+                    offset-sm-2 offset-md-2 offset-lg-2 offset-xl-2  offset-xxl-2 offset-2">
+            <div class="row" class="justify-content-center justify-content-sm-center 
+            justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+
+
+                {% csrf_token %}
+                <h1 class="text-center">Create Credit Transaction</h1>
+                <div class="left-side col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6">
+                    <form id="credit_add_form" class=" needs-validation" novalidate></form>
+
+                    <!-- Date In -->
+                    <div class="row g-2 first-row mt-4">
+                        <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 col-xxl-5 position-relative">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" id="credit_date" placeholder="Date" required>
+                                <label for="credit_date">Date</label>
+                                <div class="invalid-tooltip">
+                                    Select a Valid Date.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6 mx-2 position-relative">
+                            <div class="form-floating">
+                                <select class="form-select" id="client_name" required>
+
+                                    {% for client_actual_name in form.client %}
+
+                                    {{client_actual_name}}
+
+                                    {% endfor %}
+                                </select>
+                                <label for="client_name">Client</label>
+                                <div class="invalid-tooltip">
+                                    Choose Client.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-2 second-row mt-4">
+                        <!-- Credit Payment -->
+                        <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 col-xxl-5 position-relative">
+                            <div class="form-floating">
+                                <input type="number" step="any" class="form-control" id="credit_amount"
+                                    placeholder="Credit Payment" value="00.00">
+                                <label for="credit_amount">Credit Payment</label>
+                                <div class="invalid-tooltip">
+                                    Provide Credit Payment.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mx-2 position-relative">
+                            <div class="form-floating">
+                                <select class="form-select" id="credit_option" required>
+
+                                    {% for option in form.credit_option %}
+
+                                    {{option}}
+
+                                    {% endfor %}
+                                </select>
+                                <label for="credit_option">Credit Option</label>
+                                <div class="invalid-tooltip">
+                                    Choose a Valid Credit Option.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- area_name -->
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6 mt-4 position-relative">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="remarks" placeholder="Remarks" required>
+                            <label for="remarks">Payment Remarks</label>
+                            <div class="invalid-tooltip">
+                                Provide A Valid Remarks.
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+
+
+                <!-- Selected Client Details -->
+                <div class="right-side col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6 mt-4">
+                    <div class="table-responsive">
+                        <table class=" table nowrap" style="width:100%">
+                            <tr class="table-danger">
+                                <th scope="row">Name As in Record :</th>
+                                <td><span id="record_name" style="font-weight: bold;"></span></td>
+
+                            </tr>
+                            <tr class="table-success">
+                                <th scope="row">Contact Person Name :</td>
+                                <td><span id="contact_name" style="font-weight: bold;"></span></td>
+                            </tr>
+                            <tr class="table-warning">
+                                <th scope="row">Mobiel No :</td>
+
+                                <td><span id="mobile_no" style="font-weight: bold;"></span></td>
+
+                            </tr>
+                            <tr class="table-info">
+                                <th scope="row">Area :</td>
+                                <td><span id="area_name" style="font-weight: bold;"></span></td>
+                            </tr>
+
+
+                            <tr class="bg-danger">
+                                <th scope="row">Pending Payment :</td>
+                                <td><span id="pending_payment" style="font-weight: bold;"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div
+                    class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6 mb-3 offset-sm-3 offset-md-3 offset-lg-3 offset-xl-3  offset-xxl-3 offset-3 justify-content-center d-flex  ">
+                    <div class="enroll-btn py-5">
+                        <button type="button" class="btn btn-primary" id="add_trainer_btn" onclick="formValidator()">Add
+                            Credit Details</button>
+                    </div>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="client-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="myModal" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- For Telephone Number field -->
+<script>
+
+
+    $('#client_name').on('change', function () {
+        clientDetailsLoader()
+    });
+
+    $('#client-model').on('hidden.bs.modal', function (e) {
+        clientDetailsLoader()
+    });
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let credit_date = document.querySelector('#credit_date');
+        let client_name = document.querySelector('#client_name');
+        let credit_amount = document.querySelector("#credit_amount");
+        let credit_option = document.querySelector("#credit_option");
+        let remarks = document.querySelector("#remarks");
+
+
+        // If form valid then submit the data's
+        if (credit_date.checkValidity() === true && client_name.checkValidity() === true &&
+            credit_amount.checkValidity() === true && credit_option.checkValidity() === true) {
+            let credit_date = $('#credit_date').val()
+            let client_name = $('#client_name').find(":selected").text();
+            let credit_amount = $('#credit_amount').val();
+            let credit_option = $('#credit_option').val();
+            let remarks = $('#remarks').val();
+
+
+            console.log(credit_date, client_name, credit_amount, credit_option, remarks)
+            $.post('', {
+                credit_date: credit_date,
+                client_name: client_name,
+                credit_amount: credit_amount,
+                credit_option: credit_option,
+                remarks: remarks,
+
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Client Details Exist Already!');
+                        var myModal = new bootstrap.Modal(document.getElementById('client-model'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+                        console.log(data)
+                        $('#modal-title').html('Credit Transcation of Rs ' + credit_amount + ' Added successfully to ' + client_name);
+                        var myModal = new bootstrap.Modal(document.getElementById('client-model'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                        // formReset();
+                    }
+
+                });
+            return false;
+        }
+    }
+</script>
+{%endblock content%}

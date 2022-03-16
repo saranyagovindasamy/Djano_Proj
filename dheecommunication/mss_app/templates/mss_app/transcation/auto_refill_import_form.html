@@ -1,0 +1,72 @@
+{% extends 'mss_app/base/base.html' %}
+{% load static %}
+{%block content%}
+
+<div class="container justify-content-center mt-4">
+    <div class="container-fluid justify-content-center justify-content-sm-center 
+    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+        <div class="trainer-add-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+        offset-sm-2 offset-md-2 offset-lg-2 offset-xl-2  offset-xxl-2 offset-2">
+            <form id="auto_refill_import_form" method="post"  enctype="multipart/form-data"
+            class="justify-content-center justify-content-sm-center 
+                    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center" >
+
+                {% csrf_token %}
+                <h1 class="text-center mt-5">Import Auto Refill Details</h1>
+
+                <!-- record_name -->
+                <div
+                    class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-4 col-xxl-8 mb-3 mt-3 justify-content-center position-relative">
+                    <label for="excel_import_file" class="form-label">Select a valid Excel file</label>
+                    <input class="form-control form-control-md" id="excel_import_file" type="file" name="excelfile" required>
+                    <div class="invalid-tooltip">Please choose a valid Excel file</div>
+                </div>
+
+
+                <!-- Submit -->
+                <div
+                    class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-4 col-xxl-8 mb-3 justify-content-center d-flex  ">
+                    <div class="enroll-btn py-5">
+                        <button type="submit" class="btn btn-primary" id="excel_import_btn">Import
+                            Auto Refill Details</button>
+                    </div>
+                </div>
+
+
+            </form>
+            
+            <div id="import-progress-container" class="col-md-12">
+                <div id="import-progress-message">Waiting event . . .</div>
+                <div class="progress">
+                    <div id="import-progress-bar"
+                        class="progress-bar progress-bar-striped progress-bar-animated"
+                        role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+              </div>
+              
+        </div>
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="client-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="myModal" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{%endblock content%}

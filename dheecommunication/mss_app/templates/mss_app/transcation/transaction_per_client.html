@@ -1,0 +1,194 @@
+{% extends 'mss_app/base/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<style>
+    #searchInput {
+        font-size: 25px !important;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+
+    #searchInput:focus {
+        border-bottom: 2px solid #4575b6;
+    }
+</style>
+
+<script src="{% static 'js_files/clients_details.js' %}"></script>
+<div class="container justify-content-center" >
+
+    <div class="mx-5 mt-4 col-9">
+        <h1 class="mb-2 text-center">Transactions per Client</h1>
+        <div class="row offset-2 mt-4">
+            <input type="text" id="searchInput" onkeyup="filter()" placeholder="Filter Client...">
+        </div>
+
+
+        <div class="table-responsive mt-3" style="border: 2px black;" id="clients-table">
+            <table id="client" class="table table-bordered align-middle" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Name in Record</th>
+                        <th scope="col">Client Name</th>
+                        <th scope="col">Contact Name</th>
+                        <th scope="col">Mobile No</th>
+                        <th scope="col">Pending Payment</th>
+                        <!-- <th scope="col">2nd Contact</th> -->
+                        <!-- <th scope="col">Area Name</th>
+                        <th scope="col">Area Code</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Edit</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for client in clients %}
+                    <tr class="w-auto">
+                        <td class="text-center"> {{client.id}}</td>
+                        <td class="text-center"> {{client.record_name}} </td>
+                        <td class="text-center"> {{client.actual_name}}</td>
+                        <td class="text-center"> {{client.contact_name}}</td>
+                        <td class="text-center"> {{client.mobile_no}}</td>
+                        <td class="text-center"> {{client.pending_payment}}</td>
+                        <!-- <td class="text-center"> {{client.secondary_contact}}</td> -->
+                        <!-- <td class="text-center"> {{client.area_name}}</td>
+                        <td class="text-center"> {{client.area_code}}</td>
+                        <td class="text-center"> {{client.address}}</td> -->
+                        <td>
+                            <a id="{{client.id}}"  value = "{{client.id}}" class="btn btn-secondary" onclick="selected_client_details(this.id)">View</a>
+                        </td>
+                    </tr>
+
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="div pb-5"></div>
+</div>
+
+<div class="container justify-content-center" id="selected-client-details">
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6 mt-4 offset-2">
+        <!-- Selected Client Details -->
+
+        <div class="table-responsive">
+            <table class=" table nowrap" style="width:100%">
+                <tr class="table-danger">
+                    <th scope="row">Name As in Record :</th>
+                    <td><span id="record_name" style="font-weight: bold;"></span></td>
+                </tr>
+                <tr class="table-success">
+                    <th scope="row">Contact Person Name :</td>
+                    <td><span id="contact_name" style="font-weight: bold;"></span></td>
+                </tr>
+                <tr class="table-warning">
+                    <th scope="row">Mobiel No :</td>
+
+                    <td><span id="mobile_no" style="font-weight: bold;"></span></td>
+
+                </tr>
+                <tr class="table-info">
+                    <th scope="row">Area :</td>
+                    <td><span id="area_name" style="font-weight: bold;"></span></td>
+                </tr>
+
+                <tr class="bg-danger">
+                    <th scope="row">Pending Payment :</td>
+                    <td><span id="pending_payment" style="font-weight: bold;"></span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container justify-content-center" id="selected-client-transcation-table">
+
+    <div class="mx-5 mt-4 col-9 offset-2">
+   
+        <div class="table-responsive mt-3" style="border: 2px black;">
+            <table id="client-transcations" class="table table-bordered align-middle dt-responsive nowrap 
+            table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl table-responsive-xxl" style="width:100%">
+        
+      
+            </table>
+        </div>
+    </div>
+    <div class="div pb-5"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script>
+       $(document).ready(function () {
+        $('#selected-client-details').hide();
+        $('#selected-client-transcation-table').hide();
+        $('#clients-table').hide();
+    });
+
+    function selected_client_details(id)
+    {
+        console.log(id)
+        load_client_by_id_ajax(id)
+        $('#selected-client-details').show();
+       
+        $('#clients-table').hide();
+        load_client_transcation_by_id_ajax(id)
+        $('#selected-client-transcation-table').show();
+    }
+
+
+    // Filters the clients based on the user input of their name or mobile no
+    function filter() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        table = document.getElementById("client");
+        tr = table.getElementsByTagName("tr");
+        // console.log(input)
+        // console.log(input.value)
+        for (i = 0; i < tr.length; i++) {
+
+            if (Number.isInteger(parseInt(input.value))) {
+                filter = input.value
+                console.log(filter)
+                td = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    console.log(td.innerText)
+                    console.log(txtValue)
+                    if (txtValue.indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+            else {
+                filter = input.value.toUpperCase();
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+        }
+
+        if (input.value != null && input.value != "")
+        {
+            $('#clients-table').show();
+        }
+        else if (input.value == ""){
+            $('#clients-table').hide();
+            $('#selected-client-details').hide();
+        }
+        
+    }
+
+</script>
+{% endblock content %}

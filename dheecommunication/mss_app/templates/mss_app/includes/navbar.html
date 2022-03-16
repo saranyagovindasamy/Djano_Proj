@@ -1,0 +1,130 @@
+{%load static%}
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand" href="{%url 'home'%}"><img src="{%static 'images/logo.png'%}" class="logo img-fluid">
+        <a class="navbar-brand col-md-3 col-lg-2 px-1" href="#"><img src="{%static 'images/Dhee_1x.png'%}"
+                class="img-fluid"></a>
+
+        <!-- <input class="form-control form-control-dark " type="text" placeholder="Search" aria-label="Search"> -->
+
+        <div class="navbar-nav">
+            <!-- <div id="para1"></div> -->
+         
+            <div class="nav-item text-nowrap">
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">logout</a></li>
+                {% endif %}
+
+            </div>
+        </div>
+</header>
+
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse fixed-left">
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <ul class="nav flex-column mt-5">
+            {% if user.is_authenticated %}
+
+            <li class="nav-item mt-3"><a class="nav-link" href="{% url 'home' %}">{{user.username}}</a></li>
+
+            <li class="nav-item mt-2 dropend">
+                <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">m-cash
+                    Sales<i class="fas fa-angle-right"></i></a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'mcash'%}">Add</a></li>
+                </ul>
+            </li>
+            <li class="nav-item mt-2 dropend">
+                <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Overall
+                    Sales<i class="fas fa-angle-right"></i></a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'debitsales'%}">Debit Sales</a></li>
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'creditsales'%}">Credit Sales</a></li>
+                    <li class="nav-item"><a class="dropdown-item"
+                            href="{%url 'transcations-per-client'%}">Per-Client</a></li>
+                </ul>
+            </li>
+            <li class="nav-item mt-2 dropend">
+                <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Clients<i
+                        class="fas fa-angle-right"></i></a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'client-add'%}">Add</a></li>
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'client-details'%}">Summary</a></li>
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'import-client'%}">Import</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item mt-2 dropend">
+                <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Debit<i
+                        class="fas fa-angle-right"></i></a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'debit-new'%}">Add</a></li>
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'debit-summary'%}">Summary</a> </li>
+                </ul>
+            </li>
+
+            <li class="nav-item mt-2 dropend">
+                <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Auto Refill<i
+                        class="fas fa-angle-right"></i></a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'autorefill-import'%}">Import</a> </li>
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'autorefill-summary'%}">Summary</a> </li>
+                </ul>
+            </li>
+
+            <li class="nav-item mt-2 dropend">
+                <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Credit<i
+                        class="fas fa-angle-right"></i></a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'credit-new'%}">Add</a></li>
+
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'credit-summary'%}">Summary</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item mt-2 dropend">
+                <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">SIM Card<i
+                        class="fas fa-angle-right"></i></a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'credit-new'%}">Add</a></li>
+
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'credit-summary'%}">Summary</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item mt-2 dropend">
+                <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Staff Cash<i
+                        class="fas fa-angle-right"></i></a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'credit-new'%}">Add</a></li>
+
+                    <li class="nav-item"><a class="dropdown-item" href="{%url 'credit-summary'%}">Summary</a>
+                    </li>
+                </ul>
+            </li>
+
+            <p class="nav-link mt-4" id="date-time" href=""></p>
+            {% else %}
+
+            <li class="nav-item"></li>
+            {% endif %}
+
+        </ul>
+    </div>
+</nav>
+<script>
+    document.getElementById("date-time").innerHTML = formatAMPM();
+
+    function formatAMPM() {
+        var d = new Date(),
+            minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
+            hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
+            ampm = d.getHours() >= 12 ? 'pm' : 'am',
+            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        return days[d.getDay()] + "<br>" + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + "<br>" + hours + ':' + minutes + ampm;
+    }
+</script>

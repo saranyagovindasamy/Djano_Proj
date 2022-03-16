@@ -1,0 +1,236 @@
+{% extends 'mss_app/base/base.html' %}
+{% load static %}
+{%block content%}
+
+<script src="{% static 'js_files/clients_details.js' %}"></script>
+
+<div class="container justify-content-center mt-4">
+    <div class=" justify-content-center justify-content-sm-center 
+    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+        <div class="debit-add-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+                    offset-sm-2 offset-md-2 offset-lg-2 offset-xl-2  offset-xxl-2 offset-2">
+            <div class="row" class="justify-content-center justify-content-sm-center 
+            justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+
+
+                {% csrf_token %}
+                <h1 class="text-center">Create Debit Transaction</h1>
+
+                <div class="left-side col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6">
+
+                    <form id="debit_add_form" class=" needs-validation" novalidate>
+                        <!-- Date In -->
+                        <div class="row g-2 first-row mt-4">
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 col-xxl-5 position-relative">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" id="debit_date" placeholder="Date" required>
+                                    <label for="debit_date">Date</label>
+                                    <div class="invalid-tooltip">
+                                        Select a Valid Date.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mx-2 position-relative">
+                                <div class="form-floating">
+                                    <select class="form-select" id="client_name" required>
+
+                                        {% for client_actual_name in form.client %}
+
+                                        {{client_actual_name}}
+
+                                        {% endfor %}
+                                    </select>
+                                    <label for="client_name">Client</label>
+                                    <div class="invalid-tooltip">
+                                        Choose Client.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 second-row mt-4">
+                            <!-- Credit Payment -->
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 col-xxl-5 position-relative">
+                                <div class="form-floating">
+                                    <input type="number" step="any" class="form-control" id="debit_amount"
+                                        placeholder="Debit Payment" value="000.00">
+                                    <label for="debit_amount">Debit Payment</label>
+                                    <div class="invalid-tooltip">
+                                        Provide Debit Payment.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mx-2 position-relative">
+                                <div class="form-floating">
+                                    <select class="form-select" id="debit_option" required>
+
+                                        {% for option in form.debit_option %}
+
+                                        {{option}}
+
+                                        {% endfor %}
+                                    </select>
+                                    <label for="debit_option">Debit Option</label>
+                                    <div class="invalid-tooltip">
+                                        Choose a Valid Debit Option.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- area_name -->
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6 mt-4  position-relative">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="remarks" placeholder="Remarks" required>
+                                <label for="remarks">Payment Remarks</label>
+                                <div class="invalid-tooltip">
+                                    Provide A Valid Remarks.
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="right-side col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6 mt-4">
+                    <!-- Selected Client Details -->
+
+                    <div class="table-responsive">
+                        <table class=" table nowrap" style="width:100%">
+                            <tr class="table-danger">
+                                <th scope="row">Name As in Record :</th>
+                                <td><span id="record_name" style="font-weight: bold;"></span></td>
+                            </tr>
+                            <tr class="table-success">
+                                <th scope="row">Contact Person Name :</td>
+                                <td><span id="contact_name" style="font-weight: bold;"></span></td>
+                            </tr>
+                            <tr class="table-warning">
+                                <th scope="row">Mobiel No :</td>
+
+                                <td><span id="mobile_no" style="font-weight: bold;"></span></td>
+
+                            </tr>
+                            <tr class="table-info">
+                                <th scope="row">Area :</td>
+                                <td><span id="area_name" style="font-weight: bold;"></span></td>
+                            </tr>
+
+                            <tr class="bg-danger">
+                                <th scope="row">Pending Payment :</td>
+                                <td><span id="pending_payment" style="font-weight: bold;"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- Submit -->
+                <div
+                    class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  col-xxl-6 mb-3 offset-sm-3 justify-content-center d-flex  ">
+                    <div class="enroll-btn py-5">
+                        <button type="button" class="btn btn-primary" id="add_trainer_btn" onclick="formValidator()">Add
+                            Debit Details</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="client-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="myModal" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- For Telephone Number field -->
+<script>
+
+    $('#client-model').on('hidden.bs.modal', function (e) {
+        clientDetailsLoader()
+    });
+
+    $('#client_name').on('change', function () {
+        clientDetailsLoader()
+    });
+
+
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let debit_date = document.querySelector('#debit_date');
+        let client_name = document.querySelector('#client_name');
+        let debit_amount = document.querySelector("#debit_amount");
+        let debit_option = document.querySelector("#debit_option");
+        let remarks = document.querySelector("#remarks");
+
+
+        // If form valid then submit the data's
+        if (debit_date.checkValidity() === true && client_name.checkValidity() === true &&
+            debit_amount.checkValidity() === true && debit_option.checkValidity() === true &&
+            remarks.checkValidity() === true) {
+            let debit_date = $('#debit_date').val()
+            let client_name = $('#client_name').find(":selected").text();
+            let debit_amount = $('#debit_amount').val();
+            let debit_option = $('#debit_option').val();
+            let remarks = $('#remarks').val();
+
+            console.log(debit_date, client_name, debit_amount, debit_option, remarks)
+            $.post('', {
+                debit_date: debit_date,
+                client_name: client_name,
+                debit_amount: debit_amount,
+                debit_option: debit_option,
+                remarks: remarks,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Client Details Exist Already!');
+                        var myModal = new bootstrap.Modal(document.getElementById('client-model'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+                        console.log(data)
+                        $('#modal-title').html('Debit Transcation of Rs ' + debit_amount + ' Added successfully to ' + client_name);
+                        var myModal = new bootstrap.Modal(document.getElementById('client-model'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                        // formReset();
+                    }
+
+                });
+            return false;
+        }
+    }
+</script>
+{%endblock content%}

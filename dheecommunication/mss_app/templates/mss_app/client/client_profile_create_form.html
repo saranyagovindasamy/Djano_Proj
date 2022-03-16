@@ -1,0 +1,233 @@
+{% extends 'mss_app/base/base.html' %}
+{% load static %}
+{%block content%}
+
+<div class="container justify-content-center mt-4">
+    <div class="container-fluid justify-content-center justify-content-sm-center 
+    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center">
+        <div class="trainer-add-form col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  col-xxl-10  
+                    offset-sm-2 offset-md-2 offset-lg-2 offset-xl-2  offset-xxl-2 offset-2">
+            <form id="client_add_form"
+                class="row g2 needs-validation justify-content-center justify-content-sm-center 
+                    justify-content-md-center justify-content-lg-center justify-content-xl-center justify-content-xxl-center" novalidate>
+
+                {% csrf_token %}
+                <h1 class="text-center">Create New Client Profile</h1>
+
+                <!-- record_name -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5  col-xxl-5 mt-4 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="record_name" placeholder="Name in Record" required>
+                        <label for="record_name">Name As in Record</label>
+                        <div class="invalid-tooltip">
+                            Provide Name As in the records.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- actual_name -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-4 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="actual_name" placeholder="Actual Name" required>
+                        <label for="actual_name">Actual Client Name</label>
+                        <div class="invalid-tooltip">
+                            Provide Actual Client Name.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- contact_name -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-4 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="contact_name" placeholder="Contact Person Name" required>
+                        <label for="contact_name">Contact Person Name</label>
+                        <div class="invalid-tooltip">
+                            Provide Contact Person Name.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- mobile_no -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-4 position-relative">
+                    <div class="form-floating">
+                        <input type="tel" class="form-control" id="mobile_no" pattern="^\d{10}$" required
+                            placeholder="Mobile No">
+                        <label for="mobile_no">Mobile No</label>
+                        <div class="invalid-tooltip">
+                            Provide client's Mobile Number.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Contact Number -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-4 position-relative">
+                    <div class="form-floating">
+                        <input type="tel" class="form-control" id="secondary_contact" pattern="^\d{10}$"
+                            placeholder="Mobile No">
+                        <label for="secondary_contact">Secondary Contact No</label>
+                        <div class="invalid-tooltip">
+                            Provide client's Secondary Number.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- area_name -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-4 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="area_name" placeholder="Area Name" required>
+                        <label for="area_name">Area Name</label>
+                        <div class="invalid-tooltip">
+                            Provide Area Name.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-4 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="address" placeholder="Address">
+                        <label for="address">Address</label>
+                        <div class="invalid-tooltip">
+                            Provide Address.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- area_code -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-4 position-relative">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="area_code" placeholder="Area Code">
+                        <label for="area_code">Area Code</label>
+                        <div class="invalid-tooltip">
+                            Provide Area Code.
+                        </div>
+                    </div>
+                </div>
+                <!-- Pending Payment -->
+                <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-5 col-xxl-5 mt-4 position-relative">
+                    <div class="form-floating">
+                        <input type="number" step="any" class="form-control" id="pending_payment"
+                            placeholder="Pending Payment" value="00.00">
+                        <label for="pending_payment">Pending Payment</label>
+                        <div class="invalid-tooltip">
+                            Provide Pending Payment.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div
+                    class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-4 col-xxl-8 mb-3 justify-content-center d-flex  ">
+                    <div class="enroll-btn py-5">
+                        <button type="button" class="btn btn-primary" id="add_trainer_btn" onclick="formValidator()">Add
+                            Client Details</button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+    <!-- modal Dialog box -->
+    <div class="modal fade" id="client-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="myModal" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- For Telephone Number field -->
+<script>
+
+    $('#client-model').on('hidden.bs.modal', function (e) {
+        location.reload();
+    });
+ 
+    function formValidator() {
+        console.log("form validation")
+
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add("was-validated");
+        });
+
+        let record_name = document.querySelector('#record_name');
+        let actual_name = document.querySelector('#actual_name');
+        let contact_name = document.querySelector("#contact_name");
+        let mobile_no = document.querySelector("#mobile_no");
+        let secondary_contact = document.querySelector("#secondary_contact");
+        let area_name = document.querySelector('#area_name');
+        let area_code = document.querySelector('#area_code');
+
+        // If form valid then submit the data's
+        if (record_name.checkValidity() === true && actual_name.checkValidity() === true &&
+            contact_name.checkValidity() === true && mobile_no.checkValidity() === true &&
+            area_code.checkValidity() === true && area_name.checkValidity() === true) {
+            let record_name = $('#record_name').val()
+            let actual_name = $('#actual_name').val()
+            let contact_name = $('#contact_name').val();
+            let mobile_no = $('#mobile_no').val();
+            let secondary_contact = $('#secondary_contact').val();
+            let area_name = $('#area_name').val();
+            let area_code = $('#area_code').val();
+            let address = $('#address').val();
+            let pending_payment = $('#pending_payment').val();
+
+            console.log(record_name, actual_name, contact_name, mobile_no, secondary_contact, address, area_name, area_code, pending_payment)
+            $.post('', {
+                record_name: record_name,
+                actual_name: actual_name,
+                contact_name: contact_name,
+                mobile_no: mobile_no,
+                secondary_contact: secondary_contact,
+                address: address,
+                area_name: area_name,
+                area_code: area_code,
+                pending_payment: pending_payment,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+                function (data, status) {
+                    console.log(data)
+                    // if contact details exist
+                    if (data == 409) {
+                        console.log(data)
+                        $('#modal-title').html('Client Details Exist Already!');
+                        var myModal = new bootstrap.Modal(document.getElementById('client-model'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                    }
+
+                    else if (data == 200) {
+                        console.log(data)
+                        $('#modal-title').html('New Client saved successfully!');
+                        var myModal = new bootstrap.Modal(document.getElementById('client-model'), {
+                            keyboard: false
+                        })
+                        myModal.show()
+                        // formReset();
+                    }
+
+                });
+            return false;
+        }
+    }
+</script>
+{%endblock content%}

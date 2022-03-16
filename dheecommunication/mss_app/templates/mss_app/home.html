@@ -1,0 +1,33 @@
+{% extends "mss_app/base/base.html" %}
+{%load static%}
+{%block content%}
+
+
+<div class="my-3 mt-2 text-center">
+    <h1 class="mt-5">Dhee Communication</h1>
+    <h1 class="my-2">Home Page</h1>
+
+    <div id="loader-spin1" class="spin-container1 mt-5">
+        <div class="spin" id="loader"></div>
+        <div class="spin" id="loader2"></div>
+        <div class="spin" id="loader3"></div>
+        <div class="spin" id="loader4"></div>
+        <span id="text"><img src="{%static 'images/logo.png'%}" class="logo img-fluid"></span>
+      </div>
+</div>
+
+
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+
+        setTimeout(ShowLoader, 1500);
+
+    });
+function ShowLoader()
+{
+    console.log("call")
+    document.querySelector(
+            "#loader-spin1").style.visibility = "visible";
+}
+</script> -->
+{%endblock content%}
